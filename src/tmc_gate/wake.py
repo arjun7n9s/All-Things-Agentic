@@ -80,9 +80,30 @@ def run_case(case: str, live_bytes: bytes | None = None, unattended: bool = Fals
         try:
             return run_overnight_with_adk(case, live_bytes=live_bytes, unattended=unattended)
         except Exception as exc:
+            err = str(exc)
+            # Smart shed: 429 on 3.7 → retry overnight once on 3.5, same FunctionTools.
+            if "429" in err or "RESOURCE_EXHAUSTED" in err:
+                from tmc_gate.model_router import resolve
+
+                shed = resolve("overnight_retry")
+                prev = os.environ.get("TMC_GEMINI_MODEL_OVERNIGHT")
+                os.environ["TMC_GEMINI_MODEL_OVERNIGHT"] = shed
+                try:
+                    out = run_overnight_with_adk(case, live_bytes=live_bytes, unattended=unattended)
+                    out["orchestrator"] = "adk_agent_after_429_shed"
+                    out["gemini_shed"] = shed
+                    out["adk_error_primary"] = err[:300]
+                    return out
+                except Exception as exc2:
+                    err = f"{err} | shed_failed:{exc2}"
+                finally:
+                    if prev is None:
+                        os.environ.pop("TMC_GEMINI_MODEL_OVERNIGHT", None)
+                    else:
+                        os.environ["TMC_GEMINI_MODEL_OVERNIGHT"] = prev
             out = run_tool_pipeline(case, live_bytes=live_bytes, unattended=unattended)
             out["orchestrator"] = "tool_pipeline_after_adk_error"
-            out["adk_error"] = str(exc)[:500]
+            out["adk_error"] = err[:500]
             return out
     return run_tool_pipeline(case, live_bytes=live_bytes, unattended=unattended)
 

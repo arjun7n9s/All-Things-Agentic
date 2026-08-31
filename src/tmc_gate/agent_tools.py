@@ -462,4 +462,14 @@ def session_payload(orchestrator: str, agent_text: str | None = None, adk_tool_c
         payload["agent_summary"] = agent_text[:2000]
     if adk_tool_calls is not None:
         payload["adk_tool_calls"] = adk_tool_calls
+    try:
+        from tmc_gate.model_router import resolve
+
+        payload["gemini_routing"] = {
+            "overnight": resolve("overnight"),
+            "quote": resolve("quote"),
+            "quote_retry": resolve("quote_retry"),
+        }
+    except Exception:
+        pass
     return payload

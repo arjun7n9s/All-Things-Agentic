@@ -23,7 +23,7 @@ Say on camera: “PM47 is still a valid product URL; it refuses only when *that*
 Show the app working in the first 10–15 seconds. No long intro. No typing live.
 
 1. Title — `/judges` masthead: Coast Range TMC · dark desk · HCRR 10 min
-2. `/health` eligibility strip — **gemini-3.5-flash · Vertex AI · Google ADK · Firestore/Pub/Sub/Functions** (mandatory stack proof)
+2. `/health` eligibility strip — **gemini-3.7-flash routed · Vertex AI · Google ADK · Firestore/Pub/Sub/Functions** (mandatory stack + model routing proof)
 3. Clock — wall vs sim
 4. Frozen A — recorded MATCH · CLOSED_FIRE · write log · `→ POST /reopen/CA-1/PM12`
 5. **/reopen in address bar** — `/tmc-gate/reopen/CA-1/PM12` → `REFUSED` + three quotes

@@ -12,13 +12,13 @@ from tmc_gate.models import FirmsDetection, QuoteBundle
 from tmc_gate.quotes import QUOTE_INSTRUCTION, parse_model_json
 
 AIMLAPI_BASE = os.environ.get("AIMLAPI_BASE", "https://api.aimlapi.com/v1").rstrip("/")
-# Prefer Gemini 3.5+ (hackathon mandatory). Override with TMC_AIMLAPI_MODEL.
+# Prefer Gemini 3.7, stay ≥3.5 (hackathon floor). Override with TMC_AIMLAPI_MODEL.
 DEFAULT_MODELS = (
     os.environ.get("TMC_AIMLAPI_MODEL"),
+    "google/gemini-3.7-flash",
+    "gemini-3.7-flash",
     "google/gemini-3.5-flash",
     "gemini-3.5-flash",
-    "google/gemini-3-flash-preview",
-    "gemini-3-flash-preview",
 )
 
 

@@ -47,7 +47,7 @@ def main() -> None:
     d.text((40, 24), "tmc-gate · Coast Range TMC · Taskmaster", font=font(28), fill=INK)
     d.text(
         (40, 60),
-        "Mandatory stack: Gemini 3.5 Flash (Vertex AI) · Google ADK (LlmAgent + AgentTool) · GCP (Functions, Firestore, Pub/Sub, BQ, EE, Armor)",
+        "Mandatory stack: Gemini 3.7 Flash routed (Vertex AI) · Google ADK (LlmAgent + AgentTool) · GCP (Functions, Firestore, Pub/Sub, BQ, EE, Armor)",
         font=font(16),
         fill=MUTED,
     )
@@ -60,8 +60,8 @@ def main() -> None:
     box(
         d,
         (40, 270, 820, 430),
-        "Google ADK · Gemini 3.5 Flash",
-        "Vertex AI location=global\nLlmAgent + AgentTool (quote clerk)\nFunctionTools: fetch → quote → join → write → publish → reopen",
+        "Google ADK · Gemini 3.7 Flash (routed)",
+        "Vertex AI location=global\novernight+quote → 3.7 · quote_retry → 3.5\nFunctionTools: fetch → quote → join → write → publish → reopen",
         (20, 32, 22),
         GREEN,
     )

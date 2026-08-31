@@ -93,7 +93,11 @@ def test_health_pending_enable(client):
     assert letters["A5"] == "Cloud Functions"
     assert letters["A8"] == "Cloud Storage"
     elig = body["eligibility"]
-    assert elig["gemini"].startswith("gemini-3.5") or elig["gemini_min_required"] == "3.5"
+    assert elig["gemini_min_required"] == "3.5"
+    assert elig["gemini"].startswith("gemini-3.")
+    assert "gemini_routing" in elig
+    assert elig["gemini_routing"]["overnight"]["model"].startswith("gemini-3.")
+    assert elig["gemini_routing"]["stdlib_decides_match"] is True
     assert "ADK" in elig["agent_framework"]
     assert "Firestore" in elig["cloud_infrastructure"]
     assert elig["track"] == "Taskmaster"

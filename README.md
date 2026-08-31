@@ -16,13 +16,27 @@ Every project must use Gemini 3.5+, one Google Agent Framework, and one Google C
 
 | Requirement | What tmc-gate uses |
 |---|---|
-| **Gemini 3.5 or newer** via Gemini API or Vertex AI | **`gemini-3.5-flash` on Vertex AI** (`GOOGLE_CLOUD_LOCATION=global`) |
+| **Gemini 3.5 or newer** via Gemini API or Vertex AI | **`gemini-3.7-flash` on Vertex AI** (`GOOGLE_CLOUD_LOCATION=global`), with task-scoped routing |
 | **Google Agent Framework** | **Google ADK** — `LlmAgent` + `AgentTool` + `FunctionTool` |
 | **Google Cloud infrastructure** | **Cloud Functions**, **Firestore**, **Pub/Sub**, **BigQuery**, **Earth Engine**, **Model Armor**, **Secret Manager**, **Cloud Storage**, **Cloud Scheduler**, **Vertex AI** |
 
+### Gemini model routing (architectural)
+
+| Task | Model | Why |
+|---|---|---|
+| Overnight parent agent | `gemini-3.7-flash` | Agentic workhorse — multi-step FunctionTool orchestration |
+| Overnight 429 shed | `gemini-3.5-flash` | Same ADK tools if Vertex rate-limits 3.7 |
+| Quote clerk (AgentTool) | `gemini-3.7-flash` | Instruction-faithful TOM / PIO / FIRMS verbatim quotes |
+| Quote retry shed | `gemini-3.5-flash` | Stay ≥ mandatory 3.5 floor if primary fails |
+| Lite probe (optional) | `gemini-3.1-flash-lite` | Cheap non-decision traffic only |
+| Last resort | Deterministic FunctionTool pipeline | Identical tools; no invented MATCH |
+| MATCH / NON-MATCH | **stdlib** (BQ + EE) | LLM never decides MATCH |
+
+Implemented in `src/tmc_gate/model_router.py`. Exposed on `GET /health` → `eligibility.gemini_routing`.
+
 Proof surfaces:
 
-- `GET /health` → `eligibility` object (model, ADK, GCP services)
+- `GET /health` → `eligibility` object (model routing, ADK, GCP services)
 - `architecture.png` (upload this on Devpost)
 - Hosted URL below (highly encouraged for judging)
 
@@ -34,7 +48,7 @@ Track fit (**Taskmaster**): overnight wake is an event-driven workflow — fetch
 
 ```
 A10 claim: ENABLED
-Gemini:       gemini-3.5-flash (Vertex AI, location=global)
+Gemini:       gemini-3.7-flash primary (Vertex AI, location=global; quote_retry=3.5)
 ADK:          LlmAgent + AgentTool + FunctionTools
 Earth Engine: enabled (NASADEM upslope)
 BigQuery:     enabled (ST_Intersects)
@@ -63,7 +77,7 @@ If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silent
 - Publish traveler-info or write CAD
 - Real employee names, real CAD incidents
 - Silently skip Earth Engine or Model Armor
-- Gemini model older than 3.5 as the production quote path
+- Gemini model older than 3.5 as the production quote / overnight path
 
 ---
 
@@ -115,7 +129,7 @@ Live pane GETs this morning's FIRMS CSV. Honest empty wake is allowed.
 
 See `scripts/hour0_enable.ps1`. Enable Earth Engine, BigQuery, Pub/Sub, Model Armor, Cloud Functions, Firestore, Secret Manager, Cloud Storage, Vertex AI. Register the project for Earth Engine.
 
-**Gemini 3.5 on Vertex requires `GOOGLE_CLOUD_LOCATION=global`.** Model Armor stays regional (`MODEL_ARMOR_LOCATION=us-central1`).
+**Gemini 3.7 / 3.5 on Vertex require `GOOGLE_CLOUD_LOCATION=global`.** Model Armor stays regional (`MODEL_ARMOR_LOCATION=us-central1`).
 
 Put optional Gemini API key in Secret Manager (`gemini-api-key`). Prefer Vertex ADC on Cloud Functions. Do not mint user-managed service-account JSON keys. Do not put keys in git.
 
@@ -137,7 +151,7 @@ gcloud scheduler jobs create http tmc-gate-overnight-live `
 
 ## Join (stdlib, not LLM)
 
-Gemini 3.5 (ADK) **quotes** TOM Chapter 110 (HCRR 10 min; county, route, and post mile; steep slope above the highway) and FIRMS `acq_time` / confidence / FRP / satellite.
+Gemini 3.7 Flash (ADK, task-routed) **quotes** TOM Chapter 110 (HCRR 10 min; county, route, and post mile; steep slope above the highway) and FIRMS `acq_time` / confidence / FRP / satellite.
 
 Stdlib **conjuncts**:
 
@@ -166,7 +180,7 @@ python scripts/render_architecture.py
 
 ## Technologies used (Devpost write-up)
 
-- **Gemini 3.5 Flash** via **Vertex AI** (`global`)
+- **Gemini 3.7 Flash** (primary) + **3.5 Flash** (quote retry) via **Vertex AI** (`global`), task-routed
 - **Google ADK** (`google-adk`) — overnight `LlmAgent` orchestrates real `FunctionTool`s
 - **Cloud Functions** (HTTP 2nd gen) — product host
 - **Firestore** — TMCAL system of record

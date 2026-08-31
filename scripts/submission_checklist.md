@@ -4,7 +4,7 @@ Deadline: Mon 31 Aug 2026 5:00pm PDT · https://allthingsagentichackathon.devpos
 
 ## Mandatory tech (DQ if missing)
 
-- [x] **Gemini 3.5 or newer** — `gemini-3.5-flash` on Vertex AI (`GOOGLE_CLOUD_LOCATION=global`)
+- [x] **Gemini 3.5 or newer** — `gemini-3.7-flash` primary (+ `3.5` quote retry) on Vertex AI (`global`), task-routed
 - [x] **Google Agent Framework** — Google ADK (`LlmAgent` + `AgentTool` + `FunctionTool`)
 - [x] **Google Cloud infrastructure** — Cloud Functions + Firestore + Pub/Sub + BQ + EE + Model Armor + Scheduler + Vertex
 - [x] Track selected: **The Taskmaster** (action workflow, not chat)

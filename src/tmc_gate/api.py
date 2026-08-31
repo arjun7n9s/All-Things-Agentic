@@ -248,9 +248,10 @@ def _health() -> dict:
         # Devpost mandatory stack — judges curl this.
         "eligibility": {
             "track": "Taskmaster",
-            "gemini": os.environ.get("TMC_GEMINI_MODEL", "gemini-3.5-flash"),
+            "gemini": _primary_gemini(),
             "gemini_access": "Vertex AI",
             "gemini_min_required": "3.5",
+            "gemini_routing": _gemini_routing(),
             "agent_framework": "Google ADK",
             "agent_framework_detail": "LlmAgent + AgentTool + FunctionTool",
             "cloud_infrastructure": [
@@ -284,6 +285,18 @@ def _health() -> dict:
         if all(v == "not-configured" for v in others.values()):
             payload["a10_claim"] = "PENDING_ENABLE"
     return payload
+
+
+def _primary_gemini() -> str:
+    from tmc_gate.model_router import primary_model
+
+    return primary_model()
+
+
+def _gemini_routing() -> dict:
+    from tmc_gate.model_router import routing_table
+
+    return routing_table()
 
 
 def _parse_route_pm(path: str) -> tuple[str, float]:

@@ -8,11 +8,12 @@ import re
 import uuid
 
 from tmc_gate.constants import ADK_CALL_BOUND, FORBIDDEN_TOOL_NAMES
+from tmc_gate.model_router import primary_model, resolve
 from tmc_gate.models import FirmsDetection, QuoteBundle
 from tmc_gate.quotes import QUOTE_INSTRUCTION, parse_model_json
 
-# Mandatory for All Things Agentic: Gemini 3.5 or newer (Devpost / Official Rules).
-MODEL = os.environ.get("TMC_GEMINI_MODEL", "gemini-3.5-flash")
+# Back-compat alias — overnight (primary) route. Prefer model_router.resolve(task).
+MODEL = primary_model()
 
 OVERNIGHT_INSTRUCTION = """You are the overnight clerk for Coast Range TMC (fixture TMC).
 
@@ -49,16 +50,18 @@ def build_agents():
         spatial_join_upslope,
     )
 
+    quote_model = resolve("quote")
+    overnight_model = resolve("overnight")
     quote_agent = LlmAgent(
         name="tom_firms_quote",
-        model=MODEL,
+        model=quote_model,
         description="Quotes TOM Ch 110 and FIRMS attrs. Never returns MATCH.",
         instruction=QUOTE_INSTRUCTION,
         tools=[],
     )
     parent = LlmAgent(
         name="coast_range_overnight",
-        model=MODEL,
+        model=overnight_model,
         description="Coast Range TMC overnight clerk. Fetches FIRMS, quotes, joins via stdlib tools, writes TMCAL.",
         instruction=OVERNIGHT_INSTRUCTION,
         tools=[
@@ -75,8 +78,9 @@ def build_agents():
 
 
 def quote_with_adk(det: FirmsDetection, packet_text: str) -> QuoteBundle:
-    """Run the quote LlmAgent (bounded)."""
-    quote_agent, _parent = build_agents()
+    """Run the quote LlmAgent (bounded). Shed to quote_retry model if primary can't quote."""
+    from google.adk.agents import LlmAgent
+
     prompt = (
         f"Packet:\n{packet_text}\n\n"
         f"FIRMS row: acq={det.acq_iso} conf={det.confidence} frp={det.frp} sat={det.satellite}\n"
@@ -85,10 +89,24 @@ def quote_with_adk(det: FirmsDetection, packet_text: str) -> QuoteBundle:
         "firms{acq_time,confidence,frp,satellite}, numeric_buffer_from_prose_m. "
         "Do not return MATCH."
     )
-    raw = _run_bounded(quote_agent, prompt, bound=ADK_CALL_BOUND)
-    if not isinstance(raw, dict):
-        return QuoteBundle(status="CANT_READ")
-    return parse_model_json(raw, det)
+    for task in ("quote", "quote_retry"):
+        agent = LlmAgent(
+            name="tom_firms_quote",
+            model=resolve(task),
+            description="Quotes TOM Ch 110 and FIRMS attrs. Never returns MATCH.",
+            instruction=QUOTE_INSTRUCTION,
+            tools=[],
+        )
+        try:
+            raw = _run_bounded(agent, prompt, bound=ADK_CALL_BOUND)
+        except Exception:
+            continue
+        if not isinstance(raw, dict):
+            continue
+        bundle = parse_model_json(raw, det)
+        if bundle.status == "QUOTED" or bundle.tom_quotes_ok():
+            return bundle
+    return QuoteBundle(status="CANT_READ")
 
 
 def run_overnight_with_adk(case: str, live_bytes: bytes | None = None, unattended: bool = False) -> dict:

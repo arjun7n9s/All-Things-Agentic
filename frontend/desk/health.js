@@ -43,7 +43,10 @@ function paint(h) {
   document.getElementById("live-gun").textContent = `live_gun · ${h.live_gun}`;
   document.getElementById("ee-firms").textContent = `ee_firms_not_live_gun · ${h.ee_firms_not_live_gun}`;
   const elig = h.eligibility || {};
-  document.getElementById("elig-gemini").textContent = `gemini · ${elig.gemini || "gemini-3.5-flash"} · ${
+  const route = elig.gemini_routing || {};
+  const overnight = (route.overnight && route.overnight.model) || elig.gemini || "gemini-3.7-flash";
+  const quote = (route.quote && route.quote.model) || overnight;
+  document.getElementById("elig-gemini").textContent = `gemini · primary ${overnight} · quote ${quote} · ${
     elig.gemini_access || "Vertex AI"
   }`;
   document.getElementById("elig-adk").textContent = `agent_framework · ${elig.agent_framework || "Google ADK"} · ${
