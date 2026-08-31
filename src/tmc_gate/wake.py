@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from tmc_gate.firms import load_csv_path, native_pixel_polygon
+from tmc_gate.firms import filter_d5, load_csv_path, native_pixel_polygon
 from tmc_gate.join import FixtureElevationEngine, JoinConfig, ShapelyGeometryEngine, evaluate
 from tmc_gate.models import Decision, ElevationSample, FirmsDetection, JoinResult, QuoteBundle, WriteResult
 from tmc_gate.quotes import gemini_configured, packet_quotes_for, run_quote_agent
@@ -72,10 +72,13 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
     store = get_store()
     segs = load_shn()
     csv_path = default_firms_csv()
+    national_n = 0
     if case == "live" and live_bytes:
         from tmc_gate.firms import parse_csv
 
         dets = parse_csv(live_bytes.decode("utf-8", errors="replace"))
+        national_n = len(dets)
+        dets = filter_d5(dets)
     else:
         dets = load_csv_path(csv_path) if csv_path.exists() else []
 
@@ -120,6 +123,32 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
                 "writes": 0,
                 "write_happened": False,
             }
+        if not dets:
+            # Honest empty live wake after D5 clip — do not hang on BQ.
+            from tmc_gate.pubsub_bus import publish_wake_batch
+
+            pub = publish_wake_batch(
+                case=case,
+                firms_ids=[],
+                detections=0,
+                matches=0,
+                write_happened=False,
+            )
+            return {
+                "case": case,
+                "detections": 0,
+                "matches": 0,
+                "non_match": 0,
+                "cant_read": 0,
+                "writes": 0,
+                "write_happened": False,
+                "postmiles": [],
+                "honest_empty": case == "live",
+                "national_csv_rows": national_n,
+                "d5_clipped_rows": 0,
+                "production": True,
+                "pubsub": pub,
+            }
         fps = [(d.firms_id, native_pixel_polygon(d)) for d in dets]
         hit_map = config.geometry_engine.intersecting_spans(fps)
         bq_job_id = config.geometry_engine.job_id
@@ -140,7 +169,27 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
         adk_bundle = run_quote_agent(dets[0])
         adk_used = adk_bundle.status == "QUOTED"
 
+    armor_blocked = False
+    if production_mode() and os.environ.get("MODEL_ARMOR_ENABLED") == "1" and dets:
+        from tmc_gate.armor import sanitize_or_refuse
+
+        probe = adk_bundle or packet_quotes_for(dets[0])
+        verdict = sanitize_or_refuse(probe.upslope_span or probe.county_route_post_mile or "")
+        if verdict.configured and not verdict.allowed:
+            armor_blocked = True
+
+    hit_ids = set(hit_map.keys()) if hit_map is not None else None
+
     for det in dets:
+        if armor_blocked:
+            cant += 1
+            continue
+
+        # Production: BQ already said no intersect → NON_MATCH without EE round-trip.
+        if hit_ids is not None and det.firms_id not in hit_ids:
+            non += 1
+            continue
+
         if adk_used and adk_bundle is not None:
             quotes = QuoteBundle(
                 status=adk_bundle.status,
@@ -160,14 +209,6 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
             quotes = run_quote_agent(det)
         else:
             quotes = packet_quotes_for(det)
-
-        if production_mode() and os.environ.get("MODEL_ARMOR_ENABLED") == "1":
-            from tmc_gate.armor import sanitize_or_refuse
-
-            verdict = sanitize_or_refuse(quotes.upslope_span or quotes.county_route_post_mile or "")
-            if verdict.configured and not verdict.allowed:
-                cant += 1
-                continue
 
         if production_mode() and hit_map is not None:
             result = _evaluate_prod_hit(det, segs, quotes, hit_map, config, bq_job_id)
@@ -213,7 +254,7 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
             ee_job_id=last_match.ee_job_id if last_match else None,
         )
 
-    return {
+    payload = {
         "case": case,
         "detections": len(dets),
         "matches": matches,
@@ -231,6 +272,10 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
         "adk_quotes": adk_used,
         "pubsub": pubsub_meta,
     }
+    if case == "live":
+        payload["national_csv_rows"] = national_n
+        payload["d5_clipped_rows"] = len(dets)
+    return payload
 
 
 def _evaluate_prod_hit(

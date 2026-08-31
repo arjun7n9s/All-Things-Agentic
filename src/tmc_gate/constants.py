@@ -9,6 +9,10 @@ D5_CLOSE = "18:00"
 
 # D5-shaped clip. SHN County field uses MON (probed).
 D5_COUNTIES = frozenset({"MON", "SLO", "SB", "SCR", "SBT"})
+# Loose WGS84 window around D5 before BQ (national 24h CSV is huge).
+# (lat_min, lat_max, lon_min, lon_max)
+D5_BBOX = (34.2, 37.65, -122.65, -119.15)
+LIVE_BQ_CHUNK = 40
 
 # Live gun is FIRMS CSV/KML. Not EE ImageCollection("FIRMS").
 FIRMS_CSV = {

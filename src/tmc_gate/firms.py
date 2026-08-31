@@ -10,7 +10,7 @@ from pathlib import Path
 
 from shapely.geometry import Polygon
 
-from tmc_gate.constants import FIRMS_CSV, FIRMS_KML
+from tmc_gate.constants import D5_BBOX, FIRMS_CSV, FIRMS_KML
 from tmc_gate.models import FirmsDetection
 
 # VIIRS native pixel is ~375 m. scan/track in the CSV are that pixel, in km.
@@ -67,6 +67,16 @@ def parse_csv(text: str, source: str = "noaa20") -> list[FirmsDetection]:
 
 def load_csv_path(path: Path, source: str = "noaa20") -> list[FirmsDetection]:
     return parse_csv(path.read_text(encoding="utf-8"), source=source)
+
+
+def in_d5_bbox(det: FirmsDetection) -> bool:
+    lat_min, lat_max, lon_min, lon_max = D5_BBOX
+    return lat_min <= det.latitude <= lat_max and lon_min <= det.longitude <= lon_max
+
+
+def filter_d5(dets: list[FirmsDetection]) -> list[FirmsDetection]:
+    """Clip national FIRMS CSV to the D5-shaped window before spatial join."""
+    return [d for d in dets if in_d5_bbox(d)]
 
 
 def native_pixel_polygon(det: FirmsDetection) -> Polygon:

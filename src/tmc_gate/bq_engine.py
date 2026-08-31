@@ -7,6 +7,7 @@ from typing import Iterable
 
 from shapely.geometry import Polygon
 
+from tmc_gate.constants import LIVE_BQ_CHUNK
 from tmc_gate.models import ShnSegment
 
 
@@ -53,27 +54,29 @@ class BqGeometryEngine:
         fps = list(footprints)
         if not fps:
             return {}
-        # Build a query with UNION ALL of literals (parameter arrays of STRUCT are awkward).
-        parts = []
-        params = []
-        for i, (fid, poly) in enumerate(fps):
-            parts.append(f"SELECT @fid{i} AS firms_id, ST_GEOGFROMTEXT(@wkt{i}) AS geom")
-            params.append(bigquery.ScalarQueryParameter(f"fid{i}", "STRING", fid))
-            params.append(bigquery.ScalarQueryParameter(f"wkt{i}", "STRING", poly.wkt))
-        fps_sql = " UNION ALL ".join(parts)
-        table = f"`{self.project}.{self.dataset}.shn_d5`"
-        sql = f"""
-        WITH fps AS ({fps_sql})
-        SELECT f.firms_id, s.county, s.route, s.bpm, s.epm
-        FROM fps f
-        JOIN {table} s
-        ON ST_Intersects(f.geom, s.geom)
-        """
-        job = self.client.query(sql, job_config=bigquery.QueryJobConfig(query_parameters=params))
-        self._job_id = job.job_id
         out: dict[str, list[tuple[str, int, float, float]]] = {}
-        for row in job.result():
-            out.setdefault(row["firms_id"], []).append(
-                (row["county"], int(row["route"]), float(row["bpm"]), float(row["epm"]))
-            )
+        table = f"`{self.project}.{self.dataset}.shn_d5`"
+        chunk = max(1, int(LIVE_BQ_CHUNK))
+        for offset in range(0, len(fps), chunk):
+            batch = fps[offset : offset + chunk]
+            parts = []
+            params = []
+            for i, (fid, poly) in enumerate(batch):
+                parts.append(f"SELECT @fid{i} AS firms_id, ST_GEOGFROMTEXT(@wkt{i}) AS geom")
+                params.append(bigquery.ScalarQueryParameter(f"fid{i}", "STRING", fid))
+                params.append(bigquery.ScalarQueryParameter(f"wkt{i}", "STRING", poly.wkt))
+            fps_sql = " UNION ALL ".join(parts)
+            sql = f"""
+            WITH fps AS ({fps_sql})
+            SELECT f.firms_id, s.county, s.route, s.bpm, s.epm
+            FROM fps f
+            JOIN {table} s
+            ON ST_Intersects(f.geom, s.geom)
+            """
+            job = self.client.query(sql, job_config=bigquery.QueryJobConfig(query_parameters=params))
+            self._job_id = job.job_id
+            for row in job.result():
+                out.setdefault(row["firms_id"], []).append(
+                    (row["county"], int(row["route"]), float(row["bpm"]), float(row["epm"]))
+                )
         return out
