@@ -174,13 +174,11 @@ Probed FIRMS 24h KML is Point placemarks. Native geometry is the sensor pixel fr
 
 ## Architecture
 
-See [`architecture.png`](architecture.png). Load-bearing: Gemini 3.5 + ADK quotes-only, Earth Engine NASADEM, BigQuery `ST_Intersects`, Pub/Sub, Model Armor fail-closed, Cloud Functions host, Firestore TMCAL, Secret Manager.
+See [`architecture.png`](architecture.png) (upload this on Devpost).
 
-Regenerate:
+Flow: **FIRMS / Scheduler → desk UI (`/judges`) → Cloud Functions → Gemini 3.7 + Google ADK (quotes only) → BigQuery ∩ Earth Engine → stdlib gate → Firestore TMCAL → `/reopen` + `/conformance`.**
 
-```powershell
-python scripts/render_architecture.py
-```
+Load-bearing: Gemini 3.5+ via ADK quotes-only (never MATCH), Earth Engine NASADEM, BigQuery `ST_Intersects`, Pub/Sub, Model Armor fail-closed, Cloud Functions host (`cloudfunctions.net`, not `.run.app`), Firestore TMCAL, Secret Manager.
 
 ---
 
@@ -199,13 +197,78 @@ python scripts/render_architecture.py
 
 ---
 
-## Tests
+## Reproducible testing
 
-Named stdlib-gate tests in `tests/`. Do not claim 320.
+Named stdlib-gate tests in `tests/test_join_gate.py` and `tests/test_api.py`. Do not claim hundreds of tests — claim the load-bearing ones.
+
+### Local (no GCP keys, deterministic)
+
+Python 3.11+. From this directory:
 
 ```powershell
-pytest
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -e ".[dev]"
+
+# Force in-memory SoR + fixture engines. Do not hit live Vertex / EE / Firestore.
+$env:TMC_STORE = "memory"
+$env:TMC_FIRESTORE = ""
+$env:TMC_EARTH_ENGINE = ""
+$env:TMC_ADK_ORCHESTRATE = "0"
+$env:GOOGLE_API_KEY = ""
+$env:GEMINI_API_KEY = ""
+
+python -m pytest tests/ -v
 ```
+
+Expected: **all tests pass** (currently 22). Load-bearing names a judge can grep:
+
+| Test | Why it exists |
+|---|---|
+| `test_county_only_must_fail` | U7 kill — not a Monterey webhook |
+| `test_delete_ee_cannot_match` | NASADEM missing → no MATCH |
+| `test_delete_bq_cannot_match` | `ST_Intersects` missing → no MATCH |
+| `test_no_invented_100ft_buffer` | Native VIIRS pixel only |
+| `test_reopen_refused_includes_quotes` | Product URL + three quotes |
+| `test_reopen_pm47_not_county_webhook` | PM47 ALLOWED after Frozen A |
+| `test_conformance_3_of_3` | Scores Firestore/memory objects |
+| `test_unreachable_404` | traveler-info / CAD / email 404 |
+| `test_no_cloud_run` | Host is Functions, not `.run.app` |
+| `test_board_dedupes_same_span` | One TMCAL row per SHN span |
+| `test_refusal_certificate` | `?format=cert` hashes |
+| `test_desk_html_surfaces` | SSR first paint on `/judges` |
+
+### Reproduce the film URLs locally
+
+```powershell
+$env:FUNCTION_TARGET = "tmc_gate"
+$env:TMC_STORE = "memory"
+$env:TMC_ADK_ORCHESTRATE = "0"
+functions-framework --target=tmc_gate --source=main.py --debug --port=8080
+```
+
+In another shell:
+
+```powershell
+curl.exe -sS -X POST "http://127.0.0.1:8080/wake?case=frozen_a"
+curl.exe -sS -X POST "http://127.0.0.1:8080/reopen/CA-1/PM12"   # REFUSED
+curl.exe -sS -X POST "http://127.0.0.1:8080/reopen/CA-1/PM47"   # ALLOWED
+curl.exe -sS "http://127.0.0.1:8080/conformance?format=json"    # 3/3
+curl.exe -sS "http://127.0.0.1:8080/reopen/CA-1/PM12?format=cert"
+curl.exe -sS -o NUL -w "%{http_code}" "http://127.0.0.1:8080/traveler-info"  # 404
+```
+
+### Hosted smoke (optional)
+
+```powershell
+$B = "https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate"
+curl.exe -sS "$B/health?format=json"
+curl.exe -sS "$B/wake?case=frozen_a"
+curl.exe -sS -X POST "$B/reopen/CA-1/PM12"
+curl.exe -sS "$B/conformance?format=json"
+```
+
+If any kill-if trips (county-only closer, Cloud Run advertised, EE skipped silently), print the failed letter — do not ship a green CI by deleting the test.
 
 ---
 
