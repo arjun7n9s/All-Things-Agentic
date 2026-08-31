@@ -117,6 +117,18 @@ def test_refusal_certificate(client):
     assert body["manifest"]["stdlib_decides_match"] is True
 
 
+def test_board_dedupes_same_span(client):
+    """Multiple MATCH writes into one SHN span must not duplicate /board rows."""
+    run_case("frozen_a")
+    run_case("frozen_a")
+    body = client.get("/board").get_json()
+    closed = [p for p in body["postmiles"] if p["status"] == "CLOSED_FIRE"]
+    spans = {(p["route"], round(float(p["bpm"]), 3), round(float(p["epm"]), 3)) for p in closed}
+    assert len(closed) == 1
+    assert len(spans) == 1
+    assert client.post("/reopen/CA-1/PM12").get_json()["decision"] == "REFUSED"
+
+
 def test_llms_txt(client):
     rv = client.get("/llms.txt")
     assert rv.status_code == 200

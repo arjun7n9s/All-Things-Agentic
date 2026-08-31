@@ -8,14 +8,15 @@ Do **not** show `.run.app`. Do not lead with a map.
 
 ## Honest product URLs for this fire
 
-Frozen A (Plaskett/Timber 30 Aug 2026 09:26 UTC) closes **CA-1 bPM 0–25.806**.
+Frozen A (Plaskett/Timber 30 Aug 2026 09:26 UTC) closes **CA-1 bPM 0–25.806**. Mid-span lands at **PM 12.903**; film the integer **PM12** (inside the closed span). **PM47** is outside → ALLOWED.
 
 | Action | URL |
 |---|---|
 | Judges | `/tmc-gate/judges` |
-| **REFUSED reopen** | `POST /tmc-gate/reopen/CA-1/PM12` |
+| **REFUSED reopen** | `POST /tmc-gate/reopen/CA-1/PM12` (or `PM12.903`) |
 | Not a county webhook | `POST /tmc-gate/reopen/CA-1/PM47` → **ALLOWED** after Frozen A |
 | Refusal certificate | `GET /tmc-gate/reopen/CA-1/PM12?format=cert` |
+| HTML witness | `GET /tmc-gate/reopen/CA-1/PM12` with browser Accept |
 
 Say on camera: “PM47 is still a valid product URL; it refuses only when *that* span is CLOSED_FIRE.”
 

@@ -27,7 +27,7 @@ Deadline: Mon 31 Aug 2026 5:00pm PDT · https://allthingsagentichackathon.devpos
 
 ## Floor gates (13-honest-judging)
 
-- [x] `pytest tests/ -v` — 18 passed (incl. `test_county_only_must_fail`, `test_delete_ee_cannot_match`, `test_delete_bq_cannot_match`, `test_unreachable_404`, `test_reopen_refused_includes_quotes`, `test_conformance_3_of_3`, `test_no_cloud_run`)
+- [x] `pytest tests/ -v` — 21 passed (incl. `test_county_only_must_fail`, `test_delete_ee_cannot_match`, `test_delete_bq_cannot_match`, `test_unreachable_404`, `test_reopen_refused_includes_quotes`, `test_conformance_3_of_3`, `test_no_cloud_run`, `test_board_dedupes_same_span`)
 - [x] Fixtures: `fixtures/shn/mon_ca1.geojson` (32 segments) + FIRMS 24h CSV
 - [x] `/judges` three-quote card + conjunction strip + result + write log
 - [x] Live pane fires real `/wake?case=live` GET every Live open

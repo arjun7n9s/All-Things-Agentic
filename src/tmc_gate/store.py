@@ -15,10 +15,16 @@ from tmc_gate.models import (
 )
 
 
+def _span_key(route: str, bpm: float, epm: float) -> tuple[str, float, float]:
+    """Identity of a closed span. Never key by mid-PM alone (duplicates the board)."""
+    return (_norm_route(route), round(float(bpm), 3), round(float(epm), 3))
+
+
 class MemoryStore:
     def __init__(self) -> None:
         self._lock = Lock()
-        self.postmiles: dict[tuple[str, float], PostmileRow] = {}
+        # Key = (route, bPM, ePM). Multiple FIRMS matches upsert the same span.
+        self.postmiles: dict[tuple[str, float, float], PostmileRow] = {}
         self.hcrr: dict[str, dict] = {}
         self.reopen_log: list[dict] = []
         self.wakes: list[dict] = []
@@ -35,11 +41,24 @@ class MemoryStore:
             self.last_ee_job_id = None
 
     def seed_open(self, route: str, pm: float, bpm: float, epm: float, county: str) -> None:
-        key = (route, round(pm, 3))
+        key = _span_key(route, bpm, epm)
         with self._lock:
             self.postmiles[key] = PostmileRow(
-                route=route, pm=pm, bpm=bpm, epm=epm, county=county, status=PostmileStatus.OPEN
+                route=_norm_route(route),
+                pm=pm,
+                bpm=bpm,
+                epm=epm,
+                county=county,
+                status=PostmileStatus.OPEN,
             )
+
+    def unique_postmiles(self) -> list[PostmileRow]:
+        """Board/list view: one row per (route, bPM, ePM)."""
+        with self._lock:
+            seen: dict[tuple[str, float, float], PostmileRow] = {}
+            for row in self.postmiles.values():
+                seen[_span_key(row.route, row.bpm, row.epm)] = row
+            return list(seen.values())
 
     def apply_match(self, result: JoinResult) -> WriteResult:
         if result.decision.value != "MATCH" or not result.matched_segments or not result.detection:
@@ -53,14 +72,17 @@ class MemoryStore:
             self.last_bq_job_id = result.bq_job_id
             self.last_ee_job_id = result.ee_job_id
             for seg in result.matched_segments:
+                key = _span_key(seg.route_label, seg.bpm, seg.epm)
+                prev = self.postmiles.get(key)
+                firms_ids = list(dict.fromkeys([*(prev.firms_ids if prev else []), det.firms_id]))
                 row = PostmileRow(
-                    route=seg.route_label,
+                    route=_norm_route(seg.route_label),
                     pm=(seg.bpm + seg.epm) / 2.0,
                     bpm=seg.bpm,
                     epm=seg.epm,
                     county=seg.county,
                     status=PostmileStatus.CLOSED_FIRE,
-                    firms_ids=[det.firms_id],
+                    firms_ids=firms_ids,
                     z_delta=elev.z_delta if elev else None,
                     quoted_span=quotes.county_route_post_mile if quotes else None,
                     quoted_firms_acq_time=quotes.firms_acq_time if quotes else det.acq_iso,
@@ -75,18 +97,14 @@ class MemoryStore:
                     },
                     quoted_z_delta=elev.z_delta if elev else None,
                 )
-                self.postmiles[(seg.route_label, round(seg.bpm, 3))] = row
-                from tmc_gate.constants import FILM_PM_NUMBER
-
-                if seg.contains_pm(FILM_PM_NUMBER):
-                    self.postmiles[(seg.route_label, FILM_PM_NUMBER)] = row
+                self.postmiles[key] = row
                 written.append(
                     {
-                        "route": seg.route_label,
+                        "route": row.route,
                         "bPM": seg.bpm,
                         "ePM": seg.epm,
                         "status": "CLOSED_FIRE",
-                        "firms_ids": [det.firms_id],
+                        "firms_ids": firms_ids,
                         "z_delta": elev.z_delta if elev else None,
                         "quoted_span": quotes.county_route_post_mile if quotes else None,
                     }
@@ -105,11 +123,8 @@ class MemoryStore:
     def find(self, route: str, pm: float) -> PostmileRow | None:
         route_n = _norm_route(route)
         with self._lock:
-            direct = self.postmiles.get((route_n, round(pm, 3)))
-            if direct:
-                return direct
-            for (r, _), row in self.postmiles.items():
-                if r == route_n and row.bpm <= pm <= row.epm:
+            for row in self.postmiles.values():
+                if row.route == route_n and row.bpm <= pm <= row.epm:
                     return row
         return None
 
@@ -142,8 +157,8 @@ class FirestoreStore(MemoryStore):
                 row = _row_from_dict(data)
                 if row is None:
                     continue
-                self.postmiles[(row.route, round(row.bpm, 3))] = row
-                self.postmiles[(row.route, round(row.pm, 3))] = row
+                # One memory row per span. Dual-keying by bpm and mid-pm duplicated /board.
+                self.postmiles[_span_key(row.route, row.bpm, row.epm)] = row
             for doc in self._db.collection(self.COL_HCRR).stream():
                 data = doc.to_dict() or {}
                 hid = data.get("id") or doc.id
@@ -180,9 +195,9 @@ class FirestoreStore(MemoryStore):
         try:
             batch = self._db.batch()
             for p in wr.postmiles:
-                key = f"{p['route']}_{p['bPM']}"
+                key = f"{p['route']}_{p['bPM']}_{p['ePM']}"
                 ref = self._db.collection(self.COL_POSTMILES).document(key.replace(".", "_"))
-                row = self.postmiles.get((p["route"], round(float(p["bPM"]), 3)))
+                row = self.postmiles.get(_span_key(p["route"], float(p["bPM"]), float(p["ePM"])))
                 if row:
                     batch.set(ref, _row_to_dict(row))
             if wr.hcrr_row_id and wr.hcrr_row_id in self.hcrr:

@@ -154,7 +154,7 @@ def handle(request: Request):
 
     if path in {"/board", "/board/"} and method == "GET":
         store = get_store()
-        rows = [row_public(r) for r in store.postmiles.values()]
+        rows = [row_public(r) for r in store.unique_postmiles()]
         return _json({"fixture_tmc": FIXTURE_TMC, "postmiles": rows, "hcrr": list(store.hcrr.values())})
 
     if path.startswith("/judges"):
@@ -403,7 +403,7 @@ def _reopen(path: str, request: Request) -> dict:
 
 
 def _first_closed(store):
-    for row in store.postmiles.values():
+    for row in store.unique_postmiles():
         if row.status is PostmileStatus.CLOSED_FIRE:
             return row
     return store.find(FILM_ROUTE, 47.0)

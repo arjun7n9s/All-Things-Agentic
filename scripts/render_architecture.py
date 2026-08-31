@@ -86,7 +86,12 @@ def main() -> None:
     )
 
     box(d, (40, 820, 520, 980), "Firestore TMCAL SoR", "OPEN → CLOSED_FIRE\nHCRR row · reopen log")
-    box(d, (560, 820, 1100, 980), "Product URL", "POST /reopen/{route}/{pm}\nREFUSED | ALLOWED\n/conformance 3/3")
+    box(
+        d,
+        (560, 820, 1100, 980),
+        "Product URL",
+        "POST /reopen/{route}/{pm}\nREFUSED | ALLOWED · ?format=cert\n/conformance 3/3",
+    )
     box(
         d,
         (1140, 820, 1640, 980),
