@@ -1,4 +1,4 @@
-# tmc-gate — Coast Range TMC
+﻿# tmc-gate â€” Coast Range TMC
 
 When a satellite fire footprint is **upslope of this postmile**, write the TMC closure and **refuse Reopen**, before first shift.
 
@@ -6,7 +6,7 @@ Demo identity: **Coast Range TMC** (fixture TMC, D5-shaped SHN clip). Not Caltra
 
 Host: **Cloud Functions HTTP (2nd gen) + Cloud Storage**. Not Cloud Run. Not `.run.app`.
 
-Contest: All Things Agentic [R1] · Taskmaster · Gemini 3.5+ · ADK `LlmAgent` + `AgentTool`.
+Contest: All Things Agentic [R1] Â· Taskmaster Â· Gemini 3.5+ Â· ADK `LlmAgent` + `AgentTool`.
 
 ---
 
@@ -26,7 +26,7 @@ If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silent
 
 ## Kill-if (we kill ourselves)
 
-- County webhook (`Monterey → close Hwy 1`) or a pre-parsed postmile `set`
+- County webhook (`Monterey â†’ close Hwy 1`) or a pre-parsed postmile `set`
 - The artifact is a fire map; strip the map and nothing remains
 - `/reopen` lives only on `/judges`
 - Cloud Run / `.run.app` as the host
@@ -56,11 +56,11 @@ functions-framework --target=tmc_gate --source=main.py --debug --port=8080
 Then:
 
 - [http://127.0.0.1:8080/health](http://127.0.0.1:8080/health)
-- [http://127.0.0.1:8080/judges](http://127.0.0.1:8080/judges) — stepper (Frozen A/B, live FIRMS GET, 404, clock, conformance)
+- [http://127.0.0.1:8080/judges](http://127.0.0.1:8080/judges) â€” stepper (Frozen A/B, live FIRMS GET, 404, clock, conformance)
 - `POST http://127.0.0.1:8080/wake?case=frozen_a`
-- `POST http://127.0.0.1:8080/reopen/CA-1/PM47` — product URL, not a `/judges` toy
+- `POST http://127.0.0.1:8080/reopen/CA-1/PM47` â€” product URL, not a `/judges` toy
 
-Live pane GETs this morning’s FIRMS CSV. Honest empty wake is allowed.
+Live pane GETs this morningâ€™s FIRMS CSV. Honest empty wake is allowed.
 
 ---
 
@@ -82,14 +82,14 @@ Gemini **quotes** TOM Chapter 110 (HCRR 10 min; county, route, and post mile; st
 
 Stdlib **conjuncts**:
 
-1. Confidence ∈ {nominal, high} (VIIRS)
+1. Confidence âˆˆ {nominal, high} (VIIRS)
 2. Native VIIRS footprint `ST_Intersects` a D5 SHN segment (BigQuery in production; Shapely locally)
 3. NASADEM `z_hotspot > z_shn` (Earth Engine in production; fixture sampler locally)
 4. Route on the D5 clip
 
-Either engine missing → `CAN'T READ`, not MATCH. County-only **must fail**.
+Either engine missing â†’ `CAN'T READ`, not MATCH. County-only **must fail**.
 
-Probed FIRMS 24h KML is Point placemarks. Native geometry is the sensor pixel from CSV `scan`×`track` (~375 m), **not** an invented 100-foot buffer.
+Probed FIRMS 24h KML is Point placemarks. Native geometry is the sensor pixel from CSV `scan`Ã—`track` (~375 m), **not** an invented 100-foot buffer.
 
 ---
 
@@ -108,3 +108,16 @@ Named stdlib-gate tests in `tests/`. Do not claim 320.
 ## License
 
 MIT. See `LICENSE`.
+
+## Hosted URL (Google Cloud Functions)
+
+Use this URL only (Cloud Functions), never the underlying `.run.app`:
+
+https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
+
+- Judges UI: https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/judges
+- Health: https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/health
+- Product reopen: `POST .../reopen/CA-1/PM12`
+
+A10 claim: Earth Engine + Model Armor + BigQuery enabled on `all-things-agents-507211`.
+
