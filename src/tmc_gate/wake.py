@@ -8,7 +8,7 @@ from pathlib import Path
 from tmc_gate.firms import load_csv_path, native_pixel_polygon
 from tmc_gate.join import FixtureElevationEngine, JoinConfig, ShapelyGeometryEngine, evaluate
 from tmc_gate.models import Decision, ElevationSample, FirmsDetection, JoinResult, QuoteBundle, WriteResult
-from tmc_gate.quotes import packet_quotes_for, run_quote_agent
+from tmc_gate.quotes import gemini_configured, packet_quotes_for, run_quote_agent
 from tmc_gate.shn import load_geojson_path, unique_spans
 from tmc_gate.store import get_store
 
@@ -130,8 +130,37 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
     non = 0
     last_match: JoinResult | None = None
     last_write: WriteResult | None = None
+    matched_firms: list[str] = []
+
+    # One bounded ADK quote run per wake when Gemini is configured (prod).
+    # Reuse TOM spans; FIRMS attrs stay per-detection. Avoids N Gemini calls.
+    adk_bundle: QuoteBundle | None = None
+    adk_used = False
+    if dets and gemini_configured() and (production_mode() or case == "live"):
+        adk_bundle = run_quote_agent(dets[0])
+        adk_used = adk_bundle.status == "QUOTED"
+
     for det in dets:
-        quotes = run_quote_agent(det) if case == "live" else packet_quotes_for(det)
+        if adk_used and adk_bundle is not None:
+            quotes = QuoteBundle(
+                status=adk_bundle.status,
+                hcrr_10_min=adk_bundle.hcrr_10_min,
+                county_route_post_mile=adk_bundle.county_route_post_mile,
+                closed_when_not_passable=adk_bundle.closed_when_not_passable,
+                tmc_advised_immediately=adk_bundle.tmc_advised_immediately,
+                emergency_unplanned_closure=adk_bundle.emergency_unplanned_closure,
+                upslope_span=adk_bundle.upslope_span,
+                firms_acq_time=det.acq_iso,
+                firms_confidence=det.confidence,
+                firms_frp=det.frp,
+                firms_satellite=det.satellite,
+                numeric_buffer_from_prose_m=adk_bundle.numeric_buffer_from_prose_m,
+            )
+        elif case == "live":
+            quotes = run_quote_agent(det)
+        else:
+            quotes = packet_quotes_for(det)
+
         if production_mode() and os.environ.get("MODEL_ARMOR_ENABLED") == "1":
             from tmc_gate.armor import sanitize_or_refuse
 
@@ -147,6 +176,7 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
 
         if result.decision is Decision.MATCH:
             matches += 1
+            matched_firms.append(det.firms_id)
             wr = store.apply_match(result)
             if wr.write_happened:
                 writes += 1
@@ -168,6 +198,21 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
                 label = f"PM{int(cand)}" if cand == int(cand) else f"PM{cand}"
                 reopen_url = f"/reopen/{p['route']}/{label}"
                 break
+
+    pubsub_meta = {"published": False, "reason": "skipped"}
+    if production_mode():
+        from tmc_gate.pubsub_bus import publish_wake_batch
+
+        pubsub_meta = publish_wake_batch(
+            case=case,
+            firms_ids=matched_firms or [d.firms_id for d in dets[:8]],
+            detections=len(dets),
+            matches=matches,
+            write_happened=bool(last_write and last_write.write_happened),
+            bq_job_id=last_match.bq_job_id if last_match else bq_job_id,
+            ee_job_id=last_match.ee_job_id if last_match else None,
+        )
+
     return {
         "case": case,
         "detections": len(dets),
@@ -183,6 +228,8 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
         "ee_job_id": last_match.ee_job_id if last_match else None,
         "reopen_url": reopen_url,
         "production": production_mode(),
+        "adk_quotes": adk_used,
+        "pubsub": pubsub_meta,
     }
 
 

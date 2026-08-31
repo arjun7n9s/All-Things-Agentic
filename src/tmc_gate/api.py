@@ -81,7 +81,7 @@ def handle(request: Request):
                 return _json({"case": "live", "error": str(exc), "honest_empty": True, "writes": 0})
         return _json(run_case(case, live_bytes=live_bytes))
 
-    if path in {"/reset"} and method == "POST":
+    if path in {"/reset", "/reset/"} and method in {"POST", "GET"}:
         reset_store()
         return _json({"ok": True, "reset": True})
 
@@ -204,6 +204,8 @@ def _first_closed(store):
 
 
 def _conformance() -> dict:
+    from tmc_gate.store import use_firestore
+
     store = get_store()
     row = _first_closed(store)
     closed = bool(row and row.status is PostmileStatus.CLOSED_FIRE)
@@ -232,6 +234,7 @@ def _conformance() -> dict:
             "quoted_shn_span": row.quoted_shn_span if row else None,
             "quoted_z_delta": row.quoted_z_delta if row else None,
         },
+        "sor": "firestore" if use_firestore() else "memory",
         "cold": n < 3,
     }
 

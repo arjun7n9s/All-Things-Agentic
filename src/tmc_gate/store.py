@@ -1,4 +1,4 @@
-"""TMCAL + HCRR + reopen log. Memory store for local; Firestore adapter when GCP is on."""
+"""TMCAL + HCRR + reopen log. Memory locally; Firestore SoR when TMC_FIRESTORE=enabled."""
 
 from __future__ import annotations
 
@@ -73,7 +73,6 @@ class MemoryStore:
                     quoted_z_delta=elev.z_delta if elev else None,
                 )
                 self.postmiles[(seg.route_label, round(seg.bpm, 3))] = row
-                # Also index by film PM if the span contains it.
                 from tmc_gate.constants import FILM_PM_NUMBER
 
                 if seg.contains_pm(FILM_PM_NUMBER):
@@ -116,22 +115,161 @@ class MemoryStore:
             self.reopen_log.append(payload)
 
 
+class FirestoreStore(MemoryStore):
+    """Write-through SoR. Hydrates on cold start so /reopen survives new instances."""
+
+    COL_POSTMILES = "tmcal_postmiles"
+    COL_HCRR = "tmcal_hcrr"
+    COL_REOPEN = "tmcal_reopen_log"
+    COL_META = "tmcal_meta"
+
+    def __init__(self) -> None:
+        super().__init__()
+        from google.cloud import firestore
+
+        project = os.environ.get("FIRESTORE_PROJECT") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+        self._db = firestore.Client(project=project)
+        self._hydrate()
+
+    def _hydrate(self) -> None:
+        try:
+            for doc in self._db.collection(self.COL_POSTMILES).stream():
+                data = doc.to_dict() or {}
+                row = _row_from_dict(data)
+                if row is None:
+                    continue
+                self.postmiles[(row.route, round(row.bpm, 3))] = row
+                self.postmiles[(row.route, round(row.pm, 3))] = row
+            for doc in self._db.collection(self.COL_HCRR).stream():
+                data = doc.to_dict() or {}
+                hid = data.get("id") or doc.id
+                self.hcrr[hid] = data
+            for doc in (
+                self._db.collection(self.COL_REOPEN).order_by("seq").limit(200).stream()
+            ):
+                data = doc.to_dict() or {}
+                data.pop("seq", None)
+                self.reopen_log.append(data)
+            meta = self._db.collection(self.COL_META).document("jobs").get()
+            if meta.exists:
+                m = meta.to_dict() or {}
+                self.last_bq_job_id = m.get("last_bq_job_id")
+                self.last_ee_job_id = m.get("last_ee_job_id")
+        except Exception:
+            # Fail open to empty memory; wake can still write.
+            pass
+
+    def reset(self) -> None:
+        super().reset()
+        try:
+            for col in (self.COL_POSTMILES, self.COL_HCRR, self.COL_REOPEN):
+                for doc in self._db.collection(col).limit(500).stream():
+                    doc.reference.delete()
+            self._db.collection(self.COL_META).document("jobs").delete()
+        except Exception:
+            pass
+
+    def apply_match(self, result: JoinResult) -> WriteResult:
+        wr = super().apply_match(result)
+        if not wr.write_happened:
+            return wr
+        try:
+            batch = self._db.batch()
+            for p in wr.postmiles:
+                key = f"{p['route']}_{p['bPM']}"
+                ref = self._db.collection(self.COL_POSTMILES).document(key.replace(".", "_"))
+                row = self.postmiles.get((p["route"], round(float(p["bPM"]), 3)))
+                if row:
+                    batch.set(ref, _row_to_dict(row))
+            if wr.hcrr_row_id and wr.hcrr_row_id in self.hcrr:
+                batch.set(
+                    self._db.collection(self.COL_HCRR).document(wr.hcrr_row_id),
+                    self.hcrr[wr.hcrr_row_id],
+                )
+            batch.set(
+                self._db.collection(self.COL_META).document("jobs"),
+                {
+                    "last_bq_job_id": self.last_bq_job_id,
+                    "last_ee_job_id": self.last_ee_job_id,
+                },
+                merge=True,
+            )
+            batch.commit()
+        except Exception:
+            pass
+        return wr
+
+    def log_reopen(self, payload: dict) -> None:
+        super().log_reopen(payload)
+        try:
+            seq = len(self.reopen_log)
+            self._db.collection(self.COL_REOPEN).document(f"reopen-{seq:05d}").set(
+                {**payload, "seq": seq}
+            )
+        except Exception:
+            pass
+
+
+def _row_to_dict(row: PostmileRow) -> dict:
+    d = asdict(row)
+    d["status"] = row.status.value
+    return d
+
+
+def _row_from_dict(data: dict) -> PostmileRow | None:
+    try:
+        status = PostmileStatus(data.get("status") or "OPEN")
+        return PostmileRow(
+            route=str(data["route"]),
+            pm=float(data["pm"]),
+            bpm=float(data["bpm"]),
+            epm=float(data["epm"]),
+            county=str(data.get("county") or ""),
+            status=status,
+            firms_ids=list(data.get("firms_ids") or []),
+            z_delta=data.get("z_delta"),
+            quoted_span=data.get("quoted_span"),
+            quoted_firms_acq_time=data.get("quoted_firms_acq_time"),
+            quoted_shn_span=data.get("quoted_shn_span"),
+            quoted_z_delta=data.get("quoted_z_delta"),
+        )
+    except Exception:
+        return None
+
+
 _STORE: MemoryStore | None = None
 _STORE_LOCK = Lock()
+
+
+def use_firestore() -> bool:
+    if os.environ.get("TMC_STORE", "").lower() == "memory":
+        return False
+    return os.environ.get("TMC_FIRESTORE") == "enabled" and firestore_configured()
 
 
 def get_store() -> MemoryStore:
     global _STORE
     with _STORE_LOCK:
         if _STORE is None:
-            _STORE = MemoryStore()
+            if use_firestore():
+                try:
+                    _STORE = FirestoreStore()
+                except Exception:
+                    _STORE = MemoryStore()
+            else:
+                _STORE = MemoryStore()
         return _STORE
 
 
 def reset_store() -> MemoryStore:
-    s = get_store()
-    s.reset()
-    return s
+    global _STORE
+    with _STORE_LOCK:
+        # Tests always want a fresh memory store.
+        if use_firestore() and _STORE is not None:
+            _STORE.reset()
+            return _STORE
+        _STORE = MemoryStore()
+        return _STORE
 
 
 def _norm_route(route: str) -> str:

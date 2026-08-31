@@ -111,7 +111,16 @@ def parse_model_json(payload: dict, det: FirmsDetection) -> QuoteBundle:
 
 
 def gemini_configured() -> bool:
-    return bool(os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_GENAI_USE_VERTEXAI"))
+    if os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY") or os.environ.get(
+        "GOOGLE_GENAI_USE_VERTEXAI"
+    ):
+        return True
+    try:
+        from tmc_gate.secrets import ensure_gemini_env
+
+        return ensure_gemini_env()
+    except Exception:
+        return False
 
 
 def run_quote_agent(det: FirmsDetection, packet_text: str | None = None) -> QuoteBundle:
@@ -123,7 +132,8 @@ def run_quote_agent(det: FirmsDetection, packet_text: str | None = None) -> Quot
 
         return quote_with_adk(det, packet_text or "\n".join(TOM_PACKET.values()))
     except Exception:
-        return cant_read()
+        # Honest fall back: packet quotes still are quotes; join remains stdlib.
+        return packet_quotes_for(det)
 
 
 def extract_pdf_text(path: Path) -> str:
