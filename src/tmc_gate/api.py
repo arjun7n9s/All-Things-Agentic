@@ -91,7 +91,7 @@ def handle(request: Request):
         return _json({"fixture_tmc": FIXTURE_TMC, "postmiles": rows, "hcrr": list(store.hcrr.values())})
 
     if path.startswith("/judges"):
-        return _judges(path)
+        return _judges(path, request)
 
     if path in {"/", ""}:
         # cloudfunctions.net serves the function under /tmc-gate; *.run.app is root.
@@ -236,13 +236,36 @@ def _conformance() -> dict:
     }
 
 
-def _judges(path: str):
+def _judges_base_href(request: Request) -> str:
+    """Public /…/judges/ prefix so relative CSS/JS resolve under /tmc-gate on CF.
+
+    Flask often sees path=/judges even when the browser URL is /tmc-gate/judges.
+    Prefer the host-facing mount over request.path alone.
+    """
+    host = request.host or ""
+    if "cloudfunctions.net" in host:
+        return "/tmc-gate/judges/"
+    script = (request.script_root or "").rstrip("/")
+    raw = request.path or "/judges"
+    idx = raw.find("/judges")
+    if idx > 0:
+        return raw[: idx + len("/judges")] + "/"
+    if script:
+        return f"{script}/judges/"
+    return "/judges/"
+
+
+def _judges(path: str, request: Request):
     rel = path[len("/judges") :].lstrip("/") or "index.html"
     if not FRONTEND.exists():
         return Response("judges ui missing", status=500)
     if rel == "index.html" or path.rstrip("/") == "/judges":
-        return send_from_directory(FRONTEND, "index.html")
+        html = (FRONTEND / "index.html").read_text(encoding="utf-8")
+        base = _judges_base_href(request)
+        if "<base " not in html:
+            html = html.replace("<head>", f'<head>\n  <base href="{base}" />', 1)
+        return Response(html, status=200, mimetype="text/html; charset=utf-8")
     candidate = FRONTEND / rel
     if candidate.exists() and candidate.is_file():
         return send_from_directory(FRONTEND, rel)
-    return send_from_directory(FRONTEND, "index.html")
+    return Response("not found", status=404, mimetype="text/plain")

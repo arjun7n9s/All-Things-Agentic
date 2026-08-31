@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Coast Range TMC · tmc-gate</title>
-  <link rel="stylesheet" href="/judges/styles.css" />
+  <!-- base href injected by api.py for /tmc-gate prefix on cloudfunctions.net -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="mast">
@@ -54,8 +55,8 @@
 
     <section id="reopen" class="pane">
       <h2>Product URL · POST /reopen/CA-1/PM47</h2>
-      <p>This is not a /judges RPC. The link is the SoR path. Frozen A this fixture closes <code>CA-1</code> bPM 0–25.8 → <a class="product" href="/reopen/CA-1/PM12">/reopen/CA-1/PM12</a>. <code>/reopen/CA-1/PM47</code> stays a valid product URL; it REFUSES only if that span is <code>CLOSED_FIRE</code> (not a county webhook).</p>
-      <p><a class="product" id="reopen-link" href="/reopen/CA-1/PM12">/reopen/CA-1/PM12</a></p>
+      <p>This is not a /judges RPC. The link is the SoR path. Frozen A this fixture closes <code>CA-1</code> bPM 0–25.8 → <a class="product" data-api="/reopen/CA-1/PM12" href="../reopen/CA-1/PM12">/reopen/CA-1/PM12</a>. <code>/reopen/CA-1/PM47</code> stays a valid product URL; it REFUSES only if that span is <code>CLOSED_FIRE</code> (not a county webhook).</p>
+      <p><a class="product" id="reopen-link" data-api="/reopen/CA-1/PM12" href="../reopen/CA-1/PM12">/reopen/CA-1/PM12</a></p>
       <button class="go" id="btn-reopen">POST reopen (refused while CLOSED_FIRE)</button>
       <pre class="out" id="out-reopen">idle</pre>
     </section>
@@ -102,6 +103,6 @@
     <p id="hcrr" class="muted"></p>
   </aside>
 
-  <script src="/judges/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
