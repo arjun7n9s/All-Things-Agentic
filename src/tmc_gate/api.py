@@ -94,7 +94,9 @@ def handle(request: Request):
         return _judges(path)
 
     if path in {"/", ""}:
-        return Response("Coast Range TMC / tmc-gate. See /health /judges /reopen /conformance", mimetype="text/plain")
+        # Preserve the Cloud Functions URL prefix (.../tmc-gate/judges).
+        dest = request.url.rstrip("/") + "/judges"
+        return Response("", status=302, headers={"Location": dest})
 
     return Response("not found", status=404, mimetype="text/plain")
 
