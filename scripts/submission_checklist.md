@@ -2,51 +2,53 @@
 
 Deadline: Mon 31 Aug 2026 5:00pm PDT · https://allthingsagentichackathon.devpost.com/
 
+## Devpost fields
+
+| Field | Value / artifact |
+|---|---|
+| Project name | Upslope (or Coast Range TMC) |
+| Category | **The Taskmaster** |
+| Hosted URL | https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate |
+| Repo URL | https://github.com/arjun7n9s/All-Things-Agentic |
+| Architecture diagram | `architecture.png` (upload) |
+| Spin-up | README § Local spin-up + § GCP spin-up |
+| Kill-if | README § Kill-if + `docs/kill-if.md` |
+| Demo video | ~4 min public · `scripts/demo_shotlist.md` (1:1 with 12-demo-video) |
+| Google SDK | Google ADK |
+| Gemini model | gemini-3.7-flash (Vertex `global`, task-routed; floor 3.5) |
+
 ## Mandatory tech (DQ if missing)
 
-- [x] **Gemini 3.5 or newer** — `gemini-3.7-flash` primary (+ `3.5` quote retry) on Vertex AI (`global`), task-routed
+- [x] **Gemini 3.5 or newer** — `gemini-3.7-flash` primary (+ `3.5` sheds) on Vertex AI (`global`), task-routed
 - [x] **Google Agent Framework** — Google ADK (`LlmAgent` + `AgentTool` + `FunctionTool`)
 - [x] **Google Cloud infrastructure** — Cloud Functions + Firestore + Pub/Sub + BQ + EE + Model Armor + Scheduler + Vertex
-- [x] Track selected: **The Taskmaster** (action workflow, not chat)
+- [x] Track: **The Taskmaster**
 - [x] Proof in `/health` → `eligibility` + `architecture.png` + hosted URL
 
-## Repo / Devpost fields
+## Floor gates (13-honest-judging)
 
-- [x] Public GitHub product repo (no `.run.app` as advertised host)
+- [x] `pytest tests/ -v` — 18 passed (incl. `test_county_only_must_fail`, `test_delete_ee_cannot_match`, `test_delete_bq_cannot_match`, `test_unreachable_404`, `test_reopen_refused_includes_quotes`, `test_conformance_3_of_3`, `test_no_cloud_run`)
+- [x] Fixtures: `fixtures/shn/mon_ca1.geojson` (32 segments) + FIRMS 24h CSV
+- [x] `/judges` three-quote card + conjunction strip + result + write log
+- [x] Live pane fires real `/wake?case=live` GET every Live open
+- [x] README kill-if block (Cloud Run not host)
+
+## Repo hygiene
+
 - [x] MIT LICENSE
-- [x] `architecture.png` (upload on Devpost)
-- [x] Spin-up instructions in README (local + GCP)
-- [x] Kill-if + A10 + eligibility table in README
-- [x] Stdlib-gate tests (`pytest`)
-- [ ] Unedited ~4 min demo video uploaded (see `demo_shotlist.md`)
-- [ ] Devpost text: features, technologies, data sources, findings/learnings
-- [ ] Disclose pre-existing / third-party code used
-- [ ] Answer which Google SDK (ADK) + project start date
-- [ ] Optional bonus: public write-up / social `#AllThingsAgenticHackathon` / Gemma·Veo·Lyria
-
-## Hosted proof
-
-- [x] Cloud Functions URL: https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
-- [x] `/judges` dark desk stepper
-- [x] `/reopen/CA-1/PM12` product URL REFUSED after Frozen A
-- [x] `/conformance` 3/3 with `sor: firestore`
-- [x] Pub/Sub publish on wake + overnight Scheduler job `tmc-gate-overnight-live`
-- [x] ADK + Gemini 3.5 on production wake path
-
-## Film must show (under 4 min)
-
-1. `/judges` working in first 10–15s (not a map lead)
-2. Wall vs sim clock
-3. Frozen A → MATCH / CLOSED_FIRE write log
-4. Address bar `…/reopen/CA-1/PM12` → REFUSED + three quotes
-5. Frozen B zero writes / not county webhook (PM47 ALLOWED)
-6. Live FIRMS GET strip (honest empty OK)
-7. 404 unreachable paths
-8. `/conformance` 3/3
-9. **GCP proof**: Cloud Functions URL bar + Console (Vertex / Firestore / Pub/Sub / Armor) — required by rules
+- [x] `architecture.png` regenerated from `scripts/render_architecture.py`
+- [x] `llms.txt` + `GET /llms.txt`
+- [x] `SECURITY.md`
+- [x] `docs/kill-if.md` + `docs/honest-judging.md`
+- [x] `/reopen/{route}/{pm}?format=cert` refusal certificate
+- [x] `.env.example` (no real keys; `GOOGLE_CLOUD_LOCATION=global`)
+- [ ] Unedited ~4 min demo video uploaded
+- [ ] Devpost text: features, technologies, data sources, findings
+- [ ] Gallery 5–7 screenshots (Frozen A, Frozen B, Live, 404, conformance, reopen REFUSED, health)
+- [ ] Optional: `#AllThingsAgenticHackathon` social / write-up
 
 ## Do not put in the public repo
 
-- Spec pack / `14-references.md`
+- Spec pack occupancy names from `14-references.md`
 - `.env` / API keys
 - Co-authored-by lines that are not you

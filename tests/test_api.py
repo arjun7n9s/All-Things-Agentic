@@ -104,6 +104,28 @@ def test_health_pending_enable(client):
     assert elig["not_chatbot"] is True
 
 
+def test_refusal_certificate(client):
+    run_case("frozen_a")
+    rv = client.get("/reopen/CA-1/PM12?format=cert")
+    assert rv.status_code == 200
+    body = rv.get_json()
+    assert body["certificate"] == "tmc-gate-refusal-certificate"
+    assert body["manifest"]["decision"] == "REFUSED"
+    assert body["manifest_hash"]
+    assert body["outcome_hash"]
+    assert body["quotes"]["quoted_firms_acq_time"]
+    assert body["manifest"]["stdlib_decides_match"] is True
+
+
+def test_llms_txt(client):
+    rv = client.get("/llms.txt")
+    assert rv.status_code == 200
+    text = rv.get_data(as_text=True)
+    assert "/reopen/" in text
+    assert "/wake?case=live" in text
+    assert "Gemini" in text or "gemini" in text
+
+
 def test_desk_html_surfaces(client):
     judges = client.get("/judges")
     assert judges.status_code == 200

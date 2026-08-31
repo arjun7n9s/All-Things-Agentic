@@ -66,6 +66,8 @@ If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silent
 
 ## Kill-if (we kill ourselves)
 
+Tripwire list (also in [`docs/kill-if.md`](docs/kill-if.md); honest-judging notes in [`docs/honest-judging.md`](docs/honest-judging.md)):
+
 - County webhook (`Monterey → close Hwy 1`) or a pre-parsed postmile `set`
 - The artifact is a fire map; strip the map and nothing remains
 - `/reopen` lives only on `/judges`
@@ -78,6 +80,8 @@ If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silent
 - Real employee names, real CAD incidents
 - Silently skip Earth Engine or Model Armor
 - Gemini model older than 3.5 as the production quote / overnight path
+- County-only closer (`test_county_only_must_fail` must catch this)
+- Join still MATCHes after deleting BQ or EE
 
 ---
 
@@ -95,8 +99,10 @@ https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
 | `POST /reopen/CA-1/PM12` | Product URL — REFUSED while Frozen A span is CLOSED_FIRE |
 | `POST /reopen/CA-1/PM47` | Valid product URL — ALLOWED unless *that* span is CLOSED_FIRE |
 | `/conformance` | 3/3 against Firestore objects |
+| `/reopen/…?format=cert` | Refusal / allow certificate (manifest + hashes) |
+| `/llms.txt` | Machine-readable endpoint map |
 
-Demo film shot list: `scripts/demo_shotlist.md`. Submission checklist: `scripts/submission_checklist.md`.
+Demo film shot list (1:1 with demo-video spec): `scripts/demo_shotlist.md`. Submission checklist: `scripts/submission_checklist.md`. Machine map: `llms.txt`.
 
 ---
 

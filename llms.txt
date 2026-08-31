@@ -1,0 +1,26 @@
+# tmc-gate / Coast Range TMC — machine-readable endpoint map
+# Host: https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
+# Track: All Things Agentic · Taskmaster · Gemini 3.7 Flash (Vertex) · Google ADK
+# Not a chatbot. MATCH is stdlib (BigQuery ST_Intersects + Earth Engine NASADEM).
+
+## Product surfaces
+- GET /health — enablement letters A1–A8 + eligibility (Gemini routing, ADK, GCP)
+- GET /judges — Frozen A / Frozen B / Live / 404 / conformance desk
+- GET|POST /wake?case=frozen_a — currently-on-fire MATCH (reproducible)
+- GET|POST /wake?case=frozen_b — Ventana NON-MATCH (zero writes)
+- GET|POST /wake?case=live — this morning's FIRMS 24h CSV GET (no MAP_KEY)
+- GET|POST /reopen/{route}/{pm} — product URL; REFUSED | ALLOWED + three quotes
+- GET /reopen/{route}/{pm}?format=cert — refusal / allow certificate (manifest + hashes)
+- GET /conformance — claim vs Firestore objects (score 3/3)
+- GET /board — TMCAL + HCRR rows
+- GET /llms.txt — this file
+
+## Honest film URLs (this fixture)
+- POST /reopen/CA-1/PM12 — REFUSED while Frozen A span CLOSED_FIRE (bPM 0–25.806)
+- POST /reopen/CA-1/PM47 — ALLOWED after Frozen A (not a county webhook)
+
+## Unreachable (404 by design)
+/publish /traveler-info /cad /hard-closure /cones /blast /facility-reopen /email /cloud-run /sigalert
+
+## Stack
+Gemini 3.7 Flash (Vertex location=global, task-routed) · Google ADK LlmAgent+AgentTool · Cloud Functions · Firestore · Pub/Sub · BigQuery · Earth Engine · Model Armor · Secret Manager · Cloud Scheduler

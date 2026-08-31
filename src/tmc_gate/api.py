@@ -62,7 +62,8 @@ def _mount(request: Request) -> str:
 
 
 def _wants_html(request: Request) -> bool:
-    if request.args.get("format") == "json":
+    fmt = (request.args.get("format") or "").lower()
+    if fmt in {"json", "cert"}:
         return False
     accept = (request.headers.get("Accept") or "").lower()
     if "text/html" in accept:
@@ -104,9 +105,17 @@ def handle(request: Request):
 
     if path.startswith("/reopen/") and method in {"POST", "GET"}:
         body = _reopen(path, request)
+        if (request.args.get("format") or "").lower() == "cert":
+            return _json(_refusal_certificate(body))
         if method == "GET" and _wants_html(request):
             return _render_desk("reopen.html", request, body)
         return _json(body)
+
+    if path in {"/llms.txt", "/llms.txt/"} and method == "GET":
+        llms = ROOT / "llms.txt"
+        if llms.exists():
+            return Response(llms.read_text(encoding="utf-8"), mimetype="text/plain; charset=utf-8")
+        return Response("not found", status=404, mimetype="text/plain")
 
     if path.startswith("/wake") and method in {"POST", "GET"}:
         case = request.args.get("case") or (request.get_json(silent=True) or {}).get("case") or "frozen_a"
@@ -297,6 +306,56 @@ def _gemini_routing() -> dict:
     from tmc_gate.model_router import routing_table
 
     return routing_table()
+
+
+def _refusal_certificate(body: dict) -> dict:
+    """Downloadable refusal / allow certificate for judges (format=cert)."""
+    import hashlib
+
+    from tmc_gate.model_router import primary_model
+
+    quotes = {
+        "quoted_firms_acq_time": body.get("quoted_firms_acq_time"),
+        "quoted_firms_confidence": body.get("quoted_firms_confidence"),
+        "quoted_firms_frp": body.get("quoted_firms_frp"),
+        "quoted_firms_satellite": body.get("quoted_firms_satellite"),
+        "quoted_shn_span": body.get("quoted_shn_span"),
+        "quoted_z_delta": body.get("quoted_z_delta"),
+    }
+    manifest = {
+        "product": "tmc-gate",
+        "fixture_tmc": FIXTURE_TMC,
+        "path": f"/reopen/{body.get('route')}/PM{body.get('pm')}",
+        "decision": body.get("decision"),
+        "status": body.get("status"),
+        "write_happened": body.get("write_happened"),
+        "reopen_log_id": body.get("reopen_log_id"),
+        "reason": body.get("reason"),
+        "quotes": quotes,
+        "gemini_primary": primary_model(),
+        "agent_framework": "Google ADK",
+        "stdlib_decides_match": True,
+        "host": "cloud-functions",
+        "not_cloud_run": True,
+    }
+    canonical = json.dumps(manifest, sort_keys=True, default=str, separators=(",", ":"))
+    outcome = "|".join(
+        [
+            str(manifest.get("decision")),
+            str(manifest.get("status")),
+            str(quotes.get("quoted_firms_acq_time")),
+            str(quotes.get("quoted_shn_span")),
+            str(quotes.get("quoted_z_delta")),
+        ]
+    )
+    return {
+        "certificate": "tmc-gate-refusal-certificate",
+        "version": 1,
+        "manifest": manifest,
+        "manifest_hash": hashlib.sha256(canonical.encode("utf-8")).hexdigest(),
+        "outcome_hash": hashlib.sha256(outcome.encode("utf-8")).hexdigest(),
+        "quotes": quotes,
+    }
 
 
 def _parse_route_pm(path: str) -> tuple[str, float]:
