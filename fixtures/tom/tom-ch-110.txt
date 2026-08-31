@@ -1,0 +1,4613 @@
+ 
+   
+  
+  
+Traffic Operations Manual 
+Chapter 110 Transportation Management 
+Center Operations 
+
+    
+      
+   
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+Table of Contents February 2026 
+Table of Contents 
+Table of Contents..................................................................................................................110-i 
+List of Tables.........................................................................................................................110-iii 
+List of Figures .......................................................................................................................110-iv 
+Section 1 Introduction ........................................................................................................ 110-1 
+Topic 1 Preface............................................................................................................ 110-1 
+Topic 2 History of Caltrans Transportation Management Centers .........................110-1 
+Topic 3 Transportation Management Center Overview......................................... 110-2 
+Topic 4 Transportation Management Center Statewide Organization ................110-3 
+Topic 5 Hours of Operation ........................................................................................ 110-4 
+Topic 6 Key Partners and Stakeholders..................................................................... 110-4 
+Topic 7 Security Clearance for Transportation Management Center Personnel and 
+Visitors Policy ................................................................................................................ 110-7 
+Topic 8 Transportation Management Center Activities Administration ................110-8 
+Section 2 Roles and Responsibilities ............................................................................... 110-10 
+Topic 1 Overview....................................................................................................... 110-10 
+Topic 2 System Operations Personnel ..................................................................... 110-10 
+Topic 3 System Support Personnel ........................................................................... 110-13 
+Topic 4 Traffic Management Team ......................................................................... 110-13 
+Topic 5 Transportation Management Center Building Manager.........................110-14 
+Topic 6 Transportation Management Center Staffing Administration.................110-14 
+Section 3 Transportation Management Center Operations ......................................... 110-19 
+Topic 1 Overview....................................................................................................... 110-19 
+Topic 2 Central Systems and Traffic Flow Monitoring ............................................ 110-19 
+Topic 3 Incident Detection....................................................................................... 110-21 
+Topic 4 Incident Verification .................................................................................... 110-25 
+Topic 5 Incident Classification ................................................................................. 110-25 
+Topic 6 Traffic Management Response .................................................................. 110-29 
+Topic 7 Traffic Management Plans.......................................................................... 110-33 
+Topic 8 Recurrent Congestion Management ........................................................ 110-36 
+Chapter 110 Transportation Management Centers 110-i 
+Traffic Operations Manual 
+    
+     
+   
+   
+  
+    
+   
+   
+   
+   
+   
+   
+   
+    
+   
+  
+ 
+   
+   
+   
+Table of Contents February 2026 
+Topic 9 Traveler Information ..................................................................................... 110-39 
+Topic 10 California Highway Patrol Missing Person Alerts...................................... 110-42 
+Topic 11 Traffic Data Analysis................................................................................... 110-44 
+Topic 12 Snow Operations........................................................................................ 110-47 
+Topic 13 Earthquake Monitoring.............................................................................. 110-48 
+Section 4 Systems and Tools............................................................................................ 110-49 
+Topic 1 Overview....................................................................................................... 110-49 
+Topic 2 Reporting and Application Systems........................................................... 110-49 
+Topic 3 Field Traffic Management System Elements ............................................. 110-52 
+Topic 4 External Interfaces ....................................................................................... 110-56 
+Section 5 Transportation Management Center Facility Management ....................... 110-57 
+Topic 1 Overview....................................................................................................... 110-57 
+Topic 2 Tenants or Partners Present in the Transportation Management Center ..110-
+58 
+Topic 3 Facility Manager Responsibilities ................................................................ 110-58 
+Topic 4 Contract Procurement Resources for Facility Managers ........................110-63 
+Topic 5 Facility Security ............................................................................................. 110-63 
+Chapter 110 Transportation Management Centers 110-ii 
+Traffic Operations Manual 
+    
+     
+   
+ 
+   
+   
+   
+    
+ 
+List of Tables February 2026 
+List of Tables 
+Table 110-1 Icon Color Ranges ........................................................................................ 110-20 
+Table 110-2 Icon Depiction of Traffic Patterns................................................................ 110-23 
+Table 110-3 Incident Influences on Traffic Flow.............................................................. 110-23 
+Table 110-4 Key Incident Characteristics From Incident Timeline ................................ 110-26 
+Chapter 110 Transportation Management Centers 110-iii 
+Traffic Operations Manual 
+    
+     
+   
+ 
+   
+   
+   
+   
+   
+ 
+List of Figures February 2026 
+List of Figures 
+Figure 110-1 Governor Ronald Reagan Visits the District 7 Traffic Operations Center.110-1 
+Figure 110-2 Transportation Management Center Connections ................................. 110-19 
+Figure 110-3 Incident Timeline .......................................................................................... 110-26 
+Figure 110-4 Notification Process ..................................................................................... 110-32 
+Figure 110-5 AMBER Alert Message Example.................................................................. 110-43 
+Chapter 110 Transportation Management Centers 110-iv 
+Traffic Operations Manual 
+     
+     
+   
+  
+  
+ 
+ 
+ 
+  
+ 
+  
+   
+  
+ 
+  
+  
+ 
+  
+ 
+  
+  
+  
+   
+ 
+Section 1 Introduction February 2026 
+Section 1   Introduction  
+Topic 1 Preface 
+The purpose of this document is to provide guidelines on transportation management 
+center (TMC) operations. This document guides TMC personnel on roles, responsibilities, 
+operating procedures, systems, technology, and available resources for effective traffic 
+management on the State Highway System (SHS). California Department of 
+Transportation (Caltrans) personnel will use this document to improve TMC operations 
+by standardizing operating procedures. 
+Currently, operating capabilities, organization, and systems in use vary across the state. 
+Thus, each TMC facility may have supplemental operating manuals, memos, or other 
+guidance documents containing district-specific information. As we strive toward 
+standardizing all infrastructure and operations, employees are encouraged to refer to 
+their district procedure manuals as necessary to supplement this guidance. 
+For additional information, refer to the Transportation Management Center Onramp 
+web page. 
+Topic 2 History of Caltrans Transportation 
+Management Centers 
+Caltrans and the California Highway Patrol (CHP) established the first Traffic Operations 
+Center (TOC) in Los Angeles on November 23, 1971. In the following years, Caltrans’ 
+transportation system management and CHP incident management programs 
+continued to evolve. 
+Figure 110-1 Governor Ronald Reagan Visits the District 7 Traffic Operations Center 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-1 
+     
+     
+   
+  
+ 
+  
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+   
+    
+  
+   
+   
+  
+  
+  
+ 
+ 
+   
+ 
+    
+   
+  
+  
+  
+    
+ 
+Section 1 Introduction February 2026 
+In April 1992, both departments signed a memorandum of understanding (MOU) on the 
+development and operation of co-located TOCs. This agreement states that the co-
+location of TOCs, the Caltrans maintenance communications center, and the CHP 
+communications center benefits the public by supporting enhanced communication 
+among departmental personnel, improving response to traffic incidents, and providing 
+a more coordinated approach to traffic management. 
+In the ensuing years, greater emphasis was placed on intermodal transportation, 
+making it essential to create partnerships with local entities such as metropolitan 
+planning organizations (MPOs) and local transit operators. 
+Caltrans and CHP created the TMC Master Plan in June 1993 and revised it in 
+December 1997. In it, an MOU adopted the TMC Master Plan as the standard for 
+developing and operating all TMC facilities. To maintain consistency, the TMC Master 
+Plan requires that TMC operations be defined with set standards. This chapter meets this 
+objective. 
+Topic 3 Transportation Management Center Overview 
+TMCs allow Caltrans to accomplish the following: 
+• Monitor and manage traffic flow. 
+• Communicate traffic conditions to the traveling public. 
+• Conduct traffic incident management (TIM). 
+• Coordinate traffic management during emergencies or planned lane closures. 
+The growing challenges of highway traffic congestion and the resulting increase in 
+environmental impacts from greenhouse gas emissions have highlighted the need for 
+continued innovative and cooperative efforts to enhance mobility on California’s 
+highways. TMC operations play a critical role in achieving this goal. This section outlines 
+the key functions that TMCs perform. 
+Traffic Management 
+TMCs are critical hubs for managing traffic that provide the public with the following 
+benefits: 
+• Improved safety through effective TIM, resulting in reduced secondary collisions. 
+• Enhanced traveler mobility. 
+• Reduced traffic congestion. 
+• Reduced greenhouse gas emissions. 
+• Reduced incident-related lane closure time. 
+• Increased effectiveness of traveler information management, contributing to 
+informed travel planning. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-2 
+     
+     
+   
+ 
+ 
+  
+   
+ 
+   
+ 
+  
+  
+  
+  
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+  
+  
+ 
+   
+     
+   
+  
+    
+Section 1 Introduction February 2026 
+• Enhanced multi-agency emergency response coordination using state highway 
+infrastructure. 
+• A safer and more efficient multimodal highway system. 
+• Increased regional economic activity. 
+Traffic Incident Management 
+Coordinated traffic management is a high priority for Caltrans TMC personnel and CHP. 
+Both departments have agreed to joint responsibility for incident detection, verification, 
+and management. However, Caltrans is primarily responsible for managing highway 
+corridor systems impacted by incidents. CHP has jurisdiction over highway incident 
+scene management and scene traffic control. The agreement on TMC joint operations 
+can be found in the MOU for joint operational policies, which are periodically updated. 
+For more information, refer to Chapter 130, “Traffic Incident Management.” 
+Emergency Response Coordination 
+TMCs support Caltrans emergency operation centers (EOCs), CHP, and other 
+emergency response activities by leveraging TMC infrastructure, such as closed-circuit 
+television (CCTV), highway advisory radio (HAR), changeable message signs (CMSs), or 
+the California Highway Information Network (CHIN). If an emergency results in a full 
+closure requiring an alternate route, coordination with the appropriate public agencies 
+(including CHP and Caltrans field personnel) and any involved private sector entities will 
+be necessary. If the incident requires emergency repair or specialized maintenance 
+services, these contacts may also need to be made through the TMC. Such emergency 
+services include electrical maintenance, structure maintenance, municipal or private 
+utility services, or private sector entities under the listing of contacts. A list of contacts 
+from all areas shall be maintained at the TMC. 
+Topic 4 Transportation Management Center Statewide 
+Organization 
+Caltrans operates 12 district TMCs throughout the state and 1 satellite TMC. 
+Standalone and California Highway Patrol Co-Located Transportation 
+Management Centers 
+Five TMCs, located in Districts 3, 7, 8, 11, and 12, are standalone facilities co-located 
+with CHP. Both CHP and Caltrans TMC operators, dispatchers, and managers provide 
+integrated transportation management and improve highway system performance. 
+These secure co-located TMCs are where Caltrans staff have full access to the CHP 
+VisiCAD for more effective TIM functions. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-3 
+     
+     
+   
+  
+ 
+    
+  
+   
+  
+ 
+ 
+ 
+  
+  
+ 
+  
+  
+  
+  
+      
+    
+ 
+ 
+ 
+  
+  
+     
+ 
+ 
+  
+ 
+  
+ 
+ 
+Section 1 Introduction February 2026 
+Other District Transportation Management Centers 
+The remaining seven TMCs, located in Districts 1, 2, 4, 5, 6, 9, and 10, are positioned 
+within Caltrans district buildings and are managed only by Caltrans personnel. Activities 
+are coordinated as needed with CHP offices and CHP command centers. Some of 
+these separated TMCs only have access to a limited and redacted CHP Media 
+Computer-Aided Dispatch (CAD), while others have full access to CHP VisiCAD. 
+Satellite Operations Centers 
+Satellite operations centers (SOCs) are fixed facilities for the seasonal management of 
+snow operations, recreational traffic, seasonal peaks, weather restrictions, and any 
+other major highway incident. SOCs are activated through an area-specific response 
+procedure and may be set up anywhere. 
+SOC responsibilities include: 
+• Managing unusual situations, snow operations, seasonal peak activity, dust 
+storms, environmental disasters, or any other transportation emergencies. 
+• Coordinating with other TMCs. 
+• Opening only as needed with sufficient staffing and equipment. 
+Currently, Caltrans operates one SOC at the Kingvale Maintenance Station in District 3. 
+Topic 5 Hours of Operation 
+Some TMCs (Districts 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, and 12) operate 24 hours, while District 5 
+operates on weekdays from 6:00 a.m. to 6:00 p.m. 
+TMC personnel work in shifts, with staff working a 5-day/40-hour week, a 4-day/10-hour 
+week, or a 9-day/80-hour biweekly schedule based on specific TMC operational and 
+staffing needs. Exact start and end times, shift durations, and shift overlaps vary by 
+district according to MOUs and district-specific needs and requirements. 
+Shift designations for TMCs operating 24 hours are known as the “day shift” (typically 
+06:00-14:00), the “swing shift” (typically 14:00-22:00), and the “graveyard shift” (typically 
+22:00-6:00).” Shift designations for TMCs operating less than 24 hours are generally 
+known as the “a.m. shift” and the “p.m. shift.” 
+Topic 6 Key Partners and Stakeholders 
+To keep pace with the expanding role of TMCs in transportation system management, 
+partnerships with stakeholders are critical for effectively meeting the needs of the 
+public. These partnerships address a variety of issues, such as funding, system operations 
+and maintenance, technology development and implementation, public information, 
+and resource sharing. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-4 
+     
+     
+   
+  
+  
+ 
+ 
+  
+ 
+   
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+   
+  
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+  
+ 
+ 
+   
+ 
+  
+ 
+   
+ 
+Section 1 Introduction February 2026 
+The steady growth of transportation-related challenges, such as congestion and delays, 
+establishes the need for continued efforts to maximize the efficiency of existing 
+transportation facilities. Creating partnerships with public and private entities is 
+important in meeting the needs of transportation users, adopting new technologies, 
+and overcoming resource shortages. The goal of partnerships is to integrate private 
+sector technological advances with current academic research to address the 
+transportation needs of different regions in an innovative way. 
+Caltrans and CHP have partnered on several initiatives for managing traffic on state 
+highways, particularly through developing and deploying personnel in state TMCs. The 
+two agencies have agreed that co-location and cooperation benefit the public by 
+enhancing communication between departments, improving response times to 
+incidents, and improving traffic management coordination. 
+The following is a brief overview of some of the stakeholders involved in TMC operations 
+and their roles. 
+Caltrans 
+Caltrans is responsible for SHS management, incident response, planned lane closures, 
+and special events affecting the SHS. Caltrans recognizes that quick incident removal 
+and return to normal operations saves lives and reduces congestion and potential 
+injuries. Caltrans provides real-time traveler information and coordinates incident 
+response with CHP and partner agencies. Caltrans also plans, designs, constructs, 
+operates, and maintains the SHS. 
+California Highway Patrol 
+CHP is responsible for state highway incident management, emergency road closures, 
+law enforcement, and maintenance of CHP automated computer systems. CHP also 
+provides motorist safety services and traffic supervision. CHP’s law enforcement 
+activities maintain the dynamic operations of the SHS, maximize safety, and assist other 
+law enforcement agencies. 
+Metropolitan Planning Organizations 
+In urban areas, partnerships with MPOs help identify needs, prioritize strategies, develop 
+integrated multimodal transportation, gain public support, and secure funding for 
+transportation projects. MPOs are responsible for developing the blueprint for mass 
+transit, highway, airport, seaport, and railroad facilities. 
+Regional transportation agencies coordinate on managed lane dynamic pricing 
+events, lane incidents, and message coordination that affect express lane operations 
+and general-purpose lanes. 
+Local Agency Transportation Management Centers 
+In corridor traffic management efforts, interconnections are implemented between 
+Caltrans-operated and local TMCs (TMCs owned and operated by cities and counties). 
+Traffic management activities should use all available transportation system capacity 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-5 
+     
+     
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+  
+ 
+   
+ 
+ 
+Section 1 Introduction February 2026 
+within an entire corridor. State and local officials must be able to communicate and 
+coordinate to provide effective corridor management. 
+Local Emergency Responders 
+Local emergency responders help coordinate an efficient response to incidents on the 
+SHS and provide emergency services to the impacted public. 
+Local Mass Transit 
+Transit operators such as buses, trains, or ferries are important in making transit ridership 
+a viable alternative to automobile travel. Real-time information (provided to and from 
+transit vehicles) allows for vehicle tracking, alternate routing, fleet management, 
+passenger and fare management, maintenance, and security. Additionally, transit 
+vehicles can report the transportation system’s condition to the TMC. 
+Academic Institutions 
+Partnerships with academic institutions are an important part of developing 
+transportation management strategies for the present and future. Academic institutions 
+examine, evaluate, and advance available traffic systems technology through 
+research that addresses current issues while training future professionals for this growing 
+field. 
+Media and Online Platforms 
+Partnerships with the media play a critical role in providing accurate information to the 
+public. It is vital to provide real-time traffic information to the largest possible public 
+audience. This is achieved using commercial radio, television, social media, online news 
+and maps, and global positioning system platforms. TMC personnel must follow 
+established policies and protocols for communicating with the media. 
+Federal Highway Administration 
+The Federal Highway Administration (FHWA) provides the means for funding, 
+demonstrating, and implementing advanced transportation systems (ATSs). Partnering 
+with FHWA allows Caltrans to stay informed and influence issues surrounding the 
+national transportation Traffic Management System (TMS) environment. 
+Private Entities 
+Developing partnerships with the private sector fosters advancements in ATS. These 
+partnerships allow collaboration on transportation and information system projects that 
+need testing, evaluation, and implementation. Partnerships with private entities support 
+technology and resource sharing and are mutually beneficial. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-6 
+     
+     
+   
+ 
+ 
+   
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+   
+   
+  
+  
+  
+  
+  
+ 
+ 
+  
+  
+    
+  
+ 
+ 
+Section 1 Introduction February 2026 
+Topic 7 Security Clearance for Transportation 
+Management Center Personnel and Visitors Policy 
+All Caltrans employees, service providers, and guests who enter the operating floor of a 
+TMC that has CHP VisiCAD must either (a) be escorted at all times while in the TMC to 
+ensure that they are not exposed to confidential law enforcement information, or (b) 
+undergo a California Department of Justice (DOJ) background check and sign CHP 
+Form 101A, “Agreement With Outside Entities to Establish Remote Access Privileges to 
+CHP Automated Computer Systems and Information” (Form CHP 101A) to have 
+unescorted access. This policy has been in place since 1995 and applies to all Caltrans 
+personnel, including janitorial or maintenance staff working on the TMC floor, without 
+exception. 
+If the TMC fails to comply with this security policy, CAD access can be removed from 
+the TMC. This would hinder Caltrans’ ability to manage traffic and incidents. Applicants 
+for positions in CAD-equipped TMCs should have ample notice of the information 
+security policy both before and after they apply for a position. 
+As a primary law enforcement agency, CHP subscribes to the California Law 
+Enforcement Telecommunications System (CLETS). CLETS was designed to provide law 
+enforcement agencies with confidential information. The DOJ is responsible for 
+providing CLETS service and monitoring and regulating access to CLETS information. 
+All individuals with access to CLETS information are required to undergo a security 
+clearance to determine their suitability for access. Since all Caltrans employees working 
+in a TMC may have the opportunity to view CLETS information on CAD screens or record 
+printouts, a joint policy was developed to require that background checks be 
+performed on all TMC personnel. 
+The CLETS Policies, Practices, and Procedures Manual requires that any person who has 
+access to CLETS information be fingerprinted and subjected to a DOJ security 
+clearance. Each applicant’s background check requires both DOJ and Federal Bureau 
+of Investigation (FBI) Criminal Offender Record Information (CORI). Caltrans 
+Headquarters (HQ) Division of Traffic Operations is responsible for establishing an 
+interagency contract with DOJ for Live Scan fingerprint services and billing. Refer to 
+“Live Scan Interagency Agreement with the Department of Justice” for more 
+information. 
+Additionally, each Caltrans employee working in a TMC will be required to sign CHP 
+Form 101A and an interagency MOU. Form 101A and the MOU inform employees of the 
+confidentiality of CLETS information and the CLETS system and include a brief statement 
+of the penalties imposed for its misuse (see Appendix 110 A). Confidential automated 
+information obtained from CHP VisiCAD and CLETS shall be used exclusively for the 
+official business of the state. CHP VisiCAD and CLETS information cannot be shared with 
+any unauthorized person. Misuse of information from CAD or CLETS may result in 
+suspension or loss of employment and prosecution for state and federal crimes. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-7 
+     
+     
+   
+  
+  
+ 
+ 
+ 
+     
+  
+   
+ 
+   
+ 
+  
+  
+  
+   
+  
+ 
+  
+    
+  
+ 
+   
+ 
+ 
+ 
+ 
+  
+   
+  
+  
+  
+  
+  
+Section 1 Introduction February 2026 
+As a primary subscriber to CLETS, CHP takes responsibility for ensuring that TMC 
+personnel who have access to CLETS comply with DOJ security rules and regulations. 
+TMCs that are co-located or have CAD access are required to comply with these 
+guidelines. Noncompliance can result in increased departmental liability, individual 
+employee liability, and the potential loss of CHP access to the CLETS system. 
+Live Scan Interagency Agreement with the Department of Justice 
+The Live Scan contract is an interagency agreement with the DOJ to submit fingerprint 
+images and related information electronically and have the DOJ provide Caltrans with 
+DOJ and FBI fingerprint Live Scan information. Caltrans will request this information 
+electronically by completing form BCIA 8016, "Request for Live Scan Service" with the 
+originating agency identifier A1582 entered in the form field labeled “ORI.” The DOJ is 
+responsible for receiving and processing the Caltrans requests. The DOJ shall provide 
+Caltrans with the following information: 
+• DOJ or a no-record response and (if authorized) subsequent arrest notifications. 
+• FBI or a no-record response for initial submissions. 
+• Child Abuse Central Index. 
+• Peace Officer Carry Concealed Weapon. 
+Topic 8 Transportation Management Center Activities 
+Administration 
+Audio or video recording inside the TMC is prohibited unless explicitly authorized under 
+a Caltrans- and CHP-approved agreement (such as a Live Commercial Broadcasting 
+MOU) and conducted from designated areas with information security safeguards. 
+Training captures or screenshots must adhere to CHP and CLETS privacy rules and 
+internal policies. However, it is recommended that TMC operations personnel maintain 
+records of specific activities to provide an organized format for recording various events 
+and a convenient means to retrieve key pieces of information involved in the daily 
+activities of the TMC. TMC operations personnel should maintain records of the following 
+activities: 
+• Radio communications. 
+• Equipment usage (such as CMS, HAR, or CHIN). 
+• Incident occurrences. 
+• Major incidents. 
+• Incident notifications and callouts. 
+• Lane or road closures. 
+• Other miscellaneous occurrences. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-8 
+     
+     
+   
+  
+  
+  
+  
+  
+   
+  
+  
+ 
+ 
+ 
+ 
+   
+  
+   
+ 
+ 
+  
+ 
+   
+ 
+ 
+   
+ 
+Section 1 Introduction February 2026 
+• Ongoing traffic management activities. 
+• Special situations (such as chain control, Sigalerts*, or traffic advisories). 
+• Major issues that need to be relayed to the following shift. 
+• Equipment malfunctions. 
+• Status of repair efforts. 
+• Summary of road conditions. 
+• Ongoing travel restrictions. 
+• Weather conditions that affect travel (such as 10-13 reports completed daily 
+during the winter season). 
+Note*: Sigalerts are issued for unplanned major incidents that affect one or more lanes 
+and will block the roadway for at least 30 minutes, causing congestion and delay. CHP 
+issues Sigalerts either from the TMC or from the CHP communications center. Examples 
+of Sigalerts may include congestion-causing traffic incidents, spilled loads, leaking gas, 
+or special events. 
+Major Issues to Relay to the Following Shift 
+TMCs should have a method for providing information to the next shift concerning 
+ongoing activities or major incidents that have cleared but may still need an 
+explanation, such as any administrative issues, contact or coordination problems, office 
+and field system failures, or any other major issues and highlights of TMC activities. 
+Transportation Management Center Equipment Malfunction Report 
+Maintain a report of all equipment failures that occur during a TMC shift. This report may 
+be used to notify TMC support personnel of the equipment problem, the time of 
+occurrence, and the exact nature of what is not functioning in its normal manner. The 
+TMC Equipment Malfunction Report may also be used to track the status of repair 
+efforts and the return to full operation upon completion of repairs. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-9 
+       
+     
+   
+ 
+  
+ 
+  
+  
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+       
+ 
+  
+ 
+  
+    
+ 
+ 
+ 
+  
+ 
+Section 2 Roles and Responsibilities February 2026 
+Section 2  Roles and Responsibilities  
+Topic 1 Overview 
+TMC operations are managed by TMC functional managers, performed by operators 
+and dispatchers, and supported by several other personnel. This chapter summarizes 
+TMC personnel roles and duties. Individuals listed below may perform multiple functions 
+during their day within a TMC. The number of personnel and roles vary depending on 
+the TMC size. 
+As described in Section 1, Topic 7 “Security Clearance for Transportation Management 
+Center Personnel and Visitors Policy,” TMC personnel with unescorted access to the 
+TMC operating floor where CHP VisiCAD is accessible are subject to DOJ background 
+checks and fingerprinting. Confidential automated information obtained from CHP 
+VisiCAD and CLETS shall be used exclusively for the official business of the State. CHP 
+VisiCAD and CLETS information cannot be shared with any unauthorized person. Misuse 
+of information from CAD or CLETS may result in suspension or loss of employment and 
+prosecution for state and federal crimes. 
+Topic 2 System Operations Personnel 
+Transportation Management Center Functional Managers 
+The TMC functional manager oversees the TMC operations, staff, and building. The main 
+roles and responsibilities may include: 
+• Supervising traffic operations, incident response, and facilitating the safe and 
+efficient operation of the SHS and TMC work environment. 
+• Communicating the TMC operational needs and activities to all internal and 
+external stakeholders as needed. 
+• Training technical staff. 
+• Maximizing public safety and minimizing motorist delays that result from incidents 
+and congestion. Analyzing incidents, providing engineering judgment, and 
+communicating information to field staff and the traveling public to assist with 
+making informed decisions. 
+• Overseeing maintenance and identifying future needs of TMC operational 
+elements and the TMC building. 
+Chapter 110 Transportation Management Centers 110-10 
+T
+raffic Operations Manual 
+       
+     
+   
+  
+ 
+    
+ 
+     
+      
+    
+   
+ 
+     
+  
+      
+ 
+   
+ 
+    
+  
+  
+ 
+    
+ 
+ 
+  
+   
+ 
+  
+ 
+    
+ 
+  
+ 
+   
+   
+   
+Section 2 Roles and Responsibilities February 2026 
+Transportation Management Center Lead Worker 
+The lead worker oversees the technical operations of the TMC floor, such as incident 
+management and the Advanced Transportation Management System (ATMS). The 
+main roles and responsibilities include: 
+• Directing and overseeing the day-to-day operations of the district TMC. 
+• Directing and supporting major traffic incident clearance and investigations. 
+• Reviewing and examining major incidents. 
+• Monitoring and analyzing real-time traffic data to provide support where 
+needed. 
+• Preparing and reviewing traveler information messages for various devices, such 
+as CMSs and HARs. 
+• Working closely with the traffic management team (TMT) for traffic-related 
+activities and responses. 
+• Performing traffic engineering calculations and traffic delay and reduction 
+methodologies to provide independent engineering decisions. 
+• Participating in staff meetings with the Division of Maintenance, CHP partners, or 
+both for traffic operational awareness. 
+Transportation Management Center Operators and Dispatchers 
+TMC operators and dispatchers work together to monitor traffic operations and 
+manage incidents on the SHS. The following lists the main roles and responsibilities of 
+operators and dispatchers. 
+Operators 
+• Actively monitoring traffic information sources such as CCTV, QuickMap, CHP 
+VisiCAD, and CHP MediaCAD for traffic incident identification, verification, and 
+response. 
+• Communicating and coordinating with field personnel and incident response 
+units for incident response and traffic management activities. 
+• Notifying designated personnel and agencies of major incidents, traffic 
+restrictions, emergency response, and roadway conditions or closures. 
+• Coordinating responses with other TMCs and agencies if an incident has regional 
+impacts. 
+• Providing traffic updates and messages by CMS, CHIN, and HAR. 
+• Ensuring traveler information messages are accurate and timely, and relaying 
+updated information to CHP and partner agencies. 
+Chapter 110 Transportation Management Centers 110-11 
+Tr
+affic Operations Manual 
+       
+     
+   
+ 
+   
+  
+ 
+ 
+  
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+     
+ 
+ 
+    
+ 
+  
+    
+Section 2 Roles and Responsibilities February 2026 
+Dispatchers  
+•  Inputting data and maintaining reports of TMC activities.  
+•  Inputting Lane Closure Status into  the LCS system.  
+•  Managing  communications between TMC  and  maintenance  field personnel.  
+•  Generating  and maintaining  Integrated Maintenance Management System  
+(IMMS)  service requests for maintenance activities.  
+•  Providing  timely response to CHP requests for field  maintenance assistance.  
+•  Providing  ongoing chain restriction status through  Transportation  Management 
+Center Activity Logging (TMCAL)  or ActiveITS, and  updating  the HQ 
+Communications  Center.  
+Other System Operations Personnel 
+The following is a list of other system operations personnel and a description of their role. 
+Integrated corridor coordinator: Monitors traffic and incident data on the highway and 
+local streets within the limits of the integrated corridor. 
+Ramp metering engineer: Monitors and adjusts ramp metering modes and rates and 
+their effect on traffic flow to provide maximum operational efficiency on highways and 
+local street systems. 
+District traffic manager: Coordinates with personnel to develop and implement 
+transportation management plans (TMPs). Responsible for the day-to-day decisions 
+about traffic impacts from planned activities on the SHS. 
+Traffic signal system engineer: Interacts with incident response and planned lane 
+closure personnel to coordinate traffic management response activities involving signal 
+re-timing. 
+Headquarters Communications Center 
+The primary function of the Headquarters Communications Center (HCC) is to receive 
+and distribute accurate information from the TMCs regarding the status of the SHS. The 
+HCC must receive timely information and updates regarding every reportable incident 
+that will affect the public use of any state highway or Caltrans facility. For more 
+information, refer to the Highway Condition Report Requirements (HCRR) available on 
+Onramp. 
+The HCC advises the California State Transportation Agency, the Governor's Office of 
+Emergency Services (CalOES), the Caltrans director and chief deputy director, 
+statewide deputy directors, designated staff, as well as the Caltrans emergency 
+management coordinator, designated division chiefs and office chiefs, and the FHWA. 
+In addition, the HCC informs and advises the public through CHIN and QuickMap. 
+Chapter 110 Transportation Management Centers 110-12 
+T
+raffic Operations Manual 
+       
+     
+   
+  
+ 
+ 
+  
+  
+ 
+ 
+  
+  
+  
+  
+   
+  
+   
+ 
+ 
+ 
+ 
+  
+   
+  
+   
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+   
+ 
+Section 2 Roles and Responsibilities February 2026 
+Topic 3 System Support Personnel 
+The normal work location for system support personnel may be either within the TMC 
+control room or in other adjacent rooms specifically designated for support functions. 
+The following is a list of system support staff and a description of their role. 
+Database administrator: Manages, monitors, verifies, retrieves, and archives historical 
+data. Supports disaster recovery and planning, data backup policies, and data 
+restoration policies. 
+System administrator: Configures the operating system, updates system software, and 
+manages user accounts, devices, space usage, network services, and system security. 
+Traffic data analyst: Provides baseline traffic data and runs summary reports for traffic 
+data, ramp metering, and traffic system performance. 
+System electrical engineers: Troubleshoots electronic equipment and computer system 
+software to correct system malfunctions and keep the system running at full capability. 
+May also perform planning and design reviews for TMS Systems. 
+Communications engineer: Troubleshoots communications equipment to correct 
+communication outages and keep the communications network running reliably. 
+Interacts with vendors, contractors, and leased telecommunication service providers for 
+installing or modifying the communications network. 
+Field maintenance technicians: Troubleshoots and repairs field equipment, keeping the 
+system operating as intended. 
+Field maintenance liaison: Interacts with system operators to coordinate with field 
+maintenance personnel who respond to incidents. 
+Topic 4 Traffic Management Team 
+Most districts have a TMT or major incident response team or both, consisting of staff 
+with specialized truck-mounted CMSs geared to respond to major incidents and special 
+events in coordination with TMC staff. These teams implement traffic management 
+strategies to reduce delays, prevent secondary collisions, and improve mobility and 
+safety. The staffing-level classification ranges from maintenance employees to 
+engineers. The core group has full-time job assignments in either the incident or special 
+event response unit or the planned lane closure unit. This primary group responds to 
+most situations that occur during normal work hours. The remaining TMT members have 
+full-time job assignments in other functions and act as volunteers on an as-needed 
+basis. 
+As the number of personnel varies depending on the size of the district, team members 
+include a TMT leader, a TMT spotter, and TMT sign truck operators. At the incident scene 
+(command post), the team leader coordinates with other first responders to manage 
+traffic incident response procedures. The TMT provides traffic management assistance 
+Chapter 110 Transportation Management Centers 110-13 
+T
+raffic Operations Manual 
+       
+     
+   
+ 
+ 
+  
+ 
+   
+ 
+   
+  
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+   
+ 
+Section 2 Roles and Responsibilities February 2026 
+without duplicating the efforts of CHP and maintenance personnel. Team functions 
+include: 
+• Providing end-of-queue protection to oncoming traffic to prevent secondary 
+incidents. 
+• Providing advance notification to travelers of road closures, blockages, and 
+lengthy delays, where necessary. 
+• Providing detour and alternate route signing as appropriate. 
+• Maintaining communications with TMC staff and providing updates on changing 
+traffic conditions for district staff and HCC. 
+• Assisting with maintenance and construction activities, which may cause delays 
+to the traveling public. 
+Topic 5 Transportation Management Center Building 
+Manager 
+The roles and responsibilities of the TMC building manager include: 
+• Ensuring TMC facilities are operational and compliant with all local and state 
+laws, codes, and regulations relating to health and safety. 
+• Managing TMC facility maintenance, operations, and repairs in an efficient, 
+cost-effective, and prompt manner. 
+• Coordinating facility maintenance, operations, and repairs with CHP and the 
+Department of General Services (DGS). 
+Topic 6 Transportation Management Center Staffing 
+Administration 
+Positions at TMCs may be filled under several classifications depending on district needs 
+and staffing structures. Typical classifications include Transportation Engineering 
+Technician, Analyst I, and Analyst II. These classifications provide flexibility to staff TMCs 
+with personnel who have the appropriate technical, analytical, or administrative 
+expertise. 
+All TMC personnel are required to perform their duties professionally and efficiently to 
+best serve the public. All TMC personnel shall establish and continue to foster good 
+working relationships with CHP to improve cooperative and coordinated efforts while 
+performing TMC duties. Communications with external and internal partners (such as 
+CHP, field maintenance personnel, private information service providers (ISPs), public 
+affairs staff, HQ staff, and others) will be handled in a timely fashion while demonstrating 
+a professional attitude, good work ethic, and respect toward others. 
+Chapter 110 Transportation Management Centers 110-14 
+T
+raffic Operations Manual 
+       
+     
+   
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+  
+  
+   
+     
+ 
+Section 2 Roles and Responsibilities February 2026 
+Reporting for Duty and Shift Management 
+All TMC personnel shall report to work on time and be prepared for a briefing at the 
+start of their assigned shift. All personnel shall immediately report directly to their 
+assigned positions and relieve the previous shift. 
+Caltrans 
+Caltrans personnel shall report directly to the TMC at the beginning of their respective 
+shifts. 
+Caltrans policy and MOUs in force will determine the method of overtime 
+compensation. Overtime scheduling will be based on the need to effectively manage 
+the TMC operations. Shifts will be offered to employees based on equitable overtime 
+distribution and staff availability. All overtime requires the TMC supervisor’s prior 
+approval. 
+Before the monthly schedule is completed, TMC personnel will be given a preliminary 
+schedule with the days on which overtime will be needed. If no employees volunteer 
+for overtime work, the supervisor may ask other staff members within operations to fill 
+the need. 
+All TMC personnel shall be assigned to a specific shift at the discretion of district 
+management. Each person may state a preference for the shift they are interested in 
+working. Shift assignments will be based on the needs of TMC operations. Preference 
+may be based on the time of service within the TMC. Duplicate requests for shift 
+assignments are processed by TMC management using seniority within the TMC 
+classification and are consistent with MOUs and operational coverage requirements. 
+If one of the TMC personnel leaves the TMC resulting in a vacancy, the remaining 
+personnel may request assignment to the shift with the opening immediately after the 
+position becomes vacant. However, the selection process will also be based on the 
+needs of the TMC. 
+California Highway Patrol 
+CHP personnel shall report directly to the TMC at the beginning of their respective shifts. 
+Shift coverage by CHP personnel for TMCs operating 24 hours per day generally consists 
+of three shifts, known as the “A Watch” shift, the “B Watch” shift, and the “C Watch” 
+shift. The officers assigned to the TMC are accountable to and under the direct 
+supervision of the CHP traffic management unit (TMU) commander. They assist in 
+coordinating the responsibilities of CHP, Caltrans, and other allied agencies in manual 
+and electronic traffic monitoring and in handling emergency incidents. 
+CHP personnel shall complete a CHP 415 Form online and submit it to the TMU 
+commander each day. All overtime requires the TMU commander’s approval before 
+being worked. 
+Chapter 110 Transportation Management Centers 110-15 
+T
+raffic Operations Manual 
+       
+     
+   
+ 
+ 
+ 
+ 
+  
+ 
+    
+  
+  
+ 
+ 
+  
+ 
+   
+ 
+   
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+Section 2 Roles and Responsibilities February 2026 
+Uniforms  
+Caltrans 
+W
+hile no uniform is prescribed for TMC operations personnel, employees should dress 
+appropriately for a professional office setting. Caltrans identification badges shall 
+always be worn in plain view inside the TMC facility. 
+California Highway Patrol 
+Uniformed members shall always wear a long-sleeve shirt and necktie while on duty, 
+except: 
+• A short-sleeved shirt may be worn from April 1 through October 31. 
+• TMC commander may authorize CHP personnel to wear appropriate civilian 
+attire, as necessary. 
+Firearms  
+Caltrans 
+C
+altrans personnel shall follow Caltrans policy regarding firearms as detailed in Deputy 
+Directive 022-R4 on Weapons Prohibited. 
+California Highway Patrol 
+• Uniformed members shall comply with CHP departmental policy regarding 
+firearms. Firearms shall be left in a secure location when not on the officer’s 
+person. 
+• When not in uniform, CHP personnel shall wear proper identification or CHP 
+departmental badges in plain view while inside the TMC and surrounding facility. 
+Shift Briefing 
+At the beginning of a new shift, it is imperative to share information regarding what 
+occurred in the previous shift. This shift briefing can be done informally and must cover 
+the following subjects as appropriate. 
+Current System Status 
+Inform the next shift about which signs are in use and their messages, as well as any 
+closure information on the district-specific platform. Report all malfunctions to the 
+system support personnel and keep the record in the district-specific platform. Also, 
+notify the following shift of any malfunctions that may impair the TMC’s effectiveness. 
+Active Incidents 
+Keep the incident status board updated. Inform the following shift of the status of any 
+active incidents that are occurring, especially if any TMC equipment is in use. This will 
+Chapter 110 Transportation Management Centers 110-16 
+T
+raffic Operations Manual 
+       
+     
+   
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+   
+ 
+   
+ 
+  
+   
+ 
+ 
+ 
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+  
+ 
+Section 2 Roles and Responsibilities February 2026 
+help to avoid giving false information. An example of this would be leaving CMS 
+messages up after an incident is cleared. 
+Special Events 
+Special events are usually planned, and the TMT may develop an oral or written 
+response plan in consultation with the event representative. Include any existing 
+response plans in the shift briefing to avoid confusion when an event occurs. 
+Special Instructions 
+Examples of special instructions include turning on a CMS at a scheduled time for 
+purposes such as traffic studies, public information, or media updates, notifying about 
+scheduled TMC tours, or informing system support personnel of planned work that may 
+affect TMC operations. 
+Caltrans Personnel Leave Reporting Requirements 
+Vacation Leave 
+TMC operations personnel should inform their supervisor in writing at least one month in 
+advance to request any vacation leave of one week or longer in duration. This is 
+necessary to arrange the schedule so that other personnel can be scheduled to cover 
+the shift. 
+Vacation leave of less than one week should be requested at least one week in 
+advance so that the schedule can be arranged accordingly. 
+In cases where two or more employees apply for time off during the same period, 
+priority will be given to the individual with the highest seniority in the TMC branch. 
+Seniority will not nullify the approved vacation of junior staff. 
+Sick Leave 
+Illnesses that prevent an employee from coming to work should be reported at least 
+two hours before the beginning of their shift. The employee shall notify their supervisor 
+by telephone. If there is no supervisor available, the employee may leave a message 
+with their alternate supervisor. Depending on the nature and duration of the illness, a 
+doctor’s note may be required. A courtesy phone call to the TMC floor to alert staff 
+immediately of the impending shift vacancy shall also be made. 
+During non-business hours, weekends, and holidays, illnesses that prevent an employee 
+from coming to work should be reported at least four hours before the beginning of an 
+employee’s shift. The employee may contact the TMC and leave a message for their 
+supervisor with the lead worker on duty. 
+Sick leave requests due to medical or dental appointments for the employee or the 
+employee's family shall be reported to the supervisor at least two days in advance. 
+Chapter 110 Transportation Management Centers 110-17 
+T
+raffic Operations Manual 
+       
+     
+   
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+Section 2 Roles and Responsibilities February 2026 
+Jury Duty 
+To maintain staffing needs and to assist in scheduling changes, an employee that 
+receives a jury duty notification shall advise their supervisor as soon as their first 
+notification is received. Employees should follow the rules in their union contract MOU 
+for leave and time reporting for jury duty. 
+Emergencies 
+When an emergency arises, the affected employee should contact their supervisor and 
+the TMC floor operator as soon as possible, provide as much detail as is available, and 
+provide the expected duration of the emergency. Each case will be evaluated 
+individually, and every effort will be made to accommodate the needs of the 
+employee. 
+Chapter 110 Transportation Management Centers 110-18 
+T
+raffic Operations Manual 
+      
+     
+   
+    
+ 
+  
+ 
+  
+  
+  
+   
+ 
+    
+ 
+  
+ 
+  
+   
+  
+  
+ 
+  
+Section 3 Transportation Management Center Operations February 2026 
+Section 3 Transportation Management Center 
+Operations 
+Topic 1 Overview 
+TMCs are the focal point for many different transportation-related functions and 
+operations. As illustrated in Figure 110-2, TMCs are the center for monitoring real-time 
+traffic operations on the SHS. TMCs provide system personnel with the tools and 
+resources to communicate and manage transportation operations safely and 
+efficiently from a central facility. This section discusses the operational resources and 
+procedures used within a TMC. 
+Figure 110-2 Transportation Management Center Connections 
+Topic 2 Central Systems and Traffic Flow Monitoring 
+One of the TMC’s primary functions is routinely monitoring traffic flow. Observing unusual 
+patterns of reduced speed, congestion, or other abnormalities in the usual flow may 
+indicate a traffic flow constriction. This may be caused by a temporary reduction in 
+capacity due to an incident, lane closure, or excessive demand. 
+Effective traffic flow monitoring involves paying constant attention to the highway 
+system using various tools in the TMC, such as CHP VisiCAD, Caltrans radio, CCTV, 
+QuickMap, and Google Maps. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-19 
+      
+     
+   
+  
+ 
+   
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+    
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+  
+   
+ 
+   
+  
+  
+ 
+  
+Table 110-1 Icon Color Ranges 
+Icon Color Speed in mph 
+Red < 20 
+Yellow/Orange => 20 < 35 
+Green => 35 
+Section 3 Transportation Management Center Operations February 2026 
+Traffic Flow Data 
+The basic tool for obtaining traffic flow information is a detector sensor system. In 
+general, this system consists of remote electronic sensors contained within or adjacent 
+to a highway, which relay traffic data over a communication system to a TMC central 
+processing location. 
+Caltrans uses the following types of traffic detection sensors: 
+• Inductive loop 
+• Magnetic detectors 
+• Microwave radar 
+• Video detection 
+• Thermal image detection 
+• Piezo 
+• Bluetooth or Wi-Fi 
+• Third-party data (such as WAZE, HERE, INRIX, Google, or TomTom) 
+These sensors relay data that quantifies traffic volumes, occupancy, and vehicle speed 
+separated by direction and lane. Summary reports for traffic data are compiled and 
+produced using a central computational processor located within a TMC. The central 
+computer generates traffic data summaries compiled in various formats and displayed 
+as either textual or numerical values or graphical depictions. Traffic data review and 
+interpretation can reveal the exact locations and even the nature of observed traffic 
+flow abnormalities. 
+Graphical Display 
+Graphics are used to visualize real-time traffic conditions on a monitor, large projection 
+screen, or video wall. The highway electronic detection system is displayed using a 
+series of green, yellow/orange, and red-light icons along the highways represented on 
+the graphics display screen. An example of colors associated with estimated vehicle 
+speeds is shown in Table 110-1. Graphics may indicate an incident as described in 
+“Surveillance System and Graphics Display.” 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-20 
+      
+     
+   
+  
+   
+ 
+ 
+  
+     
+ 
+  
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+  
+ 
+   
+  
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Note: Color ranges vary by district. 
+Monitoring Recurrent Congestion, Planned Lane Closures, or Special 
+Events 
+Whenever traffic congestion is anticipated, such as for planned lane closures, special 
+events, or even the normal daily recurrent commuter congestion, it is necessary to 
+monitor the extent of congestion. The purpose of monitoring congestion is to discern 
+any unusual patterns that may indicate the presence of a secondary problem within 
+the traffic queue. This may include moving traffic to different routes with the assistance 
+of allied agencies due to abnormally extended delays from the anticipated traffic 
+congestion. Traffic surveillance device checks should be made at frequent intervals. 
+Topic 3 Incident Detection 
+Another TMC function is traffic incident detection. Detection can occur based on 
+information received from various sources, as outlined in this topic. 
+California Highway Patrol Computer-Aided Dispatch Sources 
+CAD, the computerized log operated by CHP, contains information collected from 
+cellular 911 emergency calls, roadside motorist call boxes, CHP field patrol units, 
+airborne surveillance, or public telephone calls received at CHP communication 
+centers. 
+TMCs primarily receive incident information details through CHP VisiCAD by monitoring 
+the CHP VisiCAD terminal. Added information may be received directly from members 
+of CHP dispatch, if they are present in the TMC, to help verify the severity of an incident 
+by coordinating with the TMC liaison officer. The CHP communications center will issue 
+Sigalerts and traffic advisories and coordinate with the TMC by obtaining details of the 
+incident and the status of response efforts at the incident scene. 
+TMC operations personnel should continually interact with all CAD-generated logs that 
+may affect transportation management. 
+Cellular 911 
+Cellular 911 calls are answered by the appropriate dispatch, which includes city 
+dispatches and the CHP communications center in the area. When answered by a CHP 
+communications center, a service operator initiates a CAD log identifying the incident. 
+CAD automatically routes the log to the dispatcher, who then contacts the CHP patrol 
+unit to potentially respond. 
+CHP Patrol Units 
+CHP patrol units usually receive radio calls to respond to incidents that may affect 
+traffic. Once the CHP officer arrives at the scene, the officer assumes incident scene 
+management and verifies the details and severity of the incident. If necessary, the 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-21 
+      
+     
+   
+ 
+ 
+  
+ 
+  
+ 
+ 
+   
+ 
+ 
+ 
+ 
+    
+     
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+Section 3 Transportation Management Center Operations February 2026 
+officer may request the appropriate emergency service personnel and equipment. The 
+officer may initiate a Sigalert or traffic advisory, and Caltrans may be notified to 
+respond. 
+Airborne Surveillance 
+Airborne surveillance is also used to detect and verify incidents. CHP fixed-wing or 
+helicopter aircraft may arrive at a scene before ground units and expedite incident 
+verification. Airborne surveillance is particularly useful in rural areas. A CHP aircraft may 
+land at the scene and assume scene management responsibilities until ground units 
+arrive. 
+Freeway Service Patrol 
+The Freeway Service Patrol (FSP) is a fleet of tow trucks that circle continuously on fixed 
+travel routes, known as “patrol beats.” FSP is intended to provide early detection and 
+rapid removal of minor incidents, such as a stalled vehicle blocking a lane or a disabled 
+vehicle stranded on the shoulder. FSP will also fix a flat tire, supply gasoline, restart a 
+vehicle, or tow a vehicle to a safe location off the highway. FSP services are always free 
+of charge to motorists. FSP tow trucks are active during commute times on Monday 
+through Friday, with selected routes also working outside of the normal peak traffic 
+periods, including midday, night, and weekend operations. 
+CHP trains FSP drivers to recognize and remove vehicles and objects that cause slowing 
+on the SHS. FSP drivers also discover many impediments while on patrol, receive 
+directions from CHP dispatchers, and are supervised in the field by CHP officers. 
+Freeway Service Patrol Dispatch 
+Dispatchers obtain data from CHP officers, cellular phones, call boxes, and FSP units. 
+This information is routed to the FSP dispatcher on the CAD system through the dispatch 
+office. Similarly, FSP drivers alert CHP officers and the TMC of any incidents. 
+Automatic Vehicle Locators 
+FSP tow trucks are equipped with automatic vehicle locators (AVLs) to assist CHP 
+officers and dispatchers with the whereabouts of a particular truck. The AVLs are 
+programmed to identify tow trucks and plot truck locations on a computer screen. This 
+process occurs at selected intervals and can be done quickly to locate a truck in the 
+event of a radio failure or other emergency. 
+Surveillance System and Graphics Display 
+Another method for incident detection is the computerized electronic surveillance 
+system, where available. This system can provide a graphic visual that can be quickly 
+scanned to identify the location of a potential incident. A series of yellow lights 
+indicates that a slowing condition exists, while red lights indicate that traffic congestion 
+has developed. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-22 
+      
+     
+   
+ 
+ 
+   
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+   
+  
+ 
+   
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+  
+Table 110-2 Icon Depiction of Traffic Patterns 
+Pattern Likely Situation 
+Solid red to a point, then green 
+downstream. An incident with lanes blocked. 
+Solid red in both directions to a 
+common point, then green 
+downstream in each direction. 
+Incident on one side of the highway with 
+lanes blocked, visible from the other side of 
+the highway. 
+The number of red locations in one 
+direction is greater than in the other. 
+A longer queue indicates the direction of 
+the incident. 
+Red and yellow are interspersed 
+and randomly change from one 
+color to the other. 
+Normal recurrent congestion, and likely no 
+lanes are blocked. 
+Yellow to a point, perhaps one red 
+location, then green downstream. 
+Unusual activity causing a distraction 
+located on the shoulder. 
+    
+  
+ 
+ 
+  
+ 
+Table 110-3 Incident Influences on Traffic Flow 
+Change in Traffic Data Observed Nature of Potential Incident 
+Reduction in flow of 300 vehicles per 
+lane per hour. 
+Incident on the shoulder, not blocking 
+a lane. 
+Section 3 Transportation Management Center Operations February 2026 
+Graphics may indicate an incident by showing a series of red and yellow icons, 
+increasing in numbers upstream from the incident. The graphic screen shall be 
+monitored for unusual groupings of red or yellow icons, or both. All suspected situations 
+will be investigated by querying CHP VisiCAD, the electronic surveillance system data 
+terminal, Caltrans communications dispatchers, FSP, Caltrans field units, or CCTV. Table 
+110-2 lists some commonly occurring patterns for identifying a potential incident. 
+Data Incident Detection 
+Some electronic systems include automatic incident detection (AID) algorithms. This 
+specialized software program continuously analyzes upstream and downstream traffic 
+flow data and senses a sudden change in traffic flow from one reporting station to the 
+next in a short time interval. This condition will trigger the AID alarm, which is usually 
+depicted by a flashing red light on the status display map. As the alarm can be falsely 
+triggered by recurrent traffic congestion conditions, it is only an indication of a potential 
+traffic incident. 
+A more reliable means to detect incidents is by examining traffic volumes and speed. 
+Traffic volume data can indicate a reduction in capacity due to an incident. A cursory 
+inspection of traffic volume and speed values can indicate a possible incident. Table 
+110-3 shows some general patterns and their possible indications. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-23 
+      
+     
+   
+ 
+ 
+  
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+     
+  
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+  
+   
+ 
+  
+Change in Traffic Data Observed Nature of Potential Incident 
+Reduction in speed below 20 mph. Likely one lane blocked on a multilane 
+facility. 
+Reduction in speed below 10 mph. Likely two or more lanes blocked. 
+Other Sources 
+Closed-Circuit Television 
+CCTV relays real-time video images from cameras along highways to monitors in the 
+TMC. CCTV cameras are primarily used for monitoring roadway operating conditions 
+and incident verification. However, on occasion, CCTV serves as the initial means to 
+verify incident details. The use of CCTV camera video can pinpoint the exact location 
+of an incident and provide important details such as the number of vehicles involved, 
+the number of lanes blocked, the length of the queue, and more. Once the 
+appropriate emergency-response notifications have been given, CCTV monitors should 
+be checked intermittently to observe the status of incident clearance activities and 
+impacts on traffic. 
+Caltrans Field Personnel 
+Caltrans field personnel include maintenance, construction, and traffic management 
+employees. Mobile phones and two-way radios are used to communicate between 
+field units and the TMC in everyday operations, including reporting incidents. 
+Media 
+Commercial television and radio stations may also be used as a tool for incident 
+detection. Radio stations provide the traveling public with reports on updated traffic 
+conditions regularly. They can be used as a cross-reference as they are provided with 
+information from airborne surveillance and reports from the public. Local broadcast 
+and cable television stations also obtain information from airborne surveillance and 
+other sources. CHP MediaCAD and Caltrans video links can also provide the TMC with 
+video images and detailed reports from areas that are not under TMC electronic 
+observation. Caltrans public information officers (PIOs) also provide information to the 
+TMC and local media stations. 
+Local Agencies 
+Local agencies are a valuable source of information, especially during an incident that 
+transpires within their area of jurisdiction and in the vicinity of the SHS. A list of local 
+agency contacts should be made readily available for quick reference. 
+Social Media 
+Social networks and social media have become valuable sources of real-time 
+information. TMC personnel may check social media sites such as X (formerly Twitter) 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-24 
+      
+     
+   
+ 
+ 
+  
+   
+  
+ 
+     
+  
+     
+   
+ 
+ 
+  
+  
+ 
+ 
+  
+ 
+   
+ 
+  
+  
+ 
+ 
+  
+   
+  
+ 
+  
+ 
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+and Facebook for incident detection. These sources may contain information and 
+visuals to help identify the location and severity of an incident. 
+Topic 4 Incident Verification 
+Caltrans’ incident verification tools include communication with Caltrans field units from 
+the Divisions of Traffic Operations, Maintenance, or Construction, CHP VisiCAD, and 
+CCTV. CCTV is a critical tool for information gathering because it relays real-time visual 
+information directly to the TMC. 
+Initial incident information and verification can be obtained from CHP through cellular 
+911 calls, roadside call boxes, and CHP field patrol units. Information from all CHP 
+sources is entered into the CAD system, where TMC personnel can access it. Often, 
+multiple reports, such as a series of cellular 911 calls, can help determine the incident 
+severity and more accurately detect the location and direction of the incident. 
+Upon receiving information about a possible incident, the CHP communications center 
+creates a CAD log describing the incident. Based on severity and availability, CHP may 
+respond to the scene of the reported incident and confirm its severity. Additional details 
+are added to the CAD log as they are received by the CHP communications center. 
+CHP or FSP officers on road patrol may be the first to observe and report an incident. 
+The CHP communications center would then generate a CAD log indicating that the 
+officer is at the incident scene. In this situation, TMC operations personnel will regard the 
+incident as verified. 
+Aerial surveillance can be used to verify the severity and details of a traffic incident. 
+Helicopters or fixed-wing aircraft provide support for responding ground units. If 
+necessary, specialized CHP aircraft may safely transport injured parties from the 
+incident scene to local hospitals. Once the injured parties are removed from the scene, 
+CHP and Caltrans personnel will then quickly work to reopen the highway. 
+Another verification source is the FSP. Often, FSP is the first to arrive at the scene of an 
+incident, particularly a minor incident, and can provide details on the exact location, 
+the number of lanes blocked, and the need for additional response efforts from CHP to 
+restore full traffic capacity quickly. Tow trucks in the field relay information by voice or 
+data radio to the FSP dispatch center, which is then logged into the CAD system. 
+Incident information can also be retrieved from commercial radio and TV stations. 
+Topic 5 Incident Classification 
+Traffic incidents significantly reduce the reliability and available capacity of the 
+transportation system. Early detection is critical, as it enables personnel to respond 
+quickly, clear the roadway, and restore normal traffic flow. The type and scale of 
+response, however, must be carefully matched to the incident’s severity, safety 
+considerations, and the expected duration of traffic impacts. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-25 
+      
+     
+   
+  
+   
+ 
+  
+  
+  
+ 
+ 
+ 
+   
+ 
+   
+   
+      
+ 
+  
+    
+ 
+  
+Section 3 Transportation Management Center Operations February 2026 
+Incident Duration 
+According to the California Manual on Uniform Traffic Control Devices (CA MUTCD), 
+traffic incidents can be divided into three general classes of duration. These classes are: 
+• Minor (expected duration under 30 minutes). 
+• Intermediate (expected duration of 30 minutes to 2 hours). 
+• Major (expected duration of more than 2 hours). 
+To better understand incident duration, Figure 110-2 illustrates the incident timeline of 
+the seven stages in the TIM process. Table 110-4 identifies and defines the key incident 
+characteristics or “times” that can be obtained from the incident timeline. Caltrans, 
+with support from CHP, has established incident clearance time (ICT) goals and actions 
+to be taken to minimize the impact on traffic. 
+Figure 110-3 Incident Timeline 
+Table 110-4 Key Incident Characteristics From Incident Timeline 
+Measure Calculation Definition 
+Detection Time T1 – T0 The time between the incident occurring and the 
+incident being reported. Detection time is not 
+typically reported since the incident’s actual time is 
+often unknown. 
+Verification Time T2 – T1 The time between reporting the incident and 
+verifying the incident. TMCs can typically assist with 
+verification by using CCTV cameras. 
+Chapter 110 Transportation Management Centers 110-26 
+T
+raffic Operations Manual 
+      
+     
+   
+   
+      
+  
+ 
+ 
+    
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+  
+  
+  
+  
+ 
+  
+  
+ 
+ 
+   
+ 
+ 
+   
+   
+   
+Section 3 Transportation Management Center Operations February 2026 
+Measure Calculation Definition 
+Response Time T4 – T2 The time between verifying the incident and the first 
+responder arriving on the scene. Law enforcement 
+may not always be the first to arrive. 
+Roadway 
+Clearance Time 
+(RCT) 
+T5 – T1 The time between the first recordable awareness of 
+the incident by a responsible agency and the first 
+confirmation that all lanes are available for traffic 
+flow. 
+Incident 
+Clearance Time 
+(ICT) 
+T6 – T1 Time between the first recordable awareness of the 
+incident by a responsible agency and the time that 
+the last responder left the scene. 
+Incident Severity 
+Incident severity focuses on fatalities, suspected serious injury, suspected minor injury, 
+possible injury, property damage, and impacts on traffic flow. A TMC needs the 
+following information to properly allocate resources to an incident: 
+• What is the incident type and description? Examples include an overturned 
+truck, spilled load, jackknifed truck, multi-vehicle incident, and others. 
+• What is the roadway type, direction, location, and number of lanes involved? 
+• Is a truck or heavy vehicle involved? 
+• Are there reported injuries or fatalities? 
+• Is there a spill, what is the material, how much has been spilled, and is it actively 
+spilling? 
+• Are hazardous materials (HAZMAT) or fire involved? 
+It may be helpful to use a checklist to gather key information for proper incident 
+management. Every district maintains a TMS for tracking the details and status of an 
+incident. 
+An important factor in providing the appropriate response effort is determining the 
+anticipated impact on the flow of traffic based on normal traffic demand. The four 
+periods of normal traffic flow demand are as follows: (1) a.m. peak, (2) p.m. peak, (3) 
+midday, and (4) night. As traffic conditions vary from one facility to another and from 
+one region of the state to another, each TMC must determine and set the actual hours 
+when each flow condition applies. An example is: 
+• Morning (a.m.) peak: 6:00 a.m. – 9:00 a.m. 
+• Evening (p.m.) peak: 3:00 p.m. – 7:00 p.m. 
+• Midday: 9:00 a.m. – 3:00 p.m. 
+Chapter 110 Transportation Management Centers 110-27 
+T
+raffic Operations Manual 
+      
+     
+   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+   
+ 
+  
+ 
+ 
+ 
+ 
+     
+ 
+   
+ 
+   
+ 
+ 
+ 
+   
+ 
+ 
+  
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+• Night: 7:00 p.m. – 6:00 a.m. 
+Sigalerts are issued for unplanned major incidents that affect one or more lanes and will 
+block the roadway for at least 30 minutes, causing congestion and delay. Sigalerts are 
+issued by either CHP officers in the field or from the CHP communications center. 
+Examples of Sigalerts may include congestion-causing traffic incidents, spilled loads, 
+leaking gas, or special events. A traffic advisory is a situation of a continuing nature 
+spanning several days or that will occur each day for a predetermined period. 
+Examples of traffic advisories may consist of high winds or blowing sand, flooding, 
+construction or maintenance closures, and special events. 
+Highway Condition Report Requirements 
+HCRR is the requirement to report the incident depending on the severity, which is 
+available through the HCRR Onramp web page. The HCRR identifies types and 
+examples of incidents that TMCs and maintenance dispatch shall report to HCC within 
+10 minutes of notification of the incident, as well as to their district executive 
+management. In addition, the district's weekly duty officer shall call the Caltrans Deputy 
+Director of Maintenance and Operations with all relevant information upon the 
+occurrence of the following incidents: 
+• Any incident that results in on-duty department personnel or contractor 
+employee fatality. 
+• Significant media incidents, as determined by district directors, depending on 
+the level of media or political focus in that district. 
+• Full closure of a major state route that causes significant delay. 
+• When a Significant Incident Report is requested, please follow the instructions 
+found on the Highway Condition Report Requirements Onramp web page. 
+Traffic incidents identified in the HCRR will require a high level of response and should 
+be prioritized. 
+Major Incident Database 
+The Major Incident Database (MIDB) is a web application that TMC personnel can 
+access statewide to log major incidents. Major incident recording allows Caltrans to 
+calculate TIM performance measures from the TIM timeline (Figure 110-2). These 
+measures help Caltrans to promote safe and quick clearance and create strategies for 
+improvements in incident response. TMC dispatchers will access and provide this 
+information. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-28 
+      
+     
+   
+  
+   
+ 
+ 
+ 
+ 
+  
+    
+    
+  
+    
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+  
+  
+   
+   
+ 
+  
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Topic 6 Traffic Management Response 
+This topic outlines the general notification call-out procedures and personnel for traffic 
+management response. The procedures, field elements, and personnel may differ 
+slightly by district. 
+Response personnel may include the TMT, maintenance, CHP, special services, duty 
+officers (districts or HQ), and personnel from allied agencies. In addition to coordinating 
+with incident response personnel, the TMC actively provides traveler information during 
+incident response and special events, as detailed in Section 3, Topic 9 “Traveler 
+Information.” This includes utilizing available field elements like CMS, CHIN, HAR, and 
+QuickMap to notify the traveling public of unusual driving conditions and possible 
+alternate routes. Refer to Section 4, “Systems and Tools,” for more information on using 
+traffic management tools. 
+After the last responder has left the scene (refer to Figure 110-2), the TMC will compile 
+the incident report for the TMT and TMC supervisor to review. The after-action report 
+should reflect all communication about the incident involving the TMC and TMT. The 
+TMC will also notify the district management and all other entities originally notified of 
+the closure or incident that the incident is closed. 
+Traffic Management Team Call-Out 
+For districts that have a TMT, this section serves as a guideline for making the proper 
+call-out and notification. The first step is determining if the incident requires TMT support. 
+The following incident classifications or scenarios require TMT notification: 
+• Major incidents. 
+• Reportable incidents (as described in the HCRR). 
+• Incidents that cause significant traffic delays of 30 minutes or more. 
+• Maintenance or construction closures that cause significant traffic delays of 30 
+minutes or more. 
+• Long-term closures where a detour is made available to the public. 
+Note: When in doubt, call the TMT. Consult the TMT if an incident falls outside of these 
+definitions and allow the TMT to determine whether to mobilize. 
+In general, the TMT lead is provided with a call-out map or a list of available TMT 
+personnel. The list contains team members' contact information, function, vehicle type, 
+and rank in order of call-out priority. The TMC operator will refer to the list to select and 
+contact the primary TMT using a state-issued cell phone. If the primary TMT does not 
+answer, leave a brief message with the date, time, and nature of the call on the TMT’s 
+voicemail. Continue the call-out with the next TMT in the same manner, in the order 
+stated on the call-out list. If unable to contact any of the above personnel, contact the 
+TMC supervisor. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-29 
+      
+     
+   
+ 
+ 
+ 
+  
+   
+ 
+ 
+  
+  
+   
+ 
+ 
+ 
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+    
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Maintenance 
+The TMC will notify district maintenance of incident details just before contacting the 
+primary TMT. Incident callouts will normally be made by TMC dispatchers or CHP 
+dispatch after normal working hours. Maintenance will update and maintain call-out 
+maps and lists, and make them available for all personnel to access. 
+California Highway Patrol 
+TMC staff should not enter Caltrans TMT unit status into CHP’s CAD or VisiCAD unless 
+specifically requested by CHP. Routine tracking and status of TMT units are maintained 
+through Caltrans’ internal systems. 
+Call-Outs for Non-24-Hour Transportation Management Centers 
+In districts where the TMC is not operated continuously, an after-hours call-out 
+procedure needs to be identified. Each district should develop and formalize a 
+procedure that best suits its individual needs. The list of contact personnel should be 
+distributed to all locations where it is needed, such as maintenance communications, 
+the CHP communications center, or local law enforcement agencies. In general, during 
+TMC non-operating hours, the CHP communications center will notify the identified 
+Caltrans contact (such as the maintenance supervisor, lead, or member of TMC 
+personnel), then the Caltrans contact will call out personnel requested by CHP. 
+Special Services 
+For some incidents, CHP may request that the TMC notify other special services for 
+support in dealing with an incident. Such situations may require notifying a HAZMAT 
+team or other state, regional, federal, or local government agencies. If the incident 
+involves HAZMAT, the district hazardous materials coordinator must be contacted as 
+soon as possible. These notifications should be carried out through the established 
+procedures and designated contacts as defined in each district. 
+If the situation requires emergency repair or specialized maintenance services, these 
+contacts may also need to be initiated through the TMC. Such emergency services 
+include electrical maintenance, structure maintenance, municipal or private utility 
+services, or private sector entities under the listing of contacts. A list of contacts from all 
+areas shall be maintained at the TMC. 
+District Weekly Duty Officer 
+After sufficient incident details are determined, a notice of the incident may need to 
+be relayed to the district's weekly duty officer. The TMC should call the duty officer to 
+give a full report for any of the following scenarios at any time; however, these 
+scenarios may vary by district: 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-30 
+      
+     
+   
+   
+  
+  
+ 
+    
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+    
+   
+   
+ 
+  
+ 
+    
+  
+ 
+  
+   
+  
+  
+  
+   
+ 
+  
+ 
+Section 3 Transportation Management Center Operations February 2026 
+• Incidents that cause more than four miles of traffic backup in addition to normal 
+congestion and that are expected to last four or more hours. 
+• Full closure of a major state route (in one or both directions) that causes 
+significant delay. 
+• Any incident involving a Caltrans vehicle or employee that results in a fatality to 
+either the employee or another party. 
+• Any incident involving a contractor performing Caltrans work resulting in a 
+fatality to the contractor’s employee or another party. 
+• Any incident that could be considered politically sensitive or would be likely to 
+attract extensive media attention (such as cross-median incidents resulting in 
+fatalities). 
+The designated district weekly duty officer contact information shall be provided to the 
+TMC. During normal weekday office hours, the TMC shall contact the designated duty 
+officer on their state-issued cell phone and give detailed incident information. Outside 
+normal working hours, the TMC shall contact the designated duty officer per the 
+contact list. The list contains the call order, specific instructions, contact information, 
+and the location of each contact. 
+After each call is made, the incident report should be updated to note the person 
+contacted with a brief description of the information given. The duty officer will 
+reference the HCRR Onramp web page to determine when to notify the Deputy 
+Director of Maintenance and Operations. 
+Caltrans Headquarters Communication Center 
+The HCC shall be notified through the TMC and maintenance dispatch of all directional 
+closures, full closures, or incidents of unusual circumstances. Refer to the HCRR Onramp 
+web page for more information on reportable incidents. 
+Information provided shall include: 
+• Limits of closure or occurrence. 
+• Reason (including a description of HAZMAT, if involved). 
+• Actual occurrence time of closure. 
+• If a detour is available. 
+• District and city, including the county, route, and post mile. 
+• Additional desirable information, such as an expected time of opening and 
+detour details, if available. 
+Closure information shall be relayed to Caltrans HCC through CHP VisiCAD, telephone, 
+fax, or Caltrans radio. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-31 
+      
+     
+   
+  
+ 
+  
+  
+  
+ 
+ 
+   
+   
+ 
+ 
+  
+  
+  
+   
+ 
+  
+ 
+ 
+  
+ 
+   
+    
+Section 3 Transportation Management Center Operations February 2026 
+Neighboring Transportation Management Center and State Traffic 
+Operations 
+Once a confirmed incident’s impact on traffic has been classified (such as low, 
+moderate, or high), the TMC will need to estimate the impact on neighboring districts 
+and agencies. If the situation affects only a localized area, then it is deemed of local 
+significance only. If the situation affects a much wider area, potentially disrupts 
+interregional travel, affects directional travel across district boundaries, or is anticipated 
+to be an exceedingly long-duration incident, then the neighboring district TMC and the 
+neighboring state department of transportation (DOT) should be notified following the 
+process flow chart shown in Figure 110-3. 
+Figure 110-4 Notification Process 
+Incident Notification Process 
+1. Confirm the incident. 
+2. Assess incident traffic impact as: 
+o High impact (incident duration is greater than 1 hour). 
+o Moderate impact (incident duration is greater than 30 minutes, but less than 
+1 hour). 
+o Low impact (incident duration is less than 30 minutes). 
+3. If the incident traffic impact is high or moderate, determine whether it affects 
+only the local area or a larger regional area. 
+4. If the incident is identified as significant in the HCRR, report it to HQ. 
+If the incident affects only the local area, handle it appropriately within the confines of 
+the TMC. If the incident affects neighboring areas, report the incident to HQ and the 
+neighboring TMC or state DOT if any of the following conditions exist: 
+Chapter 110 Transportation Management Centers 110-32 
+T
+raffic Operations Manual 
+      
+     
+   
+  
+ 
+  
+  
+ 
+  
+  
+ 
+   
+      
+ 
+  
+  
+  
+   
+  
+  
+  
+  
+   
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+Section 3 Transportation Management Center Operations February 2026 
+• If the incident causes unusually significant traffic congestion and is likely to 
+become a newsworthy event. 
+• If the incident affects interregional travel for a long duration. 
+• If alternate routes need to be provided or coordinated with adjoining regions. 
+Allied Agencies 
+When a confirmed incident has the potential to substantially disrupt an allied 
+transportation agency or transit provider’s facilities or operations, the TMC should relay 
+a notification of the incident, along with details of the potential impacts to the agency 
+as soon as is practical after incident confirmation. District PIOs are the primary contact 
+to relay notification of incidents to outside agencies, including details of potential 
+impact. Examples of organizations to be notified include: 
+• Local transportation or traffic management agencies. 
+• Area or regional transit providers. 
+• Airport, harbor, or park authorities. 
+• Commuter or regional rail operators. 
+• Toll facility operating authorities. 
+The TMC should define in advance which situations require notification and provide 
+contact details for participating organizations. Creating informal written agreements 
+can help ensure that all parties understand the notification criteria. 
+Topic 7 Traffic Management Plans 
+A TMP is a method for minimizing activity-related traffic delays and incidents by using 
+traditional traffic handling practices and an innovative combination of strategies. TMP 
+strategies are designed to improve safety and mobility for the traveling public and 
+highway workers. These strategies include: 
+• Public information 
+• Motorist information 
+• Incident management 
+• Construction methods 
+• Demand management 
+• Alternate route planning 
+TMPs can be classified by the anticipated impact of the highway work on the traveling 
+public. A blanket TMP is used for low-impact maintenance and encroachment permit 
+activities performed during off-peak hours on roadways with low volumes. A minor TMP 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-33 
+      
+     
+   
+ 
+ 
+ 
+   
+ 
+  
+ 
+    
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+   
+ 
+   
+ 
+    
+ 
+ 
+ 
+ 
+    
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+is used for capital and maintenance projects where traffic impacts are not significant, 
+and strategies need to go beyond those included in a blanket TMP. 
+Major TMPs are prepared for capital, encroachment permit, and maintenance projects 
+that could significantly impact traffic. Major TMPs are required for high-impact projects. 
+Generally, major TMPs are identified by the following characteristics: 
+• Multijurisdictional in scope, encompassing CHP, city, county, or regional 
+governments, state DOTs, employers, merchants, developers, transit operators, 
+ridesharing agencies, neighborhood and special interest groups, emergency 
+services, and transportation management associations. 
+• Multifaceted, comprised of an innovative mix of traffic operations, facility 
+enhancement, demand management, and public relations strategies, as well as 
+more traditional work zone actions, construction methods, and contract 
+incentives that are customized to meet the unique needs of the impacted 
+corridor. 
+• In place over a longer period, sometimes implemented up to a year or more 
+before the start of actual construction, with specific elements often 
+implemented incrementally to coincide with construction phasing. 
+TMPs are required for all construction, maintenance, encroachment permit projects, 
+planned emergency restorations, locally or specially funded projects, or other activities 
+on the SHS. Traffic management activities coordinated by the TMC may encompass 
+items such as planned lane closures, special events, and emergency road closures. 
+Definitions 
+Significant traffic impact is an individual traffic delay of 30 minutes or more above 
+normal recurrent travel time on the existing facility, but may also refer to work that may 
+affect traffic conditions over a long period. 
+Major lane closures are lane closures that are expected to result in significant traffic 
+impacts despite the implementation of TMPs. 
+Traffic handling contingency plan is an operational method that consists of strategies or 
+actions taken to restore or minimize effects on traffic when the congestion or delay 
+exceeds the original TMP estimates. This situation may result from unforeseen events 
+such as work zone incidents, higher-than-predicted traffic demand, or late lane closure 
+openings. 
+Responsibilities 
+The following outlines the individual responsibilities of TMP personnel, including the 
+district traffic manager, the district TMP manager, and the district construction engineer 
+or resident engineer. 
+District Traffic Manager 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-34 
+      
+     
+   
+  
+ 
+   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+  
+ 
+   
+ 
+     
+   
+   
+  
+  
+ 
+    
+ 
+   
+ 
+Section 3 Transportation Management Center Operations February 2026 
+• Responsible for the day-to-day decisions of traffic impacts from planned 
+activities on the SHS. Determines the extent of a TMP. 
+• Coordinates with TMC staff (as well as adjacent districts) and PIOs to respond 
+with appropriate measures when planned lane closure activities result in 
+significant travel delays on the SHS. 
+• Facilitates review, approval, modification, or denial of planned lane closure 
+requests. 
+• Recommends terminating or modifying active lane closure operations without 
+compromising the safety of the public or workers when traffic impact becomes 
+significant. 
+District Traffic Management Plan Manager 
+• Acts as the single focal point for planning and developing TMPs. 
+• Works with the district traffic manager, TMC manager, and the project 
+development team as appropriate to determine the scope and extent of a TMP 
+and ensure that the TMP is updated during all phases of a project. 
+District Construction Engineer or Resident Engineer 
+• Serves as a liaison between construction, the district traffic manager, the district 
+TMP manager, and the TMP manager. 
+• Coordinates with the district traffic manager and the district TMP manager to 
+consider traffic and construction impacts if an event is scheduled in an active 
+work zone or construction area. 
+Planned Lane Closures 
+Planned lane closures are non-emergency lane closures that are scheduled in 
+advance by the following areas: construction, maintenance, and encroachment 
+permits. TMPs are required for all projects with work that requires planned closures, and 
+are to be reviewed in advance by the district traffic manager. All planned lane closures 
+are submitted through the Lane Closure System (LCS) and are approved by the LCS 
+coordinator or district traffic manager. Changes to the approved lane closure can only 
+be made by the LCS coordinator or district traffic manager. 
+The TMC should be notified of planned lane closures to monitor traffic conditions 
+around the closure area while the project is actively in progress. The TMC is responsible 
+for updating the status of a lane closure in the LCS once reported. If traffic congestion 
+occurs, the TMC may be requested to activate CMS, coordinate with TMT field units, 
+and work with CHP to issue traffic advisories as needed. 
+The following traffic break activities are exempted from the LCS requirements: 
+• Emergency brief breaks (defined as one minute or less) conducted by a CHP 
+officer or other law enforcement officer to remove items from the traveled way. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-35 
+      
+     
+   
+   
+ 
+  
+  
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+   
+   
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+    
+  
+  
+ 
+ 
+  
+  
+   
+   
+ 
+Section 3 Transportation Management Center Operations February 2026 
+• A closure is already in place, and the engineer authorized an on-duty officer to 
+conduct a traffic break. 
+Special Events 
+Any special event (such as a sporting event, county fair, parade, concert, or air show) 
+that is expected to cause a significant traffic impact should be handled in the same 
+way as a planned lane closure. A traffic management response effort will be 
+predetermined and put into action in conjunction with the scheduled event. The TMC 
+should be notified of special events to monitor traffic conditions around the event area. 
+The TMC may be requested to activate CMS, coordinate with TMT field units, and work 
+with CHP to issue traffic advisories as needed. 
+Emergency Lane or Road Closures 
+An emergency closure is an unplanned, unscheduled lane or roadway closure for 
+public safety. As with planned lane closures, the TMC must monitor traffic conditions 
+near the emergency area. Upon receiving the initial notification of closure, the TMC 
+should request as much detail as possible, especially the number of lanes affected and 
+the duration. This information, together with knowledge of the time of day (TOD), traffic 
+volume, and more, will help to determine if a traffic advisory will need to be issued and 
+if the TMT will be needed. Since an emergency closure is unplanned, the TMC will follow 
+notification and coordination procedures outlined in the Emergency Traffic 
+Management Guide. 
+If an emergency results in a full closure requiring an alternate route, this usually involves 
+coordinating with the appropriate public agencies (including CHP and Caltrans field 
+personnel) as well as any involved private sector entities to develop an emergency 
+TMP. This may include the use of roadway closures, special signing, detours, public 
+information advisories, and other methods that would assist the motorist around the 
+closed facility, as well as expedite highway worker and emergency responder efforts to 
+reopen the facility. Occasionally, interaction with local agency traffic engineers is 
+required to modify traffic signals along a specific highway detour route. 
+Topic 8 Recurrent Congestion Management 
+Ramp Metering 
+Ramp metering is a traffic management strategy that uses a system of traffic signals at 
+highway entrances and connector ramps to regulate traffic volume and the spacing of 
+vehicles entering a highway corridor. This strategy is beneficial because it increases 
+highway throughput and operating speeds, maintains safer merging operations, and 
+reduces collisions. For additional ramp meter design and operation materials, refer to 
+the Ramp Metering Design Manual and Traffic Operations Manual, Chapter 215, Part 4, 
+“Ramp Metering Operations." 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-36 
+      
+     
+   
+ 
+   
+   
+ 
+ 
+     
+  
+   
+  
+   
+  
+  
+  
+    
+    
+   
+   
+ 
+    
+   
+ 
+    
+   
+    
+ 
+    
+ 
+ 
+ 
+    
+  
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Components 
+A ramp metering system contains two categories of components: ramp meter 
+components and ramp meter data collection components. A full list of components 
+can be found in Traffic Operations Manual Chapter 215, Part 4, Section 2, “Basic Ramp 
+Meter Layout.” The following components may be relevant for TMC communications 
+and operations: 
+• Controller – A controller is used to control the sequence and duration of ramp 
+meter indications. All meters should use a Model 2070 controller. 
+• Communications – The ramp metering systems must be in constant 
+communication so that every 30 seconds they can transmit traffic data and 
+operational statuses to the TMC or other operating districts’ central system. 
+• Ramp meters and associated equipment. 
+Modes of Operation 
+Ramp meters can operate in different modes to set or adjust the rate at which vehicles 
+enter a highway facility. Flow rates can be fixed by the time of day (TOD) or 
+automatically adjusted to be responsive to fluctuating traffic demand. The different 
+modes of operation can be found in the Traffic Operations Manual Chapter 215, Part 4, 
+Section 3, “Operational Requirements,” and are as follows: 
+• Fixed-Rate – Ramp meter shall actively meter and have fixed green, yellow, and 
+red interval lengths. 
+• Traffic responsive – Ramp meter shall actively meter at a determined metering 
+plan rate based upon the measured mainline flow, occupancy, and speed, and 
+compare those values to the corresponding thresholds in the selected metering 
+plan. The mainline flow, occupancy, and speed may be measured adjacent to 
+the onramp or over the length of a highway segment. Queue override may be 
+selected as the highest priority. 
+• Rest-In-Dark – Metered lane shall advance to the pre-metering non-green 
+interval. 
+• Rest-In-Green – Metering interval shall advance to the pre-metering green 
+interval. 
+Operational Considerations 
+For some of the ramp metering modes, the system estimates the current capacity 
+(vehicles per hour) of each critical bottleneck on the highway. Since capacity varies 
+with road conditions, weather, and driving behavior, it is not easily defined. It is also 
+necessary for the ramp meter system to predict demand on the system for the next 
+sample interval (usually 30 seconds, but may vary by district). If the demand exceeds 
+capacity, the ramp meter system allocates the available main lane capacity between 
+the various locations. If demand is below capacity, the ramp meter system allocates 
+the excess capacity between any ramps or connectors that have queues. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-37 
+      
+     
+   
+ 
+   
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+    
+  
+ 
+ 
+ 
+   
+  
+   
+  
+ 
+ 
+ 
+  
+  
+   
+Section 3 Transportation Management Center Operations February 2026 
+Ramp meters can also be programmed to compensate for vehicles that use the non-
+metered high-occupancy vehicle bypass and adjust the metering rate accordingly. 
+Integrated Corridor Management 
+As an alternative to building new highways and streets, Caltrans works with local 
+agencies to utilize advanced traffic management strategies and optimize the flow of 
+traffic within a transportation corridor. These management strategies are designed to 
+improve the flow of traffic and decrease congestion through a corridor, consisting of a 
+highway segment and associated major parallel arterial streets. Integrated corridor 
+management (ICM) requires cooperation between agencies, including Caltrans and 
+CHP, regional transportation agencies, and local jurisdictions. 
+The fundamental objective of ICM is to maximize the efficiency and throughput of the 
+existing highway and surface street network. The following presents key ICM elements 
+and techniques: 
+Congestion Monitoring 
+The ICM central processing system continuously monitors traffic conditions in the 
+corridor. The system will adjust corridor surface street traffic signals and highway ramp 
+meters to balance system flows. CCTV cameras and field observations are used to 
+monitor the effects of timing changes. 
+Incident Detection 
+The ICM central system will detect if there is a significant change in traffic speed 
+between detection stations, identifying a potential traffic incident. When the ICM 
+central system suspects an incident, it notifies Caltrans or local agency control center 
+operators, or both. TMC personnel will attempt to confirm suspected incidents using 
+CCTV cameras and through field personnel. 
+Motorist Information 
+The TMS is a component of the ICM central system that provides current traffic 
+condition information and suggested alternate route advice to motorists through: 
+• CMSs on highways and streets. 
+• HAR broadcasts. 
+• QuickMap and other mobile apps like Google Maps. 
+• Media traffic reports. 
+Operational Considerations 
+The ICM functionality is obtained through a mix of computer automation and operator 
+involvement. Routine ICM operation is to be performed by the personnel designated as 
+ICM coordinators. Currently, procedures outlining the use of these systems are guided 
+by general concepts for ICM operation as mutually agreed upon by participating 
+agencies. If stationed within the TMC, the ICM coordinator should handle all requests for 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-38 
+      
+     
+   
+  
+ 
+  
+ 
+  
+  
+ 
+ 
+     
+ 
+  
+   
+   
+   
+  
+   
+ 
+     
+  
+  
+ 
+   
+ 
+   
+ 
+ 
+      
+ 
+    
+   
+ 
+   
+  
+Section 3 Transportation Management Center Operations February 2026 
+assistance as well as requests to combine traffic management response efforts with 
+participating agencies. 
+Topic 9 Traveler Information 
+Traveler information is an important part of the TMS. This includes communication 
+devices used to report real-time traffic conditions, such as CMSs, CHIN, HARs, and 
+QuickMap. These devices are also used to alert drivers to construction and 
+maintenance activities that may affect normal travel patterns. 
+One of the primary functions of the TMC is to provide the most up-to-date traffic 
+information to help travelers make informed travel plans. Traveler information should be 
+traffic-related and consist of the following information: 
+• Number and type of lanes blocked. 
+• Number and type of vehicles involved in an incident. 
+• Expected duration of the blockage. 
+• Queue length. 
+TMCs are typically joint operations between CHP and Caltrans. Together, they monitor 
+traffic conditions and coordinate responses to incidents on the SHS. The TMCs share 
+traffic information with the public through Caltrans Public Affairs and commercial 
+media platforms. This data is open-source and available to third-party users at their 
+discretion. 
+Caltrans and CHP PIOs often collaborate with regional agencies and media ISPs to 
+distribute multimodal travel information through Advanced Travel Information Systems 
+(ATIS). ATIS refers to the delivery of real-time information on traffic, transit, and other 
+travel modes, either directly to travelers or through intermediaries. As per DD-19-R3, 
+“Caltrans Public Information Officers (PIO) are responsible for handling media inquiries in 
+accordance with the California Public Records Act (refer to Deputy Directive 79), and 
+Caltrans’ policies.” 
+Commercial and media ISPs are companies that repackage, enhance, and redistribute 
+this open-source data in various formats and media. Because the data is publicly 
+available, ISPs can freely access resources such as the Commercial Wholesale Web 
+Portal 2 (CWWP2), CHP MediaCAD, QuickMap, HAR, CMS, etc. Distributing this 
+information to ISPs and other stakeholders enhances public awareness of current road 
+conditions, benefiting consumers by helping them make informed travel decisions. This 
+broad access supports more efficient use of the transportation system for business, 
+family, and personal travel needs. 
+Note: Never report fatalities or the status of injured individuals in the traffic information 
+provided to the public or the media. This would violate individual privacy. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-39 
+      
+     
+   
+ 
+   
+  
+ 
+ 
+ 
+  
+ 
+ 
+    
+  
+ 
+ 
+  
+  
+  
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+   
+ 
+   
+ 
+  
+  
+Section 3 Transportation Management Center Operations February 2026 
+Commercial Wholesale Web Portal 2 
+In accordance with DD-078 on Travel Information, the CWWP2 is a centralized platform 
+that provides open-source traffic and transportation data from Caltrans to external 
+users, including media outlets, developers, researchers, and private sector companies 
+such as navigation and mapping services. Key Features of CWWP2 include the 
+following: 
+• Data Access: Users can download real-time and archived transportation data, 
+such as traffic speeds, lane closures, incidents, road conditions, construction 
+updates, and CMS messages. 
+• Public and Commercial Use: The data is open source, meaning it's freely 
+available for third-party use without requiring an MOU. 
+• Developer-Friendly: CWWP2 offers access via URLs and APIs, allowing developers 
+and commercial ISPs to integrate Caltrans data into their apps, services, or 
+research tools. 
+• Supports Traveler Information Systems: The data from CWWP2 helps power travel 
+information platforms like QuickMap and is often repackaged by media and 
+navigation services (such as Google Maps, Waze, and others). 
+CWWP2 promotes transparency, collaboration, and improved mobility by enabling the 
+wide distribution of accurate, real-time travel data. It supports Caltrans' goals of 
+reducing congestion, improving safety, and helping travelers make informed decisions. 
+Commercial Television Broadcasts from TMC Facilities 
+CHP and Caltrans share joint responsibility for overseeing live broadcasts originating 
+from TMC facilities. ISPs seeking to conduct live broadcasts within a TMC must do so in 
+accordance with an approved Live Commercial Broadcasting MOU. Once the MOU is 
+in place, the ISP may carry out live broadcasts from designated locations and in a 
+manner authorized by Caltrans or CHP, or both. For more information, refer to Appendix 
+110 A, Topic 2 “Live Commercial Broadcasting Memorandum of Understanding.” 
+To protect privacy and ensure operational security, Caltrans or CHP, or both, reserve 
+the right to review, screen, or edit any broadcast content. Additionally, during state or 
+federally declared emergencies or major incidents, the ISP must provide access to its 
+broadcast feed upon request by Caltrans or CHP. 
+Commercial television broadcasting is already established at several TMC locations. For 
+instance, the District 4 TMC supports commercial broadcasts through the Bay Area’s 511 
+Partnership. In accordance with DD-19-R3 on Media Relations/Public Information and 
+the Traffic Operations Manual, TMC managers are required to provide equal and 
+consistent access to all ISPs requesting broadcasting rights, ensuring fairness and 
+uniform compliance across all TMC facilities. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-40 
+      
+     
+   
+  
+  
+ 
+  
+  
+  
+ 
+ 
+   
+      
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+   
+ 
+ 
+ 
+ 
+ 
+   
+   
+ 
+  
+  
+  
+ 
+  
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Changeable Message Signs and Highway Advisory Radio 
+CMSs and HARs provide real-time traffic information to motorists directly. These 
+elements relay information concerning incidents, planned lane closures, road 
+conditions, special events, or other unusual traffic conditions to motorists. Messages 
+must be updated promptly to remain accurate in changing conditions. Updating CMSs 
+and HARs is the highest priority activity in the TMC. 
+Caltrans Highway Information Network 
+Messages similar in content and format to those broadcasted over HAR may also be 
+conveyed through CHIN. CHIN is a computer-based recording system that makes 
+current highway condition information available to the entire state by telephone at 
+(800) 427-7623. Each TMC will supply information to HCC for placement into CHIN. CHIN 
+messages are also made available to view on QuickMap and are the responsibility of 
+the HCC. 
+QuickMap 
+The Caltrans QuickMap web page and mobile app present several types of real-time 
+traffic information layered on a Google Map. The information includes traffic speed, 
+lane and full closures, CHP incidents, highway information, CMS content, camera 
+snapshots, active chain control requirements, and the locations of snowplow 
+operations. Much of the information presented by Caltrans QuickMap is also available 
+on the Road Information website, which includes lane closures, CHIN messages, and 
+chain controls. QuickMap also presents information from the Media CHP Traffic Incident 
+Information web page. 
+In addition to the information presented by Caltrans QuickMap, links to regional 511 
+sites are accessible in the Caltrans QuickMap drop-down menu labeled “Regional 
+Sites.” These sites are provided by other organizations, in partnership with Caltrans, to 
+supply comprehensive commuter and multimodal traveler information within their 
+regions. 
+Media 
+Media organizations use direct information from Caltrans (such as CMSs, HARs, and 
+QuickMap) to report traffic news to the motoring public. The information provided may 
+consist of incidents, road conditions, planned lane closures, special events, and areas 
+of recurrent congestion. Each district has a public information office that the TMC 
+contacts to assist with producing public notices. Each public information office also 
+posts real-time traffic alerts on social media to inform the public. 
+In some districts, CHP provides traffic incident information to the media through 
+regularly scheduled commercial radio or television broadcasts sent from the TMC and 
+CHP MediaCAD. Incidents that trigger the issuance of a Sigalert are broadcasted 
+through the CHP communications dispatch center and are monitored by traffic-
+reporting media organizations. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-41 
+      
+     
+   
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+ 
+   
+   
+ 
+ 
+  
+ 
+ 
+ 
+   
+    
+ 
+    
+  
+ 
+  
+ 
+   
+Section 3 Transportation Management Center Operations February 2026 
+Emergency road closures not caused by a traffic incident, such as closures due to 
+flood, fire, earthquake, mudslide, or snow, are usually handled in the same manner as 
+incidents for purposes of media access. In the case of adverse travel conditions when 
+the facility remains open to traffic, such as high winds, reduced visibility due to fog or 
+snow, or icy road surfaces, the notice is generally provided as a traffic advisory. A traffic 
+advisory is handled the same way as a Sigalert if the traffic conditions meet the criteria 
+of a Sigalert. 
+Third Party 
+Third-party systems are widely used and can provide transportation users with timely 
+travel information to improve mobility, reduce travel costs, and increase personal travel 
+convenience. Mobile apps like Google Maps feature GPS turn-by-turn navigation along 
+with real-time traffic and weather alerts. Both web applications rely on user data and 
+receive information on traffic conditions from QuickMap. Google's database of 
+historical traffic data allows the app to alert drivers when traffic is better or worse than 
+usual, and how much additional time is added due to incidents and slowdowns. 
+Topic 10 California Highway Patrol Missing Person 
+Alerts 
+CHP’s Emergency Notification and Tactical Alert Center (ENTAC) is responsible for 
+issuing America’s Missing Broadcast Emergency Response (AMBER) Alerts to get 
+community assistance in the search for and safe recovery of an endangered, missing, 
+or abducted person. Not all AMBER Alerts will have CMS support. If an AMBER Alert 
+meets certain criteria to require CMS support, then the TMC will be requested for CMS 
+support. CHP will contact the TMCs in the region, and Caltrans will activate CMSs and 
+HARs in the impacted area and the possible path of travel. 
+Missing Person Alert (AMBER Alert) Messages 
+CHP and Caltrans have agreed on the standard content and format for CMS messages 
+during Missing Person Alerts. CHP will provide Caltrans with the CMS wording in the 
+agreed-upon format, in compliance with the CA MUTCD and Changeable Message 
+Sign (CMS) Guidelines. AMBER Alert messages are typically a one-phase, three-line 
+message that gives motorists information about a missing person. The message should 
+display a vehicle description and license plate number (or partial number). An example 
+of an AMBER Alert message for a child abduction is shown in Figure110-4. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-42 
+      
+     
+   
+ 
+   
+ 
+  
+      
+    
+ 
+ 
+   
+ 
+  
+ 
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+   
+    
+  
+     
+     
+Section 3 Transportation Management Center Operations February 2026 
+     
+ 
+Figure 110-5 AMBER Alert Message Example 
+The second line of an AMBER Alert message is the most important component. The CMS 
+operator may need to omit some information and display only what is most helpful for 
+the public. Experience has shown that motorists are less familiar with the vehicle year 
+than with the vehicle color. For example, it is more effective to show “WHITE FORD 
+ESCAPE” as opposed to “2025 FORD ESCAPE.” 
+AMBER Alert Activation and Deactivation 
+To activate an AMBER Alert, ENTAC first needs to call the TMC and request CMS support 
+for an AMBER Alert. TMC personnel should then activate CMS or HAR or both, create an 
+incident management log, and contact HCC when the activation is complete. When 
+an AMBER Alert has been deactivated, CHP will immediately contact Caltrans and 
+request the message removal. Upon deactivation, TMC personnel are to deactivate 
+CMS and HAR field elements and notify HCC when the deactivation is complete. 
+Caltrans may remove the AMBER Alert message on specific signs when local traffic 
+conditions warrant posting traffic control messages. 
+Caltrans will only respond to AMBER alert requests from the CHP ENTAC. If Caltrans is 
+contacted by a law enforcement agency other than CHP for AMBER activation, the 
+call should be immediately forwarded to CHP. 
+Post-Alert Reporting 
+Every participating TMC must, within 24 hours, file an online Post-Alert Participation 
+Report to HQ Traffic Operations. 
+This information is needed for logging Caltrans’ activity level. It is important to file the 
+report on time and as completely as possible. Reporting this data helps present a 
+complete picture of Caltrans’ efforts and support improvement recommendations. 
+The following is a list of data needed for the Post-Alert Report: 
+• District. 
+• City or area where activation was requested. 
+• City or area where the individual was found. 
+• Conclusion (person found, canceled, or other). 
+• Request received by Caltrans (date and time). 
+• Activation of CMS and HAR (date and time). 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-43 
+      
+     
+   
+  
+    
+   
+  
+  
+  
+  
+   
+  
+   
+   
+  
+  
+  
+  
+    
+  
+  
+   
+   
+ 
+ 
+ 
+  
+ 
+ 
+   
+ 
+  
+   
+  
+Section 3 Transportation Management Center Operations February 2026 
+• Activation speed (number of minutes it took to activate all field elements). 
+• Deactivation of CMS and HAR (date and time). 
+• Deactivation speed (number of minutes it took to activate all field elements). 
+• Personnel hours (estimated total involvement). 
+• Message displayed. 
+• Message displayed #2 (if modified). 
+• Number of permanent CMS used. 
+• Number of portable changeable message signs (PCMS) used. 
+• Number of CMS used for traffic alerts. 
+• Number of CMS not used. 
+• Reasons for not using the unused CMS. 
+• Number of HAR used. 
+• Traffic impacts (such as delays or incidents). 
+• Operational impacts (such as overtime). 
+• HAR message. 
+• Effectiveness of CMS and HAR use (high – low). 
+• Other notes. 
+Topic 11 Traffic Data Analysis 
+Traffic data analysis is used to assist with planning and management efforts. Data 
+analysis can reveal locations of constrained traffic flow (bottlenecks), shifting patterns 
+of travel demand, or temporary seasonal variations in traffic flow. Ongoing short-term 
+data analysis can provide the means to optimize traffic flow and balance minor 
+fluctuations in the overall system operation. 
+More extensive analysis of stored traffic data patterns can lead to the development of 
+major construction or reconstruction projects. Traffic data may indicate the need for 
+auxiliary lanes, interchange modifications, widening, or roadway realignment projects. 
+Data analysis may also reveal the locations where such roadway improvements would 
+be most cost-effective. Once implemented, project effectiveness evaluations can be 
+performed again by analyzing traffic data in the post-construction phase. 
+Traffic Information Sources 
+Active Intelligent Transportation System 
+The Active Intelligent Transportation System (ITS) is a computerized system used to 
+gather highway volume and occupancy data from inductive loop detectors located 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-44 
+      
+     
+   
+ 
+ 
+  
+  
+  
+ 
+  
+  
+ 
+ 
+ 
+   
+ 
+  
+   
+  
+ 
+ 
+   
+  
+  
+  
+  
+  
+ 
+  
+ 
+    
+ 
+  
+   
+ 
+ 
+ 
+ 
+  
+Section 3 Transportation Management Center Operations February 2026 
+at frequent intervals on the highways and to provide an interface for controlling field 
+element operation (e.g., CMS, CCTV). The central traffic system then analyzes the data 
+to provide hard copy reports or electronic displays (either wall maps or computer color 
+graphics) of the highway conditions. The information is displayed on graphic 
+workstations located both within and outside the TMC. 
+Closed-Circuit Television 
+Closed-circuit television (CCTV) provides real-time video images from cameras along 
+highways to monitors in the TMC. The video images from the cameras are transmitted to 
+the TMC using communication media. The cameras are used to assist with the 
+verification of traffic incidents and roadway operating conditions and are an 
+exceptional tool for providing details, such as the number of vehicles involved, the 
+number of lanes blocked, and the length of the queue. On occasion, cameras can 
+serve as the initial source to detect an incident. 
+Caltrans Performance Measurement System 
+The Caltrans Performance Measurement System (PeMS) provides real-time and 
+historical traffic data. Different types of performance data are available, such as 
+volumes, speeds, delays, vehicle miles traveled, vehicle hours traveled, travel times, 
+and annual average daily traffic. PeMS collects data from the following sources: 
+• ITS vehicle detector stations (VDS). 
+• Traffic census stations. 
+• Weigh-in-motion sensors. 
+• CHP incident data. 
+• Caltrans LCS. 
+• Real-time CMS. 
+Transportation Safety and Mobility Information System 
+The Transportation Safety and Mobility Information System (TSMIS) is a database tool for 
+storing and reporting traffic volumes. The TSMIS can generate reports to summarize 
+hourly, daily, and monthly traffic volumes. The TSMIS is only available internally to 
+Caltrans and requires an account login. Some TSMIS traffic volume data is available 
+publicly through the Caltrans Traffic Census Program web page. Traffic volumes stored 
+on the TSMIS are validated and are generally more accurate than historical volumes 
+available on PeMS. In addition to traffic volumes, the TSMIS includes other data 
+elements such as traffic collisions and truck percentages. 
+Research 
+Traffic data analysis may include research efforts in conjunction with other agencies or 
+private parties. The following includes categories of research efforts. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-45 
+      
+     
+   
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+  
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Agency-Sponsored Analysis 
+Analysis conducted by agency personnel for research purposes may include 
+applications such as land use planning, origin and destination studies, or assessment of 
+the future need for local infrastructure expansion. 
+Academic Research 
+Academic research using historical traffic data may be aimed at improving traffic flow 
+theory, developing or optimizing traffic control strategies, enhancing traffic 
+management decision support systems, or verifying the predictions of previous travel 
+forecasting models. 
+Private Third-Party Research 
+Private sector research efforts may involve analyzing potential traffic impacts of 
+proposed new land developments, determining historic recurrent congestion patterns 
+for new product development, or developing or refining private motorist information 
+systems. 
+System Assessment 
+Traffic data can be analyzed to assess how effectively traffic management and control 
+strategies have been performed over time, to gauge the congestion level on the 
+highway system and any trends that occur, to calibrate input parameters for variables 
+used in traffic control software, and to determine the need for central processing 
+system upgrades or enhancements to application software. 
+Performance 
+Analysis of recurrent traffic congestion patterns and observation of any changes in 
+trends can be used to determine the effectiveness of congestion management 
+strategies. Historical data analysis can identify the need to implement congestion 
+management practices and determine where their use would be most effective. In 
+some types of improvement projects, the sponsoring agency requires a comparison of 
+before and after traffic conditions to measure the project’s effectiveness. 
+Calibration 
+A sufficiently large sample size of data can be used to refine traffic management and 
+control application programs. Historical data analysis can yield the proper threshold 
+values to insert into AID algorithms to improve their detection rate and reduce the 
+number of false alarms. Data can also be used to fine-tune metering rates and optimize 
+other traffic signalization, which affects traffic flow on the SHS. Data may also produce 
+useful input to traffic management decision support systems, improving their 
+performance. 
+Upgrade and Enhancement 
+A secondary result of analyzing historical traffic data over a long period is identifying 
+the need for improved manipulation of traffic data within the central computational 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-46 
+      
+     
+   
+  
+ 
+ 
+  
+ 
+ 
+    
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+     
+ 
+  
+ 
+  
+ 
+  
+  
+    
+ 
+ 
+ 
+Section 3 Transportation Management Center Operations February 2026 
+processing system. Experience may show the need for different data formats, different 
+means of summarizing the data into more convenient forms, or the need to develop 
+new processing algorithms to analyze the data differently. 
+Topic 12 Snow Operations 
+Caltrans snow operations primarily include chain controls, snow plowing, seasonal 
+closures, and monitoring roadways and weather conditions. When chain control is 
+warranted, district maintenance staff notifies the TMC of the locations and level of 
+chain requirements. The TMC will then create an incident management log, activate 
+both CMSs and HARs, and notify HCC. HQ will update CHIN to show chain control 
+areas. 
+Levels of Chain Requirements: 
+• Requirement 1 (R1): Chains are required on all vehicles except passenger 
+vehicles and light-duty trucks under 6,000 pounds gross weight and equipped 
+with snow tires on at least two drive wheels. Chains must be carried by vehicles 
+using snow tires. All vehicles towing trailers must have chains on one drive axle. 
+Trailers with brakes must have chains on at least one axle. 
+• Requirement 2 (R2): Chains or traction devices are required on all vehicles 
+except four-wheel or all-wheel drive vehicles with snow-tread tires on all four 
+wheels. Note that four-wheel or all-wheel-drive vehicles must carry traction 
+devices in chain control areas. 
+• Requirement 3 (R3): Chains or traction devices are required on all vehicles, with 
+no exceptions. 
+R-1 and R-2 are the most common conditions. A highway will often be closed before an 
+R-3 condition is imposed. Some districts may use variations of these designations. 
+Transportation Management Center Snow Operations Procedures: 
+• Track the 10-13 (as shown on form CHP 254, “Aural Brevity Codes”) for chain 
+controls, weather conditions, and snow level totals. 
+• Monitor Caltrans maintenance radios and document when chain controls are 
+established or changed. 
+• The TMC must notify HQ when chain controls are established or changed. 
+Information provided shall include the limits of chain requirements and the 
+restrictions for each affected route. 
+• Activate or update CMS and HAR with chain control conditions. 
+• Relay information between CHP and maintenance on snow plowing status and 
+updates. 
+• After an incident, communicate with CHP when a mountain pass escort is 
+required and estimate delays. Notify HQ. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-47 
+      
+     
+   
+  
+ 
+ 
+  
+ 
+ 
+  
+   
+  
+  
+    
+  
+ 
+  
+  
+  
+  
+   
+ 
+Section 3 Transportation Management Center Operations February 2026 
+Topic 13 Earthquake Monitoring 
+The TMC monitors earthquakes using the California Integrated Seismic Network (CISN) 
+real-time California ShakeMaps. The CISN provides reliable monitoring and continuous 
+reporting of all significant earthquake activity in California. For earthquakes of a 
+magnitude of 3.5 and higher, the CISN produces maps depicting the intensity of ground 
+shaking. The ShakeMap is distributed electronically within minutes of the earthquake 
+and is updated as additional data becomes available. 
+The TMC will notify HQ of an earthquake of any magnitude that causes damage to the 
+SHS or any earthquake of 4.0 in magnitude or higher, regardless of damage. Reference 
+the HCRR web page for more information. 
+Transportation Management Center Earthquake Procedures: 
+1. Check the CISN to determine if the earthquake status is verified. Use the 
+ShakeMap to locate impacted areas. 
+2. Create an incident report, including the CHP VisiCAD number and start time. 
+3. Notify supervisors in various areas, such as maintenance, landscape, bridge, and 
+electrical. 
+4. Contact CHP dispatch if they are not co-located with Caltrans. 
+5. Advise the TMT unit if there are reports of any full or partial roadway closures or 
+structural damage to any bridges. 
+6. Activate field elements if needed to advise of any road closures. 
+7. Update incident status, including the incident report, HQ, and field elements. 
+8. Notify HCC. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-48 
+    
+     
+   
+  
+   
+  
+ 
+ 
+ 
+ 
+  
+  
+ 
+  
+ 
+ 
+  
+  
+ 
+  
+ 
+  
+  
+   
+  
+ 
+  
+  
+   
+  
+  
+  
+  
+  
+Section 4 Systems and Tools February 2026 
+Section 4 S  ystems  and Tool s  
+Topic 1 Overview 
+ATMS is comprised of software and field elements, such as ramp meters, traffic 
+detection sensors, and CCTVs, used to observe and manage the transportation system. 
+TMCs operate TMS elements to effectively manage highway traffic and communicate 
+traveler information. Additional software and systems are also used to manage TMC 
+operations. This chapter discusses those systems and TMS elements used in TMCs. 
+TMCs currently use different control systems in various combinations across the state. 
+Over the years, control systems have changed as new applications were added to 
+meet the needs of each district, and will continue to change with new technology, 
+methods, and innovation. Thus, each district’s TMC control system grew independently, 
+resulting in multiple costly annual statewide maintenance contracts. This independent 
+growth challenges the notion of statewide standardization, efficiency, and 
+interoperability among the districts. 
+Caltrans plans to replace the 12 different existing TMC control systems with the 
+California Advanced Transportation Management System (CATMS). CATMS is a new 
+statewide TMS platform that will standardize and integrate the 12 TMCs, providing 
+enhanced services, greater work efficiency, and laying the foundation for future 
+growth. 
+Topic 2 Reporting and Application Systems 
+A key function of TMC systems and applications is to record the TMC activities involved 
+in traffic and incident management. TIM activity reporting has been an important part 
+of Caltrans TMC operations since TMCs opened. Historically, TMC TIM activities were 
+recorded in paper logs during the 1990s and through the early 2000s. TIM activity 
+reporting later evolved to Microsoft Excel spreadsheets, and then to district-developed 
+applications. 
+TMCs report TIM activities for the following reasons: 
+• Increases the safety of the SHS for all users and responders. 
+• Provides supporting information for legal staff and claims. 
+• Supports incident management among operators and dispatchers. 
+• Creates an audit trail for the activities performed. 
+• Improves incident response. 
+• Captures RCTs. 
+• Captures ICTs. 
+Chapter 110 Transportation Management Centers 110-49 
+T
+raffic Operations Manual 
+    
+     
+   
+  
+  
+ 
+ 
+  
+ 
+    
+    
+ 
+     
+    
+ 
+    
+    
+    
+    
+     
+    
+    
+    
+   
+   
+  
+   
+   
+   
+  
+ 
+ 
+ 
+ 
+ 
+  
+Section 4 Systems and Tools February 2026 
+• Captures secondary incident identification. 
+• Captures workload performance. 
+The following is a brief overview of the major incident management applications and 
+systems that are currently in use. 
+While districts are diligent about reporting TMC activities, their methods vary. The 
+following list shows how each district reports information: 
+• District 1 – IRIS logs, paper logs, TMCAL (for some incidents and chain control). 
+• District 2 – TMCAL (chain control), info relays for CMS, RWIS, and CCTV to the 
+Commercial Wholesale Web Portal. 
+• District 3 – TMCAL, both dispatch and operations. 
+• District 4 – Bay Area Incident Response System (BAIRS), the website for ENTAC 
+Alerts. 
+• District 5 – TMCAL (operations and dispatching). 
+• District 6 – TMCAD and TMCAL (chain control). 
+• District 7 – TMCAL (operations and dispatching) and ATMS (operations). 
+• District 8 – ReDIAL and TMCAL (chain control). 
+• District 9 – Paper logs and TMCAL (chain control). 
+• District 10 – TMCAD and TMCAL (chain control). 
+• District 11 – ATMS (operations) and TMCAL (dispatching). 
+• District 12 – Active ITS. 
+• HCC – Database web portal. 
+Transportation Management Center Activity Logging 
+TMCAL is a MySQL database system that captures CHP VisiCAD data, providing TMC 
+operators and dispatchers with a tool to monitor all activities performed within the TMC. 
+TMCAL interfaces with systems such as CHIN, CHP MediaCAD, and QuickMap. 
+Transportation Management Center Activity Database 
+The Transportation Management Center Activity Database (TMCAD) integrates District 6 
+procedures so the operator or dispatcher can check off the required tasks before 
+closing the incident. TMCAD has a series of displays for field elements to enter the 
+activities for using CMS, PCMS, and HAR with messages posted. TMCAD is a standalone 
+application that does not link to other systems. All entries are made by the operator or 
+dispatcher. 
+Bay Area Incident Response System 
+BAIRS is an integrated incident tracking system that provides tools to improve Caltrans’ 
+incident response capability. BAIRS operates in a regional environment with interfaces 
+Chapter 110 Transportation Management Centers 110-50 
+T
+raffic Operations Manual 
+    
+     
+   
+   
+  
+ 
+   
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+Section 4 Systems and Tools February 2026 
+to several key elements. BAIRS is a web-based incident log with the following 
+capabilities: Geographical Information System (GIS), enhanced reporting, performance 
+metrics, mobile devices, increased incident information availability for both dispatcher 
+and supervisor, online contact availability, and qualification information availability. 
+Daily Incident Activity Logger 
+The Daily Incident Activity Logger (DIAL) has an efficient interface for operators. DIAL 
+provides easy access to contacts and phone books and links the CAD ID to all activities 
+with a single user selection, improving operator performance. 
+Renewed Daily Incident Activity Logger 
+The Renewed Daily Incident Activity Logger (ReDIAL) is a lightweight, custom-built 
+incident management platform designed by and for Caltrans TMC operations. Unlike 
+off-the-shelf tools, ReDIAL was built from the ground up to match real-world workflows, 
+helping operators stay focused on traffic management rather than data entry. 
+ReDIAL passively captures and standardizes operator activity, enabling accurate, real-
+time logging of incidents. This improves consistency across staff, supports accountability, 
+and preserves critical data for performance tracking and reporting. 
+Advanced Transportation Management System 
+The ATMS and Advanced Transportation Management System Replacement (ATMSR) 
+are legacy and replacement systems used to manage the SHS using vehicle detectors 
+and video from roadside cameras. The ATMS and ATMSR also send operator messages 
+and travel times to variable message signs and control roadside video cameras. The 
+ATMS and ATMSR contain an event management application that monitors incidents 
+and provides operators with incident response plans that are used to manage incidents 
+in real time. 
+As Caltrans transitions to the CATMS, the capabilities of ATMS and ATMSR will be 
+integrated into a more unified, scalable, and future-proof platform that standardizes 
+statewide operations while remaining adaptable to emerging technologies and data 
+sources. 
+Intelligent Roadway Information System 
+The Intelligent Roadway Information System (IRIS) monitors the highway system and 
+roadside weather systems. IRIS also controls field devices such as CMS and roadside 
+cameras. 
+Active Intelligent Transportation System 
+Active ITS allows operators to show multiple camera feeds on the application. The user 
+can adjust the camera angle, zoom, and IRIS. The user can also show multiple cameras 
+on the same screen, creating a video wall. Active ITS also allows you to make a slide 
+show (tour) showing new cameras for a set amount of time. Another use of this system is 
+the ability to change dynamic message sign (DMS) messages with approved terms. 
+DMS signs can also be grouped to show the same message. 
+Chapter 110 Transportation Management Centers 110-51 
+T
+raffic Operations Manual 
+    
+     
+   
+   
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+  
+  
+ 
+  
+ 
+Section 4 Systems and Tools February 2026 
+Personal Computer Data Concentrators 
+Personal computer data concentrators provide the ATMS with the ability to interact with 
+field equipment, including VDS, ramp metering systems, multi-lane metering systems, 
+and extinguishable message sign devices. 
+Camera Control System 
+Camera control systems are used to monitor traffic and confirm incidents using ITS 
+software and CCTV field elements. 
+Fog Detection and Warning System 
+Fog detection and warning systems consist of visibility sensors, speed detectors, and 
+cameras used to detect congestion and visibility problems that could affect driver and 
+passenger safety. 
+Topic 3 Field Traffic Management System Elements 
+Closed-Circuit Television 
+CCTV relays video images from cameras along the highways to the TMC and web 
+applications (such as the Caltrans CCTV Map). The TMC uses cameras to assist with 
+verifying traffic incident details and roadway operating conditions. On occasion, 
+cameras can serve as the initial source to detect an incident. 
+Video images from CCTV cameras are used to assess the cause and status of non-
+recurrent traffic congestion, verify the existence and location of traffic incidents, and 
+monitor the status of recurrent traffic congestion. Video images reliably and consistently 
+provide detailed information on roadway conditions to help determine the proper 
+traffic management response and mitigate congestion. Expediting incident details and 
+removal reduces the potential for secondary incidents and enhances safety and 
+security. CCTV camera video images also enable TMC operations personnel to 
+immediately provide timely and accurate traffic information to the motoring public. 
+Changeable Message Signs 
+CMSs perform a critical role on highways by advising drivers of real-time roadway 
+conditions and, in some cases, a suggested course of action as well. CMSs can reduce 
+traffic congestion and delays and improve traveler safety. For more information on 
+CMSs, please refer to the Changeable Message Sign (CMS) Guidelines. 
+CMSs manage traffic by displaying early warnings, advisories, and alternate route 
+messages. These messages perform the following functions: 
+• Advisory messages provide motorists with useful information about a specific 
+roadway condition impacting travel along the route where the CMS is located. 
+This information enables motorists to consider alternate routes to reach their 
+destination. 
+Chapter 110 Transportation Management Centers 110-52 
+T
+raffic Operations Manual 
+    
+     
+   
+  
+ 
+ 
+ 
+ 
+   
+ 
+  
+   
+ 
+   
+   
+  
+ 
+   
+ 
+   
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+ 
+Section 4 Systems and Tools February 2026 
+• Alternate route messages influence drivers to travel to their chosen destination 
+using different routes than originally selected. Travelers are alerted to the 
+roadway conditions ahead and encouraged to use an available alternate 
+route, or in severe cases, notified that an alternate route must be used. Alternate 
+route messages can also be used in addressing reduced capacity due to 
+unusual conditions. 
+• Early warning messages effectively reduce secondary incidents by giving 
+travelers advance notice of traffic slowing or "queuing" ahead. This reduces rear-
+end incidents by approaching traffic. 
+To be effective, CMSs must provide timely, accurate, and reliable information. The signs 
+should be activated when unexpected conditions require specific driver actions, such 
+as reducing speed, changing lanes, or using alternate routes. 
+CMSs shall only display information that meets the following criteria: 
+• Timely, accurate, and reliable. 
+• Related to traffic, roadway, or weather conditions. 
+• Associated with unexpected conditions or non-recurrent congestion. 
+Highway Advisory Radio 
+HAR messages are a way for Caltrans to provide travel-related information to motorists 
+through standard amplitude modulation receivers. HAR messages consist of warnings, 
+advisories, directions, or other information useful to motorists. HAR messages are 
+transmitted from low-power roadside radio transmitters, which can be permanent or 
+mobile. The broadcasts are relatively short, usually less than a minute. Appropriate signs 
+advise motorists approaching a HAR site on where to set the radio dial to receive the 
+message. 
+Federal Communications Commission (FCC) rules and regulations restrict the locations 
+of all HAR transmitters. Messages can be recorded for continuous repetition, with the 
+message length adjusted to permit a motorist to hear at least two full repetitions while 
+passing through the zone of coverage at maximum speed. The agency operating the 
+HAR system is responsible for monitoring and maintaining the system and changing the 
+message content as the situation warrants it. 
+FCC rules allow HAR messages to contain non-commercial voice information about 
+traffic and road conditions, traffic obstructions, travel advisories, directions, availability 
+of motorist services, and descriptions of special events. Note that it is not permissible to 
+identify the names of commercial businesses whose services may be available within 
+the broadcast coverage area. When emergency conditions exist, emergency 
+instructions are broadcast describing the road and traffic conditions and providing 
+information to the motorist regarding appropriate actions. 
+Chapter 110 Transportation Management Centers 110-53 
+T
+raffic Operations Manual 
+    
+     
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+   
+  
+ 
+Section 4 Systems and Tools February 2026 
+HARs in the vicinity of major construction zones describe the type of work being done, 
+give applicable traffic control restrictions, and may also recommend alternate routes 
+when applicable. 
+Ramp Metering 
+Entry control metering (commonly referred to as ramp metering) is a traffic 
+management tool used primarily to combat peak-period recurrent highway 
+congestion. 
+Ramp metering is used on high-volume traffic corridors. The purpose of ramp metering is 
+to adjust the highway traffic volume to less than the amount that would disrupt the 
+highway flow. Ramp metering uses traffic signals to limit the number of vehicles per hour 
+entering the highway from an entrance ramp. Entry ramp metering is occasionally used 
+on direct connectors between highways. Vehicles are released one or two at a time in 
+each entrance ramp lane. Vehicles are spaced at intervals as they enter the outside 
+lane of the downstream facility. Depending on volume, this spacing may enable 
+vehicles to merge with through traffic without severely impacting the speed of vehicles 
+in the through lane. 
+Ramp meter locations consist of field controllers, detection equipment, traffic signal 
+heads, and warning signs and are generally connected to a central processing control 
+system. This central system monitors individual ramps and the mainline highway using 
+loop detectors or other detecting equipment in each lane. Ramp meter signals are 
+activated when the traffic volume reaches a threshold volume or the speed drops to a 
+predetermined level. Metering systems attempt to limit the number of vehicles on the 
+highway to a number slightly less than the breakdown level. During peak periods, ramp 
+metering personnel may activate and deactivate ramp meters at selected highway 
+on-ramps, based on unusual traffic conditions. When there is an incident on a highway, 
+TMC operations personnel may need to interact with ramp metering personnel to 
+determine if any adjustments to the metering rates would improve traffic flow in 
+response to the incident. At times, there may be a report of a ramp meter that is not 
+phasing and is "stuck on red." If the meter is accessible through ATMS, the TMC operator 
+may turn off the ramp meter until field personnel can respond. 
+Signalized Intersections 
+An additional traffic management tool available to TMCs is the State Traffic Signal 
+Control System. In locations where the traffic signal field controllers are tied into the TMC 
+(or elsewhere within the district office) through remote communications, TMCs should 
+consider the option to modify or temporarily adjust traffic signal timing (or phasing) in 
+response to incidents. In general, traffic signal operations personnel need to be 
+contacted to initiate adjustments to the State Traffic Signal Control System. If the 
+incident response would benefit from signal timing adjustments on adjoining local 
+streets, a State Traffic Signal Control System representative stationed within the TMC 
+should coordinate with local agency traffic signal operations staff. 
+Chapter 110 Transportation Management Centers 110-54 
+T
+raffic Operations Manual 
+    
+     
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+   
+   
+    
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+     
+  
+ 
+   
+Section 4 Systems and Tools February 2026 
+Roadside Weather Information System 
+The Roadside Weather Information System (RWIS) utilizes meteorological measurement 
+stations strategically positioned alongside highways to collect local pavement and 
+atmospheric data. Each RWIS station utilizes sensing devices that are placed in the 
+highway subgrade, on the road surface, and above the roadway on towers (some as 
+tall as 33 feet high). At the tower’s height, weather data such as air temperature, 
+precipitation, and wind speed are measured and collected. Road sensors are used to 
+determine if the roadway surface is wet, dry, frosted, snow-covered, or iced. Some 
+stations utilize video cameras to relay visual information about weather and road 
+conditions, such as fog, rain, and snow. 
+RWIS information allows traffic operations and maintenance staff to make more 
+informed decisions during winter storms. RWIS equipment and computer programs 
+monitor air and pavement temperature to forecast how winter storms may impact 
+highways. 
+The information RWIS sends to TMCs also assists with dispatching, activating CMSs or 
+HARs with preselected messages, and updating websites with current roadway 
+condition information for motorists. 
+Extinguishable Message Signs 
+An extinguishable message sign provides motorists with a clearly visible fixed message. 
+This strategically placed sign improves overall safety by providing motorists with 
+pertinent roadside information or warnings. Extinguishable message signs (EMS) are 
+used to display a fixed message, such as “TUNE RADIO TO 1610 AM” or “ALL TRUCKS EXIT 
+AT SCALES.” Another type of EMS is a roadside sign, which displays fixed messages with 
+flashing beacons to draw attention to the activated sign. 
+Integrated Corridor Management 
+TMC floor staff can activate, store, retrieve, and execute congestion management 
+plans for ICM. For example, they can automatically determine ramp metering timing 
+rates and recommend signal timing patterns across the corridor. 
+Reversible Lane Control 
+Reversible lanes, also known as variable lanes, are shared lanes that accommodate 
+peak-period traffic flow. The direction of traveling traffic in shared lanes changes 
+depending on the time and day of the week. 
+Reversible lanes must be considered for projects, as mandated by California Streets 
+and Highways Code, Section 100.15. 
+Reversible lane duties include: 
+• Activating and deactivating fixed CMSs during a barrier move. 
+Chapter 110 Transportation Management Centers 110-55 
+T
+raffic Operations Manual 
+    
+     
+   
+ 
+ 
+  
+ 
+   
+ 
+   
+   
+  
+ 
+   
+  
+ 
+ 
+ 
+  
+  
+   
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Section 4 Systems and Tools February 2026 
+• Raising and lowering roadway candlesticks for lane delineation using the 
+electronic lane control system. 
+• Turning roadway in-pavement lights on or off for lane delineation using the 
+electronic lane control system. 
+• Changing electronic message signs and variable message signs in the vicinity of 
+the candlesticks. 
+• Confirming all above actions with field maintenance personnel over an 800-
+Megahertz (MHz) radio. 
+Topic 4 External Interfaces 
+California Highway Patrol Media Computer-Aided Dispatch 
+TMCs primarily receive incident information details by monitoring the CHP VisiCAD or 
+CHP MediaCAD terminal. Added information may be received directly from CHP 
+dispatch to help verify the incident by coordinating with the TMC liaison officer. The 
+CHP communications center will issue Sigalerts and coordinate with the TMC by 
+obtaining incident details and the status of response efforts at the incident scene. 
+Additional details on traffic conditions and incident information can be obtained from 
+CHP personnel by monitoring CHP radio scanners at the TMC. 
+The CHP VisiCAD system is a system that CHP uses to monitor and dispatch 911 calls and 
+officer resources. The Media CHP Traffic Incident Information website, as well as the 
+site’s XML feed, allow the public to view live and recent incident information. The CHP 
+MediaCAD website filters incident information and does not display all incidents 
+reported by CHP to protect private and confidential information. Although heavily 
+redacted for privacy and operational purposes, MediaCAD is publicly available and 
+does not require special permissions. It serves as the public-facing version of CHP 
+VisiCAD, allowing access to information about conditions on the SHS without disclosing 
+sensitive or critical incident management details. 
+VisiCAD 
+VisiCAD is a CHP system accessible to most TMCs that does not filter incidents or 
+incident details and contains private and confidential information such as CHP unit 
+location(s), statuses, and private citizen vehicle and contact information. This allows the 
+TMC floor staff to access more incident details on demand. 
+Chapter 110 Transportation Management Centers 110-56 
+T
+raffic Operations Manual 
+        
+     
+   
+    
+  
+  
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+   
+ 
+ 
+ 
+ 
+Section 5 Transportation Management Center Facility Management February 2026 
+Section 5 Transportation Management Center 
+Facility Management 
+Topic 1 Overview 
+The TMC is a critical facility. The TMC facility manager plays a key role in maintaining the 
+TMC facility and working areas to facilitate TMC operations. This includes ensuring the 
+facility meets health and safety requirements, assisting with preventative maintenance, 
+managing tenants, overseeing contractors and vendors, ensuring accessibility, and 
+communicating with stakeholders such as DGS, CHP, and others. The roles and 
+responsibilities of the facility manager include: 
+• Ensuring the facility is operational and compliant with all local and state laws 
+and regulations relating to health and safety. 
+• Providing facility maintenance, operations, and repairs in an efficient, cost-
+effective, and expeditious manner. 
+• Ensuring uniformity of the furnishings throughout the TMC. Caltrans and CHP will 
+coordinate the selection of colors, styles, and materials. Each party is responsible 
+for purchasing replacement furniture for their portion of the facility. 
+Five out of the twelve TMCs (Districts 3, 7, 8, 11, and 12) are standalone facilities 
+independent of the district Caltrans offices. Caltrans and CHP are co-located at these 
+facilities. Caltrans and CHP have an interagency agreement establishing fiscal 
+obligations, roles, and responsibilities of both departments toward the development, 
+maintenance, and operation of these five TMC facilities. Caltrans has agreed to 
+develop the building infrastructure and maintain the facilities through a dedicated 
+facility manager, with CHP sharing the financial requirements. Facility managers at 
+these five TMCs are responsible for implementing the interagency agreement with CHP, 
+managing numerous contracts associated with facility interior and exterior needs, 
+procurements, and other responsibilities. 
+For the remaining seven TMCs that are located within the district office buildings and 
+the satellite TMC located at Kingvale Station, both Caltrans and DGS provide facility 
+management support. This support is typically limited to exterior and interior building 
+maintenance services, such as carpet and flooring, heating, ventilation, air 
+conditioning (HVAC), workstations, furniture and cabinets, and roofing. TMC functional 
+managers or delegated staff manage internal TMC operating systems, terminals, and 
+associated infrastructure procurement, installation, and maintenance. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-57 
+        
+     
+   
+ 
+  
+ 
+  
+  
+ 
+  
+ 
+ 
+  
+  
+ 
+  
+ 
+  
+   
+  
+  
+   
+  
+   
+  
+   
+   
+  
+    
+   
+  
+ 
+Section 5 Transportation Management Center Facility Management February 2026 
+Topic 2 Tenants or Partners Present in the 
+Transportation Management Center 
+TMCs enable highway traffic monitoring and management functions, which include 
+incident management, emergency response coordination, and more. This is a 
+multidivisional and multiagency collaborative effort, and thus, representatives of 
+different divisions and agencies involved in these efforts may be located or work at 
+TMCs as needed. This includes CHP, local law enforcement, CalOES, DGS, Caltrans 
+Division of Maintenance, EOC, Office of Radio Communications, and mobile 
+communication companies. 
+In addition to the TMC floor where all operations are performed, TMC facilities may 
+have additional spaces for resting, showers, eating, and a wellness center to meet the 
+needs of employees working extended shifts. Facility managers manage the use of 
+these working spaces with CHP and other agencies working at the TMC. 
+Topic 3 Facility Manager Responsibilities 
+Facility managers are responsible for performing and coordinating several tasks. While 
+these vary across the state, the following is a list of tasks and activities that the facility 
+manager is responsible for or supports: 
+All Transportation Management Centers 
+• Support the TMC functional manager with workspace needs. 
+• Facilitate all building or equipment requests and changes. 
+• Manage applicable permits, licenses, and regulations for building operations. 
+• Conduct mailbox, floor plan, and space evaluations. 
+• Maintain building evacuation plans. 
+• Manage fleet, parking, and lighting. 
+• Maintain rack and vault space. 
+• Supervise the tower and the Office of Radio Communications. 
+• Maintain HVAC, generators, and other equipment. 
+• Maintain the building’s exterior and interior workspaces. 
+• Ensure basic health and sanitation services are available. 
+Standalone Transportation Management Centers 
+In addition to general tasks for all TMCs, facility managers for standalone TMCs may also 
+perform the following tasks: 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-58 
+        
+     
+   
+  
+ 
+ 
+  
+  
+   
+ 
+    
+   
+ 
+  
+  
+   
+  
+ 
+  
+  
+  
+  
+ 
+ 
+ 
+  
+  
+   
+   
+  
+  
+  
+  
+  
+  
+Section 5 Transportation Management Center Facility Management February 2026 
+• Onboard new employees, collect fingerprints, coordinate entrance form 
+completion, and assign employee keys, cards, mailboxes, desks, and phone 
+lines. 
+• Ensure Caltrans staff leaving the TMC complete the exit form and return keys, 
+cards, and any other state property. 
+• Develop, monitor, and manage budget operating expenses, annual reviews, life 
+cycle costs, and five-year plans. 
+• Post notifications and memos, as necessary. 
+• Conduct security, clearance, and access activities, camera review, and 
+reporting. 
+• Provide phone, telecommunications, and network support. 
+• Maintain inventory, property control, logs, and as-built or plan management. 
+• Track bi-decade and benchmark due dates on equipment. 
+• Process monthly billing for the interagency agreement with CHP and invoices on 
+contracts with other facility vendors and service providers. 
+• Purchase custodial supplies, building equipment, office supplies, and other items. 
+• Manage maintenance and service contracts as needed. 
+Contracts Managed by the Transportation Management Center 
+Facility Manager 
+Maintenance and service needs vary for each of the five standalone TMC facilities. 
+Many facility maintenance services are secured through contracts. The following is a list 
+of service contracts that facility managers maintain to support building operational 
+needs: 
+• Roof maintenance and repair. 
+• Elevator maintenance and repair. 
+• Electrical, switchgear, and power maintenance and repair. 
+• Generator maintenance and repair, and generator panel monitoring. 
+• Mechanical system maintenance and repair. 
+• Fire suppression system monitoring, maintenance, and repair. 
+• Window and interior cleaning. 
+• Batteries and uninterrupted power systems maintenance and repair. 
+• Video and camera system maintenance and repair. 
+• Access system maintenance and repair. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-59 
+        
+     
+   
+  
+  
+  
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+Section 5 Transportation Management Center Facility Management February 2026 
+• Designated underground storage tank operation. 
+• Plumbing. 
+• Air handlers and chiller maintenance. 
+• Refuse, recycling, and compost. 
+• Hydronic boiler. 
+• Building and restroom sanitation services. 
+• Closed-loop water treatment. 
+• Pest control. 
+• Remote alarm monitoring service. 
+• Gates maintenance. 
+• Locksmith services. 
+• Landscaping. 
+• Drinking water service. 
+• Fire devices (updates and upgrades). 
+• E-waste services. 
+• Moving and installation services. 
+• Door and glass. 
+• Data cleaning services. 
+• Vertical and roller blind repair. 
+• Upholstery (wall panels) and furniture repair. 
+• Metal restoration (exterior) and marquee. 
+• Window and vinyl seal repair. 
+• Floor mat service. 
+• HVAC system maintenance and repair. 
+• Drain system. 
+• Security camera system updates, upgrades, and maintenance. 
+• Dispatch consoles. 
+• Gas line. 
+• Sewage line. 
+• Phone system. 
+• Carpet cleaning. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-60 
+        
+     
+   
+  
+  
+ 
+ 
+ 
+ 
+   
+   
+  
+  
+ 
+  
+  
+  
+ 
+  
+  
+    
+  
+  
+  
+  
+   
+   
+  
+  
+ 
+  
+  
+  
+Section 5 Transportation Management Center Facility Management February 2026 
+• Scaffolding and flapper. 
+• Painting services. 
+Maintenance Schedule 
+Maintenance task schedules vary for each TMC facility based on their infrastructure 
+type, age, location, and other factors. The following is a typical schedule provided for 
+reference: 
+Daily 
+• Building temperature monitoring and adjustment. 
+• DGS building systems monitoring. 
+• Custodial. 
+• Grounds and building rounds. 
+Weekly 
+• Landscaping. 
+• Garbage and recycling (twice a week). 
+• Restroom sanitation system maintenance. 
+Monthly 
+• Pest control service. 
+• Elevator service. 
+• Fire suppression, alarm monitoring, and alarm service. 
+• Generator and switchgear monitoring and service. 
+• Emergency battery monitoring. 
+• Underground storage tank monitoring and service. 
+• Gate maintenance. 
+• Audio-visual equipment monitoring. 
+• Operating Expenses and Pending Expenses Report. 
+• CHP Payment Review and Charge Report. 
+• Tenant location map updates. 
+Quarterly 
+• Carpet cleaning. 
+• Closed-loop water treatment testing. 
+• Preventative plumbing maintenance. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-61 
+        
+     
+   
+  
+ 
+   
+   
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+ 
+  
+ 
+  
+  
+Section 5 Transportation Management Center Facility Management February 2026 
+• Emergency battery service. 
+Every Six Months 
+• Plumbing services on lines and in the basement. 
+• Generator and switchgear testing and maintenance. 
+• Fire suppression testing. 
+• External window washing. 
+• Underground storage tank test and maintenance. 
+• Internal door service and maintenance. 
+• Restroom deep cleaning. 
+• Data cleaning service. 
+Annually 
+• Roof membrane review and repairs on warranty. 
+• Solar review and cleaning on warranty. 
+• Elevator permit renewal. 
+• Fire system testing and maintenance. 
+• Generator and switchgear testing, maintenance, and permit. 
+• Generator exhaust permit. 
+• Camera and reader software upgrade. 
+• Underground diesel tank permits and tests. 
+• Door and lock preventative maintenance. 
+• Plumbing jetting and basement pipe exam. 
+• Air handler testing and maintenance. 
+• Spring tree and landscape health exam and planting. 
+• Spring internal window and sill cleaning. 
+• Boiler maintenance. 
+• Roller blinds service and repairs. 
+Every Three Years 
+• Source testing generator engine. 
+Every Five Years 
+• Check window strips and seals. 
+• Replace backup batteries. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-62 
+        
+     
+   
+  
+   
+   
+ 
+ 
+  
+ 
+ 
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+Section 5 Transportation Management Center Facility Management February 2026 
+• Re-grout restrooms. 
+• Arc flash evaluation. 
+• Purchase emergency water and meals ready to eat. 
+Topic 4 Contract Procurement Resources for Facility 
+Managers 
+Contact Caltrans Division of Procurement and Contracts for information on how to 
+complete purchases or contracts. The following is a list of additional contract and 
+procurement educational resources: 
+• New ADM-0360 Service Contract Process 
+• Contract Manager’s Handbook 
+• Form ADM-4033, "Contract Manager Checklist for IFB & IFPQ Contract Requests" 
+Non-IT Service Contracts - Training & Resources 
+Topic 5 Facility Security 
+The normal business hours for general access to TMC buildings are from 8:00 a.m. to 5:00 
+p.m. on weekdays. The facility has restricted access to only authorized personnel 
+outside these hours. Building security is provided 24 hours a day. During normal business 
+hours, TMCs can be accessed through “all employee” entrances. The TMC operations 
+center is a secure facility. Only authorized personnel with proper security clearance are 
+permitted access through the electronic security system. Parking for staff assigned to 
+the TMC is provided in designated parking areas. 
+In addition to following departmental policy and procedures for identification badges 
+and facility security desks, TMC personnel with unescorted access to the TMC operating 
+floor where CHP VisiCAD is accessible are subject to DOJ background checks and 
+fingerprinting as described in Section 1, Topic 7, “Security Clearance for Transportation 
+Management Center Personnel and Visitors Policy.” The commanding CHP officer at 
+the TMC has the authority and responsibility to ensure compliance with DOJ security 
+rules and regulations. 
+Chapter 110 Transportation Management Centers 
+Traffic Operations Manual 
+110-63 

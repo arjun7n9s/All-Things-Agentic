@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coast Range TMC · tmc-gate</title>
+  <link rel="stylesheet" href="/judges/styles.css" />
+</head>
+<body>
+  <header class="mast">
+    <div>
+      <p class="kicker">Coast Range TMC · fixture desk · D5-shaped SHN</p>
+      <h1>tmc-gate</h1>
+      <p class="lede">Fire on the slope above the postmile. Board still OPEN. Reopen is refused before 06:00.</p>
+    </div>
+    <dl class="clocks">
+      <div><dt>Wall</dt><dd id="wall">—</dd></div>
+      <div><dt>Fixture</dt><dd>06:00 America/Los_Angeles weekdays</dd></div>
+      <div><dt>HCRR</dt><dd>10 minutes from notification</dd></div>
+    </dl>
+  </header>
+
+  <nav class="steps" aria-label="Judge stepper">
+    <button data-pane="frozen-a" class="on">1 Frozen A</button>
+    <button data-pane="frozen-b">2 Frozen B</button>
+    <button data-pane="live">3 Live FIRMS</button>
+    <button data-pane="reopen">4 /reopen</button>
+    <button data-pane="404">5 Unreachable</button>
+    <button data-pane="clock">6 Wall vs sim</button>
+    <button data-pane="conformance">7 Conformance</button>
+  </nav>
+
+  <main>
+    <section id="frozen-a" class="pane on">
+      <h2>Frozen A · MATCH · currently on fire</h2>
+      <p>Replay 30 Aug 2026 09:26 UTC NOAA-20 Plaskett/Timber bytes against live SHN geometry. Stdlib conjuncts. LLM never returns MATCH.</p>
+      <button class="go" data-wake="frozen_a">Run Frozen A wake</button>
+      <pre class="out" id="out-frozen-a">idle</pre>
+    </section>
+
+    <section id="frozen-b" class="pane">
+      <h2>Frozen B · NON-MATCH · Ventana interior</h2>
+      <p>East of the coast range. Zero closure writes. Proves we are not a Monterey County webhook.</p>
+      <button class="go" data-wake="frozen_b">Run Frozen B wake</button>
+      <pre class="out" id="out-frozen-b">idle</pre>
+    </section>
+
+    <section id="live" class="pane">
+      <h2>Live FIRMS GET · this morning’s CSV</h2>
+      <p>Honest MATCH allowed. Honest empty wake allowed. Do not backdate <code>acq_time</code>.</p>
+      <button class="go" data-wake="live">GET this morning’s FIRMS CSV</button>
+      <pre class="out" id="out-live">idle</pre>
+    </section>
+
+    <section id="reopen" class="pane">
+      <h2>Product URL · POST /reopen/CA-1/PM47</h2>
+      <p>This is not a /judges RPC. The link is the SoR path. Frozen A this fixture closes <code>CA-1</code> bPM 0–25.8 → <a class="product" href="/reopen/CA-1/PM12">/reopen/CA-1/PM12</a>. <code>/reopen/CA-1/PM47</code> stays a valid product URL; it REFUSES only if that span is <code>CLOSED_FIRE</code> (not a county webhook).</p>
+      <p><a class="product" id="reopen-link" href="/reopen/CA-1/PM12">/reopen/CA-1/PM12</a></p>
+      <button class="go" id="btn-reopen">POST reopen (refused while CLOSED_FIRE)</button>
+      <pre class="out" id="out-reopen">idle</pre>
+    </section>
+
+    <section id="404" class="pane">
+      <h2>Unreachable 404</h2>
+      <p>We do not publish traveler-info, call CAD, place cones, or send email.</p>
+      <div class="row">
+        <button class="go ghost" data-404="/traveler-info">GET /traveler-info</button>
+        <button class="go ghost" data-404="/cad">GET /cad</button>
+        <button class="go ghost" data-404="/email">GET /email</button>
+        <button class="go ghost" data-404="/cloud-run">GET /cloud-run</button>
+      </div>
+      <pre class="out" id="out-404">idle</pre>
+    </section>
+
+    <section id="clock" class="pane">
+      <h2>Wall-clock vs sim</h2>
+      <p>D5 TMC opens 06:00 America/Los_Angeles weekdays. Dark desk 18:00–06:00.</p>
+      <label>Clock mode
+        <select id="clock-mode">
+          <option value="wall">wall</option>
+          <option value="sim">sim 06:00 weekday</option>
+        </select>
+      </label>
+      <pre class="out" id="out-clock">idle</pre>
+    </section>
+
+    <section id="conformance" class="pane">
+      <h2>GET /conformance · claim vs Firestore objects</h2>
+      <p>3/3 against objects. LLM never decides MATCH.</p>
+      <button class="go" id="btn-conf">Probe conformance</button>
+      <pre class="out" id="out-conf">idle</pre>
+    </section>
+  </main>
+
+  <aside>
+    <h2>TMCAL board</h2>
+    <p class="kicker">Strip any map. The board is the product.</p>
+    <table>
+      <thead><tr><th>Route</th><th>bPM–ePM</th><th>Status</th><th>zΔ</th></tr></thead>
+      <tbody id="board"><tr><td colspan="4">empty</td></tr></tbody>
+    </table>
+    <p id="hcrr" class="muted"></p>
+  </aside>
+
+  <script src="/judges/app.js"></script>
+</body>
+</html>

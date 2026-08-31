@@ -1,0 +1,12 @@
+.gcloudignore
+.venv/
+.git/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+*key.json
+service-account*.json
+.secret*
+htmlcov/
+.coverage
