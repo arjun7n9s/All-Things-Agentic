@@ -64,6 +64,9 @@ class MemoryStore:
                     z_delta=elev.z_delta if elev else None,
                     quoted_span=quotes.county_route_post_mile if quotes else None,
                     quoted_firms_acq_time=quotes.firms_acq_time if quotes else det.acq_iso,
+                    quoted_firms_confidence=(quotes.firms_confidence if quotes else None) or det.confidence,
+                    quoted_firms_frp=(quotes.firms_frp if quotes and quotes.firms_frp is not None else det.frp),
+                    quoted_firms_satellite=(quotes.firms_satellite if quotes else None) or det.satellite,
                     quoted_shn_span={
                         "county": seg.county,
                         "route": str(seg.route),
@@ -112,6 +115,7 @@ class MemoryStore:
 
     def log_reopen(self, payload: dict) -> None:
         with self._lock:
+            payload.setdefault("reopen_log_id", f"reopen-{uuid.uuid4().hex[:10]}")
             self.reopen_log.append(payload)
 
 
@@ -230,6 +234,9 @@ def _row_from_dict(data: dict) -> PostmileRow | None:
             z_delta=data.get("z_delta"),
             quoted_span=data.get("quoted_span"),
             quoted_firms_acq_time=data.get("quoted_firms_acq_time"),
+            quoted_firms_confidence=data.get("quoted_firms_confidence"),
+            quoted_firms_frp=data.get("quoted_firms_frp"),
+            quoted_firms_satellite=data.get("quoted_firms_satellite"),
             quoted_shn_span=data.get("quoted_shn_span"),
             quoted_z_delta=data.get("quoted_z_delta"),
         )

@@ -434,9 +434,30 @@ def session_payload(orchestrator: str, agent_text: str | None = None, adk_tool_c
         "tool_trace": s.tool_trace,
         "unattended": s.unattended,
     }
+    if s.quotes:
+        payload["quotes"] = {
+            "hcrr_10_min": s.quotes.hcrr_10_min,
+            "county_route_post_mile": s.quotes.county_route_post_mile,
+            "upslope_span": s.quotes.upslope_span,
+            "firms_acq_time": s.quotes.firms_acq_time,
+            "firms_confidence": s.quotes.firms_confidence,
+            "firms_frp": s.quotes.firms_frp,
+            "firms_satellite": s.quotes.firms_satellite,
+        }
+    if s.dets:
+        d0 = s.dets[0]
+        payload["firms_line"] = (
+            f"acq_time = {d0.acq_iso} · confidence = {d0.confidence} · FRP = {d0.frp} · satellite = {d0.satellite}"
+        )
+        payload["firms_ids"] = [d.firms_id for d in s.dets[:3]]
     if s.case == "live":
+        from tmc_gate.firms import live_gun_urls
+
         payload["national_csv_rows"] = s.national_n
         payload["d5_clipped_rows"] = len(s.dets)
+        payload["live_get_url"] = live_gun_urls()["csv"]
+        payload["live_get_at"] = datetime.now(timezone.utc).isoformat()
+        payload["live_get_bytes"] = len(s.live_bytes) if s.live_bytes else None
     if agent_text:
         payload["agent_summary"] = agent_text[:2000]
     if adk_tool_calls is not None:

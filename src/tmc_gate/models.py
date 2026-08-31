@@ -131,5 +131,8 @@ class PostmileRow:
     z_delta: float | None = None
     quoted_span: str | None = None
     quoted_firms_acq_time: str | None = None
+    quoted_firms_confidence: str | None = None
+    quoted_firms_frp: float | None = None
+    quoted_firms_satellite: str | None = None
     quoted_shn_span: dict | None = None
     quoted_z_delta: float | None = None

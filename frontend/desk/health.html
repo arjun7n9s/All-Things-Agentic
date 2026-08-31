@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coast Range TMC · health</title>
+  <link rel="stylesheet" href="{{MOUNT}}/judges/styles.css" />
+</head>
+<body>
+  <header class="chrome">
+    <div class="chrome-brand">
+      <p class="name">Coast Range TMC · tmc-gate</p>
+      <p class="sub">D5 SHN clip · dark desk 06:00</p>
+    </div>
+    <div class="clock-card">
+      <div class="time" id="chrome-time">—:—:—</div>
+      <p class="meta" id="chrome-meta">America/Los_Angeles</p>
+      <div class="toggle">
+        <button type="button" data-clock="wall" class="on">wall</button>
+        <button type="button" data-clock="sim">sim</button>
+      </div>
+    </div>
+    <nav class="chrome-nav">
+      <a data-nav="/judges">judges</a>
+      <a data-nav="/reopen/CA-1/PM12">reopen</a>
+      <a data-nav="/conformance">conformance</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <div class="title-block">
+      <h1>/health</h1>
+      <p class="lede">Are the eight required services actually enabled right now, and which clock are we on?</p>
+    </div>
+
+    <div class="panel">
+      <h2>Panel A · Enablement letters</h2>
+      <div id="letters"></div>
+      <p class="fail-note" id="fail-note" hidden></p>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <h2>Panel B · Clock</h2>
+        <p class="mono-line" id="clock-mode">mode · —</p>
+        <p class="note" id="clock-window">D5 window —</p>
+        <p class="note">HCRR budget · 10 minutes from notification</p>
+      </div>
+      <div class="panel">
+        <h2>Panel B · Live gun</h2>
+        <p class="mono-line" id="live-gun">live_gun · —</p>
+        <p class="mono-line" id="ee-firms">ee_firms_not_live_gun · —</p>
+        <p class="note">No JSON dump. Witness only. No buttons.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Eligibility · All Things Agentic</h2>
+      <p class="mono-line" id="elig-gemini">gemini · —</p>
+      <p class="mono-line" id="elig-adk">agent_framework · —</p>
+      <p class="mono-line" id="elig-cloud">cloud_infrastructure · —</p>
+      <p class="note" id="elig-track">track · Taskmaster · not a chatbot</p>
+    </div>
+  </div>
+
+  <footer class="foot">MIT · not Caltrans · not traveler-info · not CAD · not fire map · quote-or-refuse</footer>
+  <script>window.TMC_HEALTH_BOOT = {{PAYLOAD}};</script>
+  <script src="{{MOUNT}}/judges/chrome.js"></script>
+  <script src="{{MOUNT}}/judges/health.js"></script>
+</body>
+</html>

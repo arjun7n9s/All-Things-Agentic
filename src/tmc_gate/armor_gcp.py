@@ -13,7 +13,14 @@ def sanitize(text: str) -> ArmorVerdict:
     template = os.environ.get("MODEL_ARMOR_TEMPLATE")
     if not template:
         return ArmorVerdict(allowed=False, reason="armor_template_missing", configured=True)
-    location = os.environ.get("GOOGLE_CLOUD_LOCATION", "us-central1")
+    # Model Armor templates live in a regional location; Vertex Gemini 3.5 uses global.
+    location = (
+        os.environ.get("MODEL_ARMOR_LOCATION")
+        or os.environ.get("GOOGLE_CLOUD_REGION")
+        or "us-central1"
+    )
+    if location == "global":
+        location = "us-central1"
     url = f"https://modelarmor.{location}.rep.googleapis.com/v1/{template}:sanitizeUserPrompt"
     try:
         import google.auth

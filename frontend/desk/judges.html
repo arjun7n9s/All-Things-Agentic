@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coast Range TMC · judges</title>
+  <link rel="stylesheet" href="{{MOUNT}}/judges/styles.css" />
+</head>
+<body>
+  <header class="chrome">
+    <div class="chrome-brand">
+      <p class="name">Coast Range TMC · tmc-gate</p>
+      <p class="sub">D5 SHN clip · dark desk 06:00</p>
+    </div>
+    <div class="clock-card">
+      <div class="time" id="chrome-time">—:—:—</div>
+      <p class="meta" id="chrome-meta">America/Los_Angeles</p>
+      <div class="toggle" aria-label="Clock mode">
+        <button type="button" data-clock="wall" class="on">wall</button>
+        <button type="button" data-clock="sim">sim</button>
+      </div>
+    </div>
+    <nav class="chrome-nav">
+      <a data-nav="/judges">judges</a>
+      <a data-nav="/reopen/CA-1/PM12">reopen</a>
+      <a data-nav="/conformance">conformance</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <nav class="tabs" aria-label="Judge panes">
+      <button type="button" data-pane="frozen-a" class="on">Frozen A</button>
+      <button type="button" data-pane="frozen-b">Frozen B</button>
+      <button type="button" data-pane="live">Live</button>
+      <button type="button" data-pane="u404">404</button>
+      <button type="button" data-pane="conformance">conformance</button>
+    </nav>
+
+    <section id="frozen-a" class="pane on">
+      <div class="title-block">
+        <p class="state frozen">Frozen A</p>
+        <h1>Currently-on-fire MATCH, reproducible</h1>
+        <p class="lede">Replay 30 Aug 2026 09:26 UTC NOAA-20 against the D5 SHN clip. Stdlib conjuncts. LLM never returns MATCH.</p>
+      </div>
+      <div class="desk-split">
+        <div class="panel">
+          <h2>Quote card</h2>
+          <div class="quote-card">
+            <div class="quote-block">
+              <blockquote>Highway Condition Report Requirements: report to HCC within 10 minutes of notification of a full or directional closure. county, route, and post mile.</blockquote>
+              <p class="cite">[R14] TOM Ch 110, Feb 2026.</p>
+            </div>
+            <div class="quote-block">
+              <blockquote>Falling rocks from the steep slope above the highway continue to be a challenge.</blockquote>
+              <p class="cite">[R22] Timber Fire incident PIO, 29–30 Aug 2026.</p>
+            </div>
+            <div class="quote-block">
+              <p class="mono-line" id="a-firms">acq_time · confidence · FRP · satellite</p>
+              <p class="cite">[R2] NOAA-20 VIIRS 24h CSV.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="chips" id="a-chips"></div>
+          <div class="panel">
+            <p class="state huge" id="a-result">—</p>
+            <p id="a-span" class="state closed">CA-1 · recorded span pending</p>
+            <p class="mono-line" id="a-firms-id"></p>
+            <a class="product-link" id="a-reopen" href="#" target="_blank" rel="noopener">→ POST /reopen/CA-1/PM12</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Write log</h2>
+        <table class="table"><tbody id="a-writes"><tr><td>recorded outcome pending</td></tr></tbody></table>
+      </div>
+    </section>
+
+    <section id="frozen-b" class="pane">
+      <div class="title-block">
+        <p class="state frozen">Frozen B</p>
+        <h1>NON-MATCH · Ventana interior · zero writes</h1>
+        <p class="lede">Proves we are not a Monterey County webhook.</p>
+      </div>
+      <div class="panel">
+        <p class="note">Footprint does not ST_Intersect any SHN centerline (Ventana interior).</p>
+        <p class="note">If a segment does intersect, NASADEM reports z_hotspot ≤ z_shn (downslope / ocean-side / at-grade).</p>
+      </div>
+      <div class="chips" id="b-chips"></div>
+      <div class="panel">
+        <p class="state non huge" id="b-result">NON-MATCH</p>
+        <p class="note" id="b-note">zero closure writes · write_happened: false</p>
+        <a class="product-link ok" id="b-reopen" href="#" target="_blank" rel="noopener">→ POST /reopen/CA-1/PM47 (ALLOWED)</a>
+      </div>
+    </section>
+
+    <section id="live" class="pane">
+      <div class="title-block">
+        <p class="state live">Live</p>
+        <h1>This morning’s FIRMS 24h CSV (no MAP_KEY)</h1>
+        <p class="lede">Honest MATCH or honest empty. Do not backdate acq_time.</p>
+      </div>
+      <p class="live-strip" id="live-strip">GET — waiting for this pane</p>
+      <div class="chips" id="live-chips"></div>
+      <div class="panel">
+        <p class="state huge" id="live-result">—</p>
+        <p class="note" id="live-note">Sky may not cooperate at film time. Honest empty wake allowed. Do not backdate acq_time.</p>
+        <a class="product-link" id="live-reopen" href="#" target="_blank" rel="noopener" hidden>→ POST /reopen/…</a>
+      </div>
+    </section>
+
+    <section id="u404" class="pane">
+      <div class="title-block">
+        <h1>These paths are unreachable</h1>
+        <p class="lede">The tool schema does not contain them.</p>
+      </div>
+      <ul class="list-404" id="list-404"></ul>
+    </section>
+
+    <section id="conformance" class="pane">
+      <div class="title-block">
+        <h1>Conformance</h1>
+        <p class="lede">Does the live Firestore record match the claim the system just made?</p>
+      </div>
+      <p class="mono-line" id="conf-score">score · —</p>
+      <div class="chips" id="conf-chips"></div>
+    </section>
+  </div>
+
+  <footer class="foot">MIT · not Caltrans · not traveler-info · not CAD · not fire map · quote-or-refuse</footer>
+  <script src="{{MOUNT}}/judges/chrome.js"></script>
+  <script src="{{MOUNT}}/judges/judges.js"></script>
+</body>
+</html>

@@ -11,7 +11,8 @@ from tmc_gate.constants import ADK_CALL_BOUND, FORBIDDEN_TOOL_NAMES
 from tmc_gate.models import FirmsDetection, QuoteBundle
 from tmc_gate.quotes import QUOTE_INSTRUCTION, parse_model_json
 
-MODEL = os.environ.get("TMC_GEMINI_MODEL", "gemini-2.5-flash")
+# Mandatory for All Things Agentic: Gemini 3.5 or newer (Devpost / Official Rules).
+MODEL = os.environ.get("TMC_GEMINI_MODEL", "gemini-3.5-flash")
 
 OVERNIGHT_INSTRUCTION = """You are the overnight clerk for Coast Range TMC (fixture TMC).
 

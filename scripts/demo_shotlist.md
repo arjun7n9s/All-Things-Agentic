@@ -20,18 +20,19 @@ Say on camera: “PM47 is still a valid product URL; it refuses only when *that*
 
 ## Record in this order
 
+Show the app working in the first 10–15 seconds. No long intro. No typing live.
+
 1. Title — `/judges` masthead: Coast Range TMC · dark desk · HCRR 10 min
-2. Clock — pane 6 wall vs sim
-3. Wake / Pub/Sub — Network or JSON showing `pubsub.published` after Frozen A
-4. Frozen A — Run wake → `write_happened: true`, `bq_job_id`, `ee_job_id`, `z_delta`
-5. Board / Firestore — TMCAL board `CLOSED_FIRE` + HCRR line
-6. **/reopen in address bar** — open `/tmc-gate/reopen/CA-1/PM12` (POST via judges button or curl) → `REFUSED` + three quotes
-7. Frozen B — zero writes; `/reopen/CA-1/PM12` ALLOWED after reset or on open span
-8. Live FIRMS GET — pane 3; say MATCH or honest empty
-9. 404 — pane 5 → `/traveler-info` 404
-10. `/conformance` — 3/3, `sor: firestore`
-11. Console if time — BQ job / Pub/Sub / Armor / Firestore
-12. Close — board + refused reopen still hold; strip any map
+2. `/health` eligibility strip — **gemini-3.5-flash · Vertex AI · Google ADK · Firestore/Pub/Sub/Functions** (mandatory stack proof)
+3. Clock — wall vs sim
+4. Frozen A — recorded MATCH · CLOSED_FIRE · write log · `→ POST /reopen/CA-1/PM12`
+5. **/reopen in address bar** — `/tmc-gate/reopen/CA-1/PM12` → `REFUSED` + three quotes
+6. Frozen B — NON-MATCH zero writes; PM47 ALLOWED (not a county webhook)
+7. Live FIRMS GET strip — MATCH or honest empty
+8. 404 — unreachable paths
+9. `/conformance` — 3/3, `sor: firestore`
+10. **GCP proof (required)** — Cloud Console: Cloud Functions service + Vertex AI / Firestore / Pub/Sub (rules demand visible GCP backend)
+11. Close — board + refused reopen still hold; strip any map
 
 ## Curl cheat-sheet (second monitor OK)
 

@@ -87,3 +87,38 @@ def test_health_pending_enable(client):
     assert body["live_gun"] == "firms_csv_kml"
     assert body["ee_firms_not_live_gun"] is True
     assert body["fixture_tmc"] == "Coast Range TMC"
+    assert body["services"]["cloud_functions"] == "enabled"
+    letters = {row["letter"]: row["service"] for row in body["letters"]}
+    assert letters["A1"] == "Earth Engine"
+    assert letters["A5"] == "Cloud Functions"
+    assert letters["A8"] == "Cloud Storage"
+    elig = body["eligibility"]
+    assert elig["gemini"].startswith("gemini-3.5") or elig["gemini_min_required"] == "3.5"
+    assert "ADK" in elig["agent_framework"]
+    assert "Firestore" in elig["cloud_infrastructure"]
+    assert elig["track"] == "Taskmaster"
+    assert elig["not_chatbot"] is True
+
+
+def test_desk_html_surfaces(client):
+    judges = client.get("/judges")
+    assert judges.status_code == 200
+    html = judges.get_data(as_text=True)
+    assert "Frozen A" in html
+    assert "ask the assistant" not in html.lower()
+    assert "<textarea" not in html.lower()
+    assert "chat box" not in html.lower()
+    css = client.get("/judges/styles.css")
+    assert css.status_code == 200
+    health = client.get("/health", headers={"Accept": "text/html"})
+    assert health.status_code == 200
+    assert "text/html" in health.content_type
+    assert "Enablement letters" in health.get_data(as_text=True)
+    json_health = client.get("/health?format=json")
+    assert json_health.content_type.startswith("application/json")
+    reopen = client.get("/reopen/CA-1/PM12", headers={"Accept": "text/html"})
+    assert reopen.status_code == 200
+    assert "REFUSED" in reopen.get_data(as_text=True) or "ALLOWED" in reopen.get_data(as_text=True)
+    conf = client.get("/conformance", headers={"Accept": "text/html"})
+    assert conf.status_code == 200
+    assert "show raw JSON" in conf.get_data(as_text=True)

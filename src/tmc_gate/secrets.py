@@ -71,9 +71,10 @@ def ensure_gemini_env() -> bool:
     ) == "1":
         os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "true")
         os.environ.setdefault("GOOGLE_CLOUD_PROJECT", project_id())
+        # Gemini 3.5 Flash on Vertex is served from location=global (not us-central1).
         os.environ.setdefault(
             "GOOGLE_CLOUD_LOCATION",
-            os.environ.get("GOOGLE_CLOUD_LOCATION") or "us-central1",
+            os.environ.get("GOOGLE_CLOUD_LOCATION") or "global",
         )
         # Ensure AIMLAPI is visible for quote fallback even when Vertex is primary.
         load_aimlapi_key()

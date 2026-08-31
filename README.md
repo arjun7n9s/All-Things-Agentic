@@ -2,11 +2,31 @@
 
 When a satellite fire footprint is **upslope of this postmile**, write the TMC closure and **refuse Reopen**, before first shift.
 
-Demo identity: **Coast Range TMC** (fixture TMC, D5-shaped SHN clip). Not Caltrans. Not a fire map.
+Demo identity: **Coast Range TMC** (fixture TMC, D5-shaped SHN clip). Not Caltrans. Not a fire map. **Not a chatbot.**
 
-Host: **Cloud Functions HTTP (2nd gen)**. Not Cloud Run. Not `.run.app`.
+Host: **Cloud Functions HTTP (2nd gen)** at `cloudfunctions.net`. Not advertised as Cloud Run / `.run.app`.
 
-Contest: All Things Agentic · Taskmaster · Gemini · ADK `LlmAgent` + `AgentTool`.
+Contest: **All Things Agentic · The Taskmaster**.
+
+---
+
+## Hackathon eligibility (mandatory stack)
+
+Every project must use Gemini 3.5+, one Google Agent Framework, and one Google Cloud infrastructure service. This repo uses all three:
+
+| Requirement | What tmc-gate uses |
+|---|---|
+| **Gemini 3.5 or newer** via Gemini API or Vertex AI | **`gemini-3.5-flash` on Vertex AI** (`GOOGLE_CLOUD_LOCATION=global`) |
+| **Google Agent Framework** | **Google ADK** — `LlmAgent` + `AgentTool` + `FunctionTool` |
+| **Google Cloud infrastructure** | **Cloud Functions**, **Firestore**, **Pub/Sub**, **BigQuery**, **Earth Engine**, **Model Armor**, **Secret Manager**, **Cloud Storage**, **Cloud Scheduler**, **Vertex AI** |
+
+Proof surfaces:
+
+- `GET /health` → `eligibility` object (model, ADK, GCP services)
+- `architecture.png` (upload this on Devpost)
+- Hosted URL below (highly encouraged for judging)
+
+Track fit (**Taskmaster**): overnight wake is an event-driven workflow — fetch FIRMS → quote TOM → BQ/EE join → write TMCAL/HCRR → refuse `/reopen` — without a chat loop.
 
 ---
 
@@ -14,12 +34,14 @@ Contest: All Things Agentic · Taskmaster · Gemini · ADK `LlmAgent` + `AgentTo
 
 ```
 A10 claim: ENABLED
+Gemini:       gemini-3.5-flash (Vertex AI, location=global)
+ADK:          LlmAgent + AgentTool + FunctionTools
 Earth Engine: enabled (NASADEM upslope)
 BigQuery:     enabled (ST_Intersects)
 Pub/Sub:      enabled (firms-batches + firms-ee-tasks)
 Model Armor:  enabled (fail-closed)
 Firestore:   enabled (TMCAL SoR)
-Secret Manager / Cloud Storage: enabled
+Secret Manager / Cloud Storage / Cloud Functions / Scheduler: enabled
 ```
 
 If Earth Engine cannot enable: join **cannot MATCH**. Do not close on intersect-only.
@@ -33,7 +55,7 @@ If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silent
 - County webhook (`Monterey → close Hwy 1`) or a pre-parsed postmile `set`
 - The artifact is a fire map; strip the map and nothing remains
 - `/reopen` lives only on `/judges`
-- Cloud Run / `.run.app` as the host
+- Cloud Run / `.run.app` as the advertised host
 - Email
 - Invented 100-ft / 30-m buffer (native VIIRS pixel, or CAN'T READ)
 - EE FIRMS catalog as the live gun (1-day lag). Live gun is FIRMS 24h CSV+KML, no MAP_KEY
@@ -41,17 +63,18 @@ If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silent
 - Publish traveler-info or write CAD
 - Real employee names, real CAD incidents
 - Silently skip Earth Engine or Model Armor
+- Gemini model older than 3.5 as the production quote path
 
 ---
 
-## Hosted URL (Cloud Functions only)
+## Hosted URL (Cloud Functions)
 
 https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
 
 | Path | Role |
 |---|---|
-| `/judges` | Stepper (Frozen A/B, live FIRMS, 404, clock, conformance) |
-| `/health` | Enablement letters |
+| `/judges` | Stepper (Frozen A/B, live FIRMS, 404, conformance) |
+| `/health` | Enablement letters + eligibility JSON |
 | `/wake?case=frozen_a` | Currently-on-fire MATCH |
 | `/wake?case=frozen_b` | Inland NON-MATCH (not a county webhook) |
 | `/wake?case=live` | This morning's FIRMS CSV |
@@ -59,7 +82,7 @@ https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
 | `POST /reopen/CA-1/PM47` | Valid product URL — ALLOWED unless *that* span is CLOSED_FIRE |
 | `/conformance` | 3/3 against Firestore objects |
 
-Demo film shot list: `scripts/demo_shotlist.md`.
+Demo film shot list: `scripts/demo_shotlist.md`. Submission checklist: `scripts/submission_checklist.md`.
 
 ---
 
@@ -73,6 +96,7 @@ python -m venv .venv
 pip install -e ".[dev]"
 pytest
 $env:FUNCTION_TARGET="tmc_gate"
+$env:TMC_ADK_ORCHESTRATE="0"
 functions-framework --target=tmc_gate --source=main.py --debug --port=8080
 ```
 
@@ -89,20 +113,22 @@ Live pane GETs this morning's FIRMS CSV. Honest empty wake is allowed.
 
 ## GCP spin-up (after billing + keys)
 
-See `scripts/hour0_enable.ps1`. Enable Earth Engine, BigQuery, Pub/Sub, Model Armor, Cloud Functions, Firestore, Secret Manager, Cloud Storage. Register the project for Earth Engine.
+See `scripts/hour0_enable.ps1`. Enable Earth Engine, BigQuery, Pub/Sub, Model Armor, Cloud Functions, Firestore, Secret Manager, Cloud Storage, Vertex AI. Register the project for Earth Engine.
 
-Put the Gemini key in Secret Manager (`gemini-api-key`). Do not mint user-managed service-account JSON keys. Do not put keys in git.
+**Gemini 3.5 on Vertex requires `GOOGLE_CLOUD_LOCATION=global`.** Model Armor stays regional (`MODEL_ARMOR_LOCATION=us-central1`).
 
-Deployable is a **2nd gen HTTP Cloud Function** named `tmc-gate` with entry `tmc_gate`. **Do not deploy Cloud Run.**
+Put optional Gemini API key in Secret Manager (`gemini-api-key`). Prefer Vertex ADC on Cloud Functions. Do not mint user-managed service-account JSON keys. Do not put keys in git.
 
-Overnight live wake (optional Cloud Scheduler → Functions HTTPS):
+Deployable is a **2nd gen HTTP Cloud Function** named `tmc-gate` with entry `tmc_gate`. Advertise the `cloudfunctions.net` URL, not `.run.app`.
+
+Overnight live wake (Cloud Scheduler → Functions HTTPS):
 
 ```powershell
 gcloud scheduler jobs create http tmc-gate-overnight-live `
   --location=us-central1 `
   --schedule="15 * * * *" `
   --time-zone="America/Los_Angeles" `
-  --uri="https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/wake?case=live" `
+  --uri="https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/wake?case=live&source=scheduler" `
   --http-method=GET `
   --attempt-deadline=540s
 ```
@@ -111,7 +137,7 @@ gcloud scheduler jobs create http tmc-gate-overnight-live `
 
 ## Join (stdlib, not LLM)
 
-Gemini **quotes** TOM Chapter 110 (HCRR 10 min; county, route, and post mile; steep slope above the highway) and FIRMS `acq_time` / confidence / FRP / satellite via ADK `LlmAgent` + `AgentTool`.
+Gemini 3.5 (ADK) **quotes** TOM Chapter 110 (HCRR 10 min; county, route, and post mile; steep slope above the highway) and FIRMS `acq_time` / confidence / FRP / satellite.
 
 Stdlib **conjuncts**:
 
@@ -128,7 +154,28 @@ Probed FIRMS 24h KML is Point placemarks. Native geometry is the sensor pixel fr
 
 ## Architecture
 
-See `architecture.png`. Load-bearing: Earth Engine NASADEM, BigQuery `ST_Intersects`, Pub/Sub, Model Armor fail-closed, Functions, Firestore TMCAL, Secret Manager, ADK quotes-only.
+See [`architecture.png`](architecture.png). Load-bearing: Gemini 3.5 + ADK quotes-only, Earth Engine NASADEM, BigQuery `ST_Intersects`, Pub/Sub, Model Armor fail-closed, Cloud Functions host, Firestore TMCAL, Secret Manager.
+
+Regenerate:
+
+```powershell
+python scripts/render_architecture.py
+```
+
+---
+
+## Technologies used (Devpost write-up)
+
+- **Gemini 3.5 Flash** via **Vertex AI** (`global`)
+- **Google ADK** (`google-adk`) — overnight `LlmAgent` orchestrates real `FunctionTool`s
+- **Cloud Functions** (HTTP 2nd gen) — product host
+- **Firestore** — TMCAL system of record
+- **Pub/Sub** — FIRMS wake witness
+- **BigQuery** — `ST_Intersects` join
+- **Earth Engine** — NASADEM upslope
+- **Model Armor** — fail-closed prompt screening
+- **Secret Manager**, **Cloud Storage**, **Cloud Scheduler**
+- Data: NOAA FIRMS 24h CSV/KML (no MAP_KEY), Caltrans SHN FeatureServer clip (fixture D5), TOM Ch 110 packet
 
 ---
 

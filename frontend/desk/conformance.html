@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coast Range TMC · conformance</title>
+  <link rel="stylesheet" href="{{MOUNT}}/judges/styles.css" />
+</head>
+<body>
+  <header class="chrome">
+    <div class="chrome-brand">
+      <p class="name">Coast Range TMC · tmc-gate</p>
+      <p class="sub">D5 SHN clip · dark desk 06:00</p>
+    </div>
+    <div class="clock-card">
+      <div class="time" id="chrome-time">—:—:—</div>
+      <p class="meta" id="chrome-meta">America/Los_Angeles</p>
+      <div class="toggle">
+        <button type="button" data-clock="wall" class="on">wall</button>
+        <button type="button" data-clock="sim">sim</button>
+      </div>
+    </div>
+    <nav class="chrome-nav">
+      <a data-nav="/judges">judges</a>
+      <a data-nav="/reopen/CA-1/PM12">reopen</a>
+      <a data-nav="/conformance">conformance</a>
+    </nav>
+  </header>
+
+  <div class="shell">
+    <div class="title-block">
+      <h1>/conformance</h1>
+      <p class="lede">Does the live Firestore record match the claim? Default chips; toggle for raw JSON.</p>
+    </div>
+    <p class="mono-line" id="conf-score">score · —</p>
+    <div class="chips" id="conf-chips"></div>
+    <button type="button" class="go ghost" id="toggle-raw">show raw JSON</button>
+    <pre class="raw" id="conf-raw"></pre>
+  </div>
+
+  <footer class="foot">MIT · not Caltrans · not traveler-info · not CAD · not fire map · quote-or-refuse</footer>
+  <script>window.TMC_CONF_BOOT = {{PAYLOAD}};</script>
+  <script src="{{MOUNT}}/judges/chrome.js"></script>
+  <script src="{{MOUNT}}/judges/conformance.js"></script>
+</body>
+</html>
