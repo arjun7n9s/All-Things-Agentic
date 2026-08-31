@@ -11,9 +11,11 @@ if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
 from tmc_gate.api import handle  # noqa: E402
-from tmc_gate.secrets import ensure_gemini_env  # noqa: E402
+from tmc_gate.secrets import ensure_gemini_env, load_aimlapi_key, load_dotenv_file  # noqa: E402
 
 
 def tmc_gate(request):
+    load_dotenv_file()
     ensure_gemini_env()
+    load_aimlapi_key()  # populate AIMLAPI_KEY from Secret Manager if needed
     return handle(request)

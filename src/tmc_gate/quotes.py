@@ -118,25 +118,77 @@ def gemini_configured() -> bool:
         return True
     if os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in {"1", "true", "yes"}:
         return True
+    if os.environ.get("AIMLAPI_KEY") or os.environ.get("AIML_API_KEY") or os.environ.get("AIMLAPI_API_KEY"):
+        return True
     try:
-        from tmc_gate.secrets import ensure_gemini_env
+        from tmc_gate.secrets import ensure_gemini_env, load_aimlapi_key
 
-        return ensure_gemini_env()
+        if ensure_gemini_env():
+            return True
+        return bool(load_aimlapi_key())
     except Exception:
         return False
 
 
-def run_quote_agent(det: FirmsDetection, packet_text: str | None = None) -> QuoteBundle:
-    """ADK LlmAgent path. Falls back to packet quotes when keys are absent (local/tests)."""
-    if not gemini_configured():
-        return packet_quotes_for(det)
-    try:
-        from tmc_gate.adk_agent import quote_with_adk
+def _quote_usable(bundle: QuoteBundle) -> bool:
+    return bundle.status == "QUOTED" and bundle.tom_quotes_ok() and bundle.upslope_quoted()
 
-        return quote_with_adk(det, packet_text or "\n".join(TOM_PACKET.values()))
+
+def run_quote_agent(det: FirmsDetection, packet_text: str | None = None) -> QuoteBundle:
+    """Primary: Vertex/ADK. Fallback: AIMLAPI Gemini. Last resort: packet quotes (never error)."""
+    packet = packet_quotes_for(det)
+    text = packet_text or "\n".join(TOM_PACKET.values())
+
+    # 1) Google ADK / Vertex / API key
+    try:
+        from tmc_gate.secrets import ensure_gemini_env, load_gemini_api_key
+
+        ensure_gemini_env()
+        if (
+            os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in {"1", "true", "yes"}
+            or load_gemini_api_key()
+            or os.environ.get("GOOGLE_API_KEY")
+        ):
+            from tmc_gate.adk_agent import quote_with_adk
+
+            adk_q = quote_with_adk(det, text)
+            if _quote_usable(adk_q):
+                return adk_q
     except Exception:
-        # Honest fall back: packet quotes still are quotes; join remains stdlib.
-        return packet_quotes_for(det)
+        pass
+
+    # 2) AIMLAPI OpenAI-compatible Gemini
+    try:
+        from tmc_gate.aiml_fallback import aimlapi_configured, quote_with_aimlapi
+
+        if aimlapi_configured():
+            aiml_q = quote_with_aimlapi(det, text)
+            if _quote_usable(aiml_q):
+                return aiml_q
+            # Merge partial AIML spans onto packet so join never starves.
+            if aiml_q.status == "QUOTED" or aiml_q.tom_quotes_ok():
+                return QuoteBundle(
+                    status="QUOTED",
+                    hcrr_10_min=aiml_q.hcrr_10_min or packet.hcrr_10_min,
+                    county_route_post_mile=aiml_q.county_route_post_mile or packet.county_route_post_mile,
+                    closed_when_not_passable=aiml_q.closed_when_not_passable
+                    or packet.closed_when_not_passable,
+                    tmc_advised_immediately=aiml_q.tmc_advised_immediately
+                    or packet.tmc_advised_immediately,
+                    emergency_unplanned_closure=aiml_q.emergency_unplanned_closure
+                    or packet.emergency_unplanned_closure,
+                    upslope_span=aiml_q.upslope_span or packet.upslope_span,
+                    firms_acq_time=aiml_q.firms_acq_time or packet.firms_acq_time,
+                    firms_confidence=aiml_q.firms_confidence or packet.firms_confidence,
+                    firms_frp=aiml_q.firms_frp if aiml_q.firms_frp is not None else packet.firms_frp,
+                    firms_satellite=aiml_q.firms_satellite or packet.firms_satellite,
+                    numeric_buffer_from_prose_m=aiml_q.numeric_buffer_from_prose_m,
+                )
+    except Exception:
+        pass
+
+    # 3) Packet quotes — always usable; join stays stdlib.
+    return packet
 
 
 def extract_pdf_text(path: Path) -> str:
