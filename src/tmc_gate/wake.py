@@ -2,17 +2,22 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
-from tmc_gate.firms import load_csv_path
+from tmc_gate.firms import load_csv_path, native_pixel_polygon
 from tmc_gate.join import FixtureElevationEngine, JoinConfig, ShapelyGeometryEngine, evaluate
-from tmc_gate.models import Decision, FirmsDetection, JoinResult, WriteResult
+from tmc_gate.models import Decision, ElevationSample, FirmsDetection, JoinResult, QuoteBundle, WriteResult
 from tmc_gate.quotes import packet_quotes_for, run_quote_agent
 from tmc_gate.shn import load_geojson_path, unique_spans
 from tmc_gate.store import get_store
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "fixtures"
+
+
+def production_mode() -> bool:
+    return os.environ.get("TMC_EARTH_ENGINE") == "enabled"
 
 
 def default_shn_path() -> Path:
@@ -52,7 +57,13 @@ def load_shn():
     return unique_spans(segs)
 
 
-def _engines_local(upslope: bool = True) -> JoinConfig:
+def _engines(upslope: bool = True) -> JoinConfig:
+    """Production: BQ ST_Intersects + EE NASADEM. Local/tests: Shapely + fixture DEM."""
+    if production_mode():
+        from tmc_gate.bq_engine import BqGeometryEngine
+        from tmc_gate.ee_engine import EeNasademEngine
+
+        return JoinConfig(geometry_engine=BqGeometryEngine(), elevation_engine=EeNasademEngine())
     elev = FixtureElevationEngine(520.0, 85.0) if upslope else FixtureElevationEngine(12.0, 90.0)
     return JoinConfig(geometry_engine=ShapelyGeometryEngine(), elevation_engine=elev)
 
@@ -70,7 +81,7 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
 
     if case == "frozen_a":
         dets = [d for d in dets if frozen_a_filter(d)]
-        config = _engines_local(upslope=True)
+        config = _engines(upslope=True)
     elif case == "frozen_b":
         dets = [d for d in dets if frozen_b_filter(d)]
         if not dets:
@@ -89,11 +100,29 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
                     source="frozen-b-ventana",
                 )
             ]
-        config = _engines_local(upslope=True)
+        config = _engines(upslope=True)
     elif case == "live":
-        config = _engines_local(upslope=True)
+        config = _engines(upslope=True)
     else:
         raise ValueError(case)
+
+    hit_map: dict | None = None
+    bq_job_id: str | None = None
+    if production_mode():
+        from tmc_gate.bq_engine import BqGeometryEngine
+
+        if not isinstance(config.geometry_engine, BqGeometryEngine) or config.elevation_engine is None:
+            return {
+                "case": case,
+                "error": "production_requires_bq_and_ee",
+                "detections": len(dets),
+                "matches": 0,
+                "writes": 0,
+                "write_happened": False,
+            }
+        fps = [(d.firms_id, native_pixel_polygon(d)) for d in dets]
+        hit_map = config.geometry_engine.intersecting_spans(fps)
+        bq_job_id = config.geometry_engine.job_id
 
     writes = 0
     matches = 0
@@ -103,7 +132,19 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
     last_write: WriteResult | None = None
     for det in dets:
         quotes = run_quote_agent(det) if case == "live" else packet_quotes_for(det)
-        result = evaluate(det, segs, quotes, config)
+        if production_mode() and os.environ.get("MODEL_ARMOR_ENABLED") == "1":
+            from tmc_gate.armor import sanitize_or_refuse
+
+            verdict = sanitize_or_refuse(quotes.upslope_span or quotes.county_route_post_mile or "")
+            if verdict.configured and not verdict.allowed:
+                cant += 1
+                continue
+
+        if production_mode() and hit_map is not None:
+            result = _evaluate_prod_hit(det, segs, quotes, hit_map, config, bq_job_id)
+        else:
+            result = evaluate(det, segs, quotes, config)
+
         if result.decision is Decision.MATCH:
             matches += 1
             wr = store.apply_match(result)
@@ -141,4 +182,83 @@ def run_case(case: str, live_bytes: bytes | None = None) -> dict:
         "bq_job_id": last_match.bq_job_id if last_match else None,
         "ee_job_id": last_match.ee_job_id if last_match else None,
         "reopen_url": reopen_url,
+        "production": production_mode(),
     }
+
+
+def _evaluate_prod_hit(
+    det: FirmsDetection,
+    segs,
+    quotes: QuoteBundle,
+    hit_map: dict,
+    config: JoinConfig,
+    bq_job_id: str | None,
+) -> JoinResult:
+    """MATCH only from BQ batch hits + EE NASADEM. No Shapely fallback."""
+    from tmc_gate.constants import VIIRS_OK_CONF
+
+    if quotes.status != "QUOTED" or not quotes.tom_quotes_ok() or not quotes.upslope_quoted():
+        return JoinResult(Decision.CANT_READ, "tom_or_upslope_cant_read", detection=det, quotes=quotes)
+    conf = (quotes.firms_confidence or det.confidence or "").strip().lower()
+    if conf not in VIIRS_OK_CONF:
+        return JoinResult(Decision.CANT_READ, "low_confidence", detection=det, quotes=quotes)
+
+    spans = hit_map.get(det.firms_id) or []
+    if not spans:
+        return JoinResult(
+            Decision.NON_MATCH,
+            "no_st_intersects",
+            detection=det,
+            quotes=quotes,
+            bq_job_id=bq_job_id,
+        )
+
+    matched = []
+    elev_used: ElevationSample | None = None
+    for county, route, bpm, epm in spans:
+        seg = next(
+            (
+                s
+                for s in segs
+                if s.county == county
+                and s.route == route
+                and abs(s.bpm - bpm) < 1e-6
+                and abs(s.epm - epm) < 1e-6
+            ),
+            None,
+        )
+        if seg is None:
+            continue
+        try:
+            elev = config.elevation_engine.sample(det, seg)  # type: ignore[union-attr]
+        except Exception:
+            return JoinResult(
+                Decision.CANT_READ,
+                "ee_nasadem_missing",
+                detection=det,
+                quotes=quotes,
+                bq_job_id=bq_job_id,
+            )
+        if elev.z_delta > config.epsilon_m:
+            matched.append(seg)
+            elev_used = elev
+
+    if not matched:
+        return JoinResult(
+            Decision.NON_MATCH,
+            "downslope_or_at_grade",
+            detection=det,
+            quotes=quotes,
+            bq_job_id=bq_job_id,
+            ee_job_id=getattr(config.elevation_engine, "_job_id", None),
+        )
+    return JoinResult(
+        Decision.MATCH,
+        "intersect_and_upslope",
+        matched_segments=matched,
+        detection=det,
+        elevation=elev_used,
+        quotes=quotes,
+        bq_job_id=bq_job_id,
+        ee_job_id=elev_used.ee_job_id if elev_used else None,
+    )
