@@ -1,147 +1,232 @@
-﻿# tmc-gate — Coast Range TMC
+﻿# Coast Range TMC · tmc-gate
 
-When a satellite fire footprint is **upslope of this postmile**, write the TMC closure and **refuse Reopen**, before first shift.
+<p align="center">
+  <img src="docs/assets/readme-hero.png" alt="Coast Range TMC — when fire sits above the milepost, reopen is refused" width="100%" />
+</p>
 
-Demo identity: **Coast Range TMC** (fixture TMC, D5-shaped SHN clip). Not Caltrans. Not a fire map. **Not a chatbot.**
+**When a satellite fire footprint sits upslope of this postmile, write the overnight closure and refuse Reopen — before first shift.**
 
-Host: **Cloud Functions HTTP (2nd gen)** at `cloudfunctions.net`. Not advertised as Cloud Run / `.run.app`.
-
-Contest: **All Things Agentic · The Taskmaster**.
-
----
-
-## Hackathon eligibility (mandatory stack)
-
-Every project must use Gemini 3.5+, one Google Agent Framework, and one Google Cloud infrastructure service. This repo uses all three:
-
-| Requirement | What tmc-gate uses |
+| | |
 |---|---|
-| **Gemini 3.5 or newer** via Gemini API or Vertex AI | **`gemini-3.7-flash` on Vertex AI** (`GOOGLE_CLOUD_LOCATION=global`), with task-scoped routing |
-| **Google Agent Framework** | **Google ADK** — `LlmAgent` + `AgentTool` + `FunctionTool` |
-| **Google Cloud infrastructure** | **Cloud Functions**, **Firestore**, **Pub/Sub**, **BigQuery**, **Earth Engine**, **Model Armor**, **Secret Manager**, **Cloud Storage**, **Cloud Scheduler**, **Vertex AI** |
+| **Product** | `tmc-gate` |
+| **Demo identity** | **Coast Range TMC** (fixture TMC · D5-shaped highway clip) |
+| **Track** | [All Things Agentic](https://allthingsagentichackathon.devpost.com/) · **The Taskmaster** |
+| **Live URL** | https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate |
+| **Host** | **Cloud Functions** (`cloudfunctions.net`) — **not** Cloud Run / `.run.app` |
+| **What it is not** | Not Caltrans. Not a fire map. **Not a chatbot.** |
 
-### Gemini model routing (architectural)
-
-| Task | Model | Why |
-|---|---|---|
-| Overnight parent agent | `gemini-3.7-flash` | Agentic workhorse — multi-step FunctionTool orchestration |
-| Overnight 429 shed | `gemini-3.5-flash` | Same ADK tools if Vertex rate-limits 3.7 |
-| Quote clerk (AgentTool) | `gemini-3.7-flash` | Instruction-faithful TOM / PIO / FIRMS verbatim quotes |
-| Quote retry shed | `gemini-3.5-flash` | Stay ≥ mandatory 3.5 floor if primary fails |
-| Lite probe (optional) | `gemini-3.1-flash-lite` | Cheap non-decision traffic only |
-| Last resort | Deterministic FunctionTool pipeline | Identical tools; no invented MATCH |
-| MATCH / NON-MATCH | **stdlib** (BQ + EE) | LLM never decides MATCH |
-
-Implemented in `src/tmc_gate/model_router.py`. Exposed on `GET /health` → `eligibility.gemini_routing`.
-
-Proof surfaces:
-
-- `GET /health` → `eligibility` object (model routing, ADK, GCP services)
-- `architecture.png` (upload this on Devpost)
-- Hosted URL below (highly encouraged for judging)
-
-Track fit (**Taskmaster**): overnight wake is an event-driven workflow — fetch FIRMS → quote TOM → BQ/EE join → write TMCAL/HCRR → refuse `/reopen` — without a chat loop.
+Start here as a judge: open [`/judges`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/judges) → click **→ POST /reopen/CA-1/PM12** → see **REFUSED** with three quotes.
 
 ---
 
-## A10 claim
+## The problem (plain language)
+
+Imagine a coastal highway at night. Somewhere above the road, a wildfire is burning on the slope. Rocks and debris can fall onto the traveled way. A Traffic Management Center (TMC) is supposed to keep the **board** honest: which postmiles are open, which are closed for fire, and whether anyone may **reopen** a closed stretch.
+
+During the day, people can radio, drive, and look. **Overnight the desk is dark** (this fixture: roughly 18:00–06:00 America/Los_Angeles on weekdays). Satellites still see heat. NASA’s FIRMS feed publishes fresh detections every few hours. The rulebook already says hard things in English:
+
+- Report **county, route, and post mile**
+- File a Highway Condition Report within **10 minutes** of a full/directional closure
+- Treat **steep slope above the highway** as the danger — not “there is fire somewhere in the county”
+
+What a human cannot do, postmile by postmile, while asleep, is ask:
+
+> Is this satellite footprint still sitting **above this exact stretch of road** — and if so, may anyone reopen it?
+
+**Closing “Monterey County” because there is a fire** is the wrong product. Inland pixels are not the traveled way. A pretty fire map is also the wrong product: if you strip the map and nothing remains, you built a costume.
+
+**Coast Range TMC** does the leftover job: keep a system-of-record row (`OPEN → CLOSED_FIRE`) and a real **reopen gate** that answers **REFUSED** while the footprint is still upslope — with the evidence attached.
+
+<p align="center">
+  <img src="docs/assets/readme-how-it-works.png" alt="How Coast Range TMC works overnight — five plain steps" width="100%" />
+</p>
+
+| Step | What happens | Who does it |
+|---|---|---|
+| 1 | Satellite heat arrives (FIRMS 24h CSV) | NOAA / NASA public feed |
+| 2 | AI **reads the rulebook** and quotes it (never decides MATCH) | **Gemini 3.7** via **Google ADK** |
+| 3 | Computers check: on the highway? **above** the highway? | **BigQuery** + **Earth Engine** |
+| 4 | Desk writes **CLOSED_FIRE** + HCRR draft | **Firestore** |
+| 5 | Someone tries reopen → **REFUSED** while still upslope | Product URL `/reopen/{route}/{pm}` |
+
+---
+
+## What you are looking at (30-second judge path)
+
+1. **[`/judges`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/judges)** — Frozen A shows **MATCH**, quote card, conjunction chips, write log (server-rendered on first paint).
+2. **[`/reopen/CA-1/PM12`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/reopen/CA-1/PM12)** — **REFUSED** + FIRMS / SHN / elevation quotes. This is a **product URL**, not a toy button.
+3. **[`/reopen/CA-1/PM47`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/reopen/CA-1/PM47)** — **ALLOWED** after Frozen A. Proves we are not a county webhook.
+4. **[`/health?format=json`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/health?format=json)** — eight enablement letters + `eligibility.gemini_routing` (3.7 / 3.5 / 3.1-Lite).
+5. **[`/conformance`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/conformance)** — **3/3** against **Firestore** objects (not against Gemini prose).
+
+Film shot list: [`scripts/demo_shotlist.md`](scripts/demo_shotlist.md).
+
+---
+
+## How we used Google’s stack (eligibility + depth)
+
+Contest floor: **Gemini 3.5+**, **one Google Agent Framework**, **one Google Cloud infrastructure service**. We use the floor and then go deep on purpose.
+
+### Mandatory triad
+
+| Requirement | What Coast Range TMC uses | Where to verify |
+|---|---|---|
+| **Gemini 3.5 or newer** | **`gemini-3.7-flash`** primary on **Vertex AI** (`GOOGLE_CLOUD_LOCATION=global`) | `/health` → `eligibility.gemini` |
+| **Google Agent Framework** | **Google ADK** — `LlmAgent` + `AgentTool` + `FunctionTool` | `/health` → `eligibility.agent_framework` |
+| **Google Cloud infrastructure** | **Cloud Functions** host + **Firestore**, **Pub/Sub**, **BigQuery**, **Earth Engine**, **Model Armor**, **Secret Manager**, **Cloud Storage**, **Cloud Scheduler**, **Vertex AI** | `/health` → `letters` A1–A8 + `eligibility.cloud_infrastructure` |
+
+### Additional Gemini models (task-routed)
+
+| Task | Model | Role |
+|---|---|---|
+| Overnight parent | **`gemini-3.7-flash`** | Multi-step FunctionTool orchestration |
+| Overnight shed | **`gemini-3.5-flash`** | Same tools if Vertex returns 429 |
+| Quote clerk | **`gemini-3.7-flash`** | Verbatim TOM / PIO / FIRMS quotes |
+| Quote shed | **`gemini-3.5-flash`** | Stay ≥ 3.5 floor if primary fails |
+| Lite probe | **`gemini-3.1-flash-lite`** | Cheap non-decision traffic only |
+| **MATCH / NON-MATCH** | **stdlib** (BigQuery + Earth Engine + Python) | **LLM never decides MATCH** |
+
+Routing lives in `src/tmc_gate/model_router.py` and is printed on `/health` → `eligibility.gemini_routing`.
+
+### Why each Google service is load-bearing
+
+| Service | Job in this product | Fail-closed behavior |
+|---|---|---|
+| **Vertex AI · Gemini** | Quote TOM Ch 110 + FIRMS attributes; ADK tool loop | Never invent MATCH from model text |
+| **Google ADK** | Overnight agent is a workflow, not a chat box | Tools are real side effects |
+| **Cloud Functions (2nd gen)** | Public HTTPS product host | Advertise `cloudfunctions.net` only |
+| **Firestore** | TMCAL system of record + HCRR + reopen log | `/conformance` scores these objects |
+| **BigQuery** | `ST_Intersects` native VIIRS pixel ∩ D5 SHN | Delete BQ → cannot MATCH |
+| **Earth Engine** | NASADEM `z_hotspot > z_shn` (upslope) | Delete EE → cannot MATCH |
+| **Pub/Sub** | Wake witness topics (`firms-batches`, `firms-ee-tasks`) | Overnight publish trail |
+| **Model Armor** | Fail-closed prompt screening (regional `us-central1`) | Print failed letter — do not skip |
+| **Secret Manager** | Keys / AIML fallback secret — not in git | ADC preferred on Functions |
+| **Cloud Scheduler** | Unattended `GET /wake?case=live` | Background Taskmaster chore |
+| **Cloud Storage** | Deploy source / artifacts | Supporting infra |
+
+**We do not use Veo, Lyria, or Gemma.** We do not advertise **Cloud Run**.
+
+### A10 claim (print this)
 
 ```
 A10 claim: ENABLED
-Gemini:       gemini-3.7-flash primary (Vertex AI, location=global; quote_retry=3.5)
+Gemini:       gemini-3.7-flash primary (Vertex AI, location=global; sheds=3.5; lite=3.1-flash-lite)
 ADK:          LlmAgent + AgentTool + FunctionTools
 Earth Engine: enabled (NASADEM upslope)
 BigQuery:     enabled (ST_Intersects)
-Pub/Sub:      enabled (firms-batches + firms-ee-tasks)
+Pub/Sub:      enabled
 Model Armor:  enabled (fail-closed)
 Firestore:   enabled (TMCAL SoR)
-Secret Manager / Cloud Storage / Cloud Functions / Scheduler: enabled
+Cloud Functions / Secret Manager / Cloud Storage / Scheduler: enabled
+Host:         cloudfunctions.net  (NOT .run.app)
 ```
 
-If Earth Engine cannot enable: join **cannot MATCH**. Do not close on intersect-only.
+---
 
-If Model Armor cannot enable: **A8** (U10 / A8 / D8 = 88). Say so. Do not silently skip.
+## Technical architecture
+
+<p align="center">
+  <img src="architecture.png" alt="Coast Range TMC system architecture — Gemini to Functions to data to desk UI" width="100%" />
+</p>
+
+**One sentence:** FIRMS and Scheduler hit **Cloud Functions**; **Gemini + ADK** quote the rulebook; **BigQuery ∩ Earth Engine** decide geometry; **Python stdlib** conjuncts; **Firestore** mutates; the desk UI and `/reopen` show the gate.
+
+```
+FIRMS CSV/KML ──┐
+Scheduler ──────┼──► Cloud Functions (tmc-gate)
+TOM / PIO ──────┘         │
+                          ├─ Model Armor (fail-closed)
+                          ├─ Google ADK + Gemini 3.7 (quotes only)
+                          │       └─ FunctionTools: fetch → quote → join → write → publish → reopen
+                          ├─ BigQuery ST_Intersects (on road?)
+                          ├─ Earth Engine NASADEM (above road?)
+                          ├─ stdlib gate → MATCH | NON-MATCH | CAN'T READ
+                          └─ Firestore TMCAL ──► /reopen REFUSED|ALLOWED
+                                               /conformance 3/3
+                                               /judges desk (SSR first paint)
+```
+
+### The decision rule (stdlib, not the model)
+
+\[
+\text{MATCH} = C_{\{\text{nominal},\text{high}\}} \;\land\; \operatorname{ST\_Intersects}(F,S) \;\land\; (z_{\text{hotspot}} > z_{\text{SHN}}) \;\land\; R \in D5
+\]
+
+- Native geometry = VIIRS pixel from CSV `scan` × `track` (~375 m) — **no invented 100-ft buffer**
+- Live gun = FIRMS **24h CSV+KML** (no `MAP_KEY`) — **not** the Earth Engine FIRMS catalog
+- County-only closer **must fail** (`test_county_only_must_fail`)
+
+### Frontend doctrine
+
+Dark dispatcher desk (`#0b0b0c`), typography-as-state, quote card, conjunction strip, write log, **zero chat**. `/judges` **server-renders** Frozen A / 404 / conformance on first paint so a curl still shows proof; JS refreshes Live FIRMS on every Live tab open.
+
+---
+
+## Product surfaces
+
+| Path | What a judge should see |
+|---|---|
+| [`/judges`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/judges) | Frozen A / B · Live · 404 · conformance |
+| [`/health`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/health?format=json) | A1–A8 letters + Gemini routing |
+| [`/wake?case=frozen_a`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/wake?case=frozen_a) | Currently-on-fire MATCH (reproducible) |
+| [`/wake?case=frozen_b`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/wake?case=frozen_b) | Inland NON-MATCH (not a county webhook) |
+| [`/wake?case=live`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/wake?case=live) | This morning’s FIRMS GET |
+| [`/reopen/CA-1/PM12`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/reopen/CA-1/PM12) | **REFUSED** while Frozen A span is closed |
+| [`/reopen/CA-1/PM47`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/reopen/CA-1/PM47) | **ALLOWED** after Frozen A |
+| [`/reopen/CA-1/PM12?format=cert`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/reopen/CA-1/PM12?format=cert) | Refusal certificate (hashes + quotes) |
+| [`/conformance`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/conformance?format=json) | **3/3** vs Firestore |
+| [`/llms.txt`](https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate/llms.txt) | Machine-readable endpoint map |
+
+Honest film numbers for this fixture: Frozen A closes **CA-1 bPM 0–25.806** (mid-span ~PM 12.903). Film **PM12** for REFUSED; **PM47** for ALLOWED.
 
 ---
 
 ## Kill-if (we kill ourselves)
 
-Tripwire list (also in [`docs/kill-if.md`](docs/kill-if.md); honest-judging notes in [`docs/honest-judging.md`](docs/honest-judging.md)):
+Full list: [`docs/kill-if.md`](docs/kill-if.md) · judging notes: [`docs/honest-judging.md`](docs/honest-judging.md)
 
 - County webhook (`Monterey → close Hwy 1`) or a pre-parsed postmile `set`
 - The artifact is a fire map; strip the map and nothing remains
 - `/reopen` lives only on `/judges`
-- Cloud Run / `.run.app` as the advertised host
-- Email
-- Invented 100-ft / 30-m buffer (native VIIRS pixel, or CAN'T READ)
-- EE FIRMS catalog as the live gun (1-day lag). Live gun is FIRMS 24h CSV+KML, no MAP_KEY
+- **Cloud Run / `.run.app` as the advertised host**
+- Email · traveler-info publish · CAD write
+- Invented 100-ft / 30-m buffer
+- EE FIRMS catalog as the live gun
 - MATCH from LLM output / `eval` of Gemini text
-- Publish traveler-info or write CAD
-- Real employee names, real CAD incidents
 - Silently skip Earth Engine or Model Armor
-- Gemini model older than 3.5 as the production quote / overnight path
-- County-only closer (`test_county_only_must_fail` must catch this)
+- Gemini older than 3.5 on the production overnight / quote path
 - Join still MATCHes after deleting BQ or EE
-
----
-
-## Hosted URL (Cloud Functions)
-
-https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate
-
-| Path | Role |
-|---|---|
-| `/judges` | Stepper (Frozen A/B, live FIRMS, 404, conformance) |
-| `/health` | Enablement letters + eligibility JSON |
-| `/wake?case=frozen_a` | Currently-on-fire MATCH |
-| `/wake?case=frozen_b` | Inland NON-MATCH (not a county webhook) |
-| `/wake?case=live` | This morning's FIRMS CSV |
-| `POST /reopen/CA-1/PM12` | Product URL — REFUSED while Frozen A span is CLOSED_FIRE |
-| `POST /reopen/CA-1/PM47` | Valid product URL — ALLOWED unless *that* span is CLOSED_FIRE |
-| `/conformance` | 3/3 against Firestore objects |
-| `/reopen/…?format=cert` | Refusal / allow certificate (manifest + hashes) |
-| `/llms.txt` | Machine-readable endpoint map |
-
-Demo film shot list (1:1 with demo-video spec): `scripts/demo_shotlist.md`. Submission checklist: `scripts/submission_checklist.md`. Machine map: `llms.txt`.
 
 ---
 
 ## Local spin-up (no GCP keys)
 
-Python 3.11+. From this directory:
+Python 3.11+:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e ".[dev]"
 pytest
-$env:FUNCTION_TARGET="tmc_gate"
-$env:TMC_ADK_ORCHESTRATE="0"
+$env:FUNCTION_TARGET = "tmc_gate"
+$env:TMC_STORE = "memory"
+$env:TMC_ADK_ORCHESTRATE = "0"
 functions-framework --target=tmc_gate --source=main.py --debug --port=8080
 ```
 
-Then:
-
-- http://127.0.0.1:8080/health
-- http://127.0.0.1:8080/judges
-- `POST http://127.0.0.1:8080/wake?case=frozen_a`
-- `POST http://127.0.0.1:8080/reopen/CA-1/PM12` — product URL, not a `/judges` toy
-
-Live pane GETs this morning's FIRMS CSV. Honest empty wake is allowed.
+Then open http://127.0.0.1:8080/judges and `POST /wake?case=frozen_a` → `POST /reopen/CA-1/PM12`.
 
 ---
 
-## GCP spin-up (after billing + keys)
+## GCP spin-up
 
-See `scripts/hour0_enable.ps1`. Enable Earth Engine, BigQuery, Pub/Sub, Model Armor, Cloud Functions, Firestore, Secret Manager, Cloud Storage, Vertex AI. Register the project for Earth Engine.
+See [`scripts/hour0_enable.ps1`](scripts/hour0_enable.ps1) — **Earth Engine first**. Register the project for EE. Gemini 3.7/3.5 on Vertex need `GOOGLE_CLOUD_LOCATION=global`. Model Armor stays `us-central1`. Prefer ADC on Cloud Functions; optional secrets in Secret Manager. **Do not** commit `.env` keys. **Do not** mint user-managed SA JSON keys into git.
 
-**Gemini 3.7 / 3.5 on Vertex require `GOOGLE_CLOUD_LOCATION=global`.** Model Armor stays regional (`MODEL_ARMOR_LOCATION=us-central1`).
+Deployable: 2nd gen HTTP Cloud Function `tmc-gate`, entry `tmc_gate`. Advertise only:
 
-Put optional Gemini API key in Secret Manager (`gemini-api-key`). Prefer Vertex ADC on Cloud Functions. Do not mint user-managed service-account JSON keys. Do not put keys in git.
+`https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate`
 
-Deployable is a **2nd gen HTTP Cloud Function** named `tmc-gate` with entry `tmc_gate`. Advertise the `cloudfunctions.net` URL, not `.run.app`.
-
-Overnight live wake (Cloud Scheduler → Functions HTTPS):
+Overnight Scheduler example:
 
 ```powershell
 gcloud scheduler jobs create http tmc-gate-overnight-live `
@@ -155,62 +240,15 @@ gcloud scheduler jobs create http tmc-gate-overnight-live `
 
 ---
 
-## Join (stdlib, not LLM)
-
-Gemini 3.7 Flash (ADK, task-routed) **quotes** TOM Chapter 110 (HCRR 10 min; county, route, and post mile; steep slope above the highway) and FIRMS `acq_time` / confidence / FRP / satellite.
-
-Stdlib **conjuncts**:
-
-1. Confidence ∈ {nominal, high} (VIIRS)
-2. Native VIIRS footprint `ST_Intersects` a D5 SHN segment (BigQuery in production; Shapely locally)
-3. NASADEM `z_hotspot > z_shn` (Earth Engine in production; fixture sampler locally)
-4. Route on the D5 clip
-
-Either engine missing → `CAN'T READ`, not MATCH. County-only **must fail**.
-
-Probed FIRMS 24h KML is Point placemarks. Native geometry is the sensor pixel from CSV `scan`×`track` (~375 m), **not** an invented 100-foot buffer.
-
----
-
-## Architecture
-
-See [`architecture.png`](architecture.png) (upload this on Devpost).
-
-Flow: **FIRMS / Scheduler → desk UI (`/judges`) → Cloud Functions → Gemini 3.7 + Google ADK (quotes only) → BigQuery ∩ Earth Engine → stdlib gate → Firestore TMCAL → `/reopen` + `/conformance`.**
-
-Load-bearing: Gemini 3.5+ via ADK quotes-only (never MATCH), Earth Engine NASADEM, BigQuery `ST_Intersects`, Pub/Sub, Model Armor fail-closed, Cloud Functions host (`cloudfunctions.net`, not `.run.app`), Firestore TMCAL, Secret Manager.
-
----
-
-## Technologies used (Devpost write-up)
-
-- **Gemini 3.7 Flash** (primary) + **3.5 Flash** (quote retry) via **Vertex AI** (`global`), task-routed
-- **Google ADK** (`google-adk`) — overnight `LlmAgent` orchestrates real `FunctionTool`s
-- **Cloud Functions** (HTTP 2nd gen) — product host
-- **Firestore** — TMCAL system of record
-- **Pub/Sub** — FIRMS wake witness
-- **BigQuery** — `ST_Intersects` join
-- **Earth Engine** — NASADEM upslope
-- **Model Armor** — fail-closed prompt screening
-- **Secret Manager**, **Cloud Storage**, **Cloud Scheduler**
-- Data: NOAA FIRMS 24h CSV/KML (no MAP_KEY), Caltrans SHN FeatureServer clip (fixture D5), TOM Ch 110 packet
-
----
-
 ## Reproducible testing
 
-Named stdlib-gate tests in `tests/test_join_gate.py` and `tests/test_api.py`. Do not claim hundreds of tests — claim the load-bearing ones.
-
-### Local (no GCP keys, deterministic)
-
-Python 3.11+. From this directory:
+Named tests in `tests/test_join_gate.py` and `tests/test_api.py`. We do **not** claim hundreds of tests — we claim the load-bearing ones.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e ".[dev]"
 
-# Force in-memory SoR + fixture engines. Do not hit live Vertex / EE / Firestore.
 $env:TMC_STORE = "memory"
 $env:TMC_FIRESTORE = ""
 $env:TMC_EARTH_ENGINE = ""
@@ -221,57 +259,62 @@ $env:GEMINI_API_KEY = ""
 python -m pytest tests/ -v
 ```
 
-Expected: **all tests pass** (currently 22). Load-bearing names a judge can grep:
+Expected: **all pass** (22+). Grep these names:
 
 | Test | Why it exists |
 |---|---|
 | `test_county_only_must_fail` | U7 kill — not a Monterey webhook |
 | `test_delete_ee_cannot_match` | NASADEM missing → no MATCH |
-| `test_delete_bq_cannot_match` | `ST_Intersects` missing → no MATCH |
+| `test_delete_bq_cannot_match` | Intersect missing → no MATCH |
 | `test_no_invented_100ft_buffer` | Native VIIRS pixel only |
 | `test_reopen_refused_includes_quotes` | Product URL + three quotes |
 | `test_reopen_pm47_not_county_webhook` | PM47 ALLOWED after Frozen A |
-| `test_conformance_3_of_3` | Scores Firestore/memory objects |
+| `test_conformance_3_of_3` | Scores SoR objects |
 | `test_unreachable_404` | traveler-info / CAD / email 404 |
-| `test_no_cloud_run` | Host is Functions, not `.run.app` |
-| `test_board_dedupes_same_span` | One TMCAL row per SHN span |
-| `test_refusal_certificate` | `?format=cert` hashes |
-| `test_desk_html_surfaces` | SSR first paint on `/judges` |
+| `test_no_cloud_run` | Host is Functions |
+| `test_board_dedupes_same_span` | One row per SHN span |
+| `test_refusal_certificate` | `?format=cert` |
+| `test_desk_html_surfaces` | SSR first paint |
 
-### Reproduce the film URLs locally
-
-```powershell
-$env:FUNCTION_TARGET = "tmc_gate"
-$env:TMC_STORE = "memory"
-$env:TMC_ADK_ORCHESTRATE = "0"
-functions-framework --target=tmc_gate --source=main.py --debug --port=8080
-```
-
-In another shell:
-
-```powershell
-curl.exe -sS -X POST "http://127.0.0.1:8080/wake?case=frozen_a"
-curl.exe -sS -X POST "http://127.0.0.1:8080/reopen/CA-1/PM12"   # REFUSED
-curl.exe -sS -X POST "http://127.0.0.1:8080/reopen/CA-1/PM47"   # ALLOWED
-curl.exe -sS "http://127.0.0.1:8080/conformance?format=json"    # 3/3
-curl.exe -sS "http://127.0.0.1:8080/reopen/CA-1/PM12?format=cert"
-curl.exe -sS -o NUL -w "%{http_code}" "http://127.0.0.1:8080/traveler-info"  # 404
-```
-
-### Hosted smoke (optional)
+Hosted smoke:
 
 ```powershell
 $B = "https://us-central1-all-things-agents-507211.cloudfunctions.net/tmc-gate"
 curl.exe -sS "$B/health?format=json"
 curl.exe -sS "$B/wake?case=frozen_a"
-curl.exe -sS -X POST "$B/reopen/CA-1/PM12"
+curl.exe -sS -X POST "$B/reopen/CA-1/PM12" -H "Accept: application/json" -d "{}"
 curl.exe -sS "$B/conformance?format=json"
 ```
 
-If any kill-if trips (county-only closer, Cloud Run advertised, EE skipped silently), print the failed letter — do not ship a green CI by deleting the test.
+---
+
+## Data sources
+
+- **NOAA FIRMS** 24h VIIRS CSV/KML (public, no MAP_KEY) — live gun
+- **D5-shaped SHN clip** (fixture GeoJSON; 32 Monterey CA-1 segments in `fixtures/shn/mon_ca1.geojson`)
+- **TOM Chapter 110** packet + PIO upslope language (quoted, not invented MATCH)
+- **NASADEM** via Earth Engine (`NASA/NASADEM_HGT/001`)
+
+---
+
+## Docs in this repo
+
+| Doc | Purpose |
+|---|---|
+| [`architecture.png`](architecture.png) | Devpost architecture upload |
+| [`docs/assets/readme-hero.png`](docs/assets/readme-hero.png) | Project face / thumbnail |
+| [`docs/assets/readme-how-it-works.png`](docs/assets/readme-how-it-works.png) | Non-tech explainer |
+| [`docs/kill-if.md`](docs/kill-if.md) | Tripwires |
+| [`docs/honest-judging.md`](docs/honest-judging.md) | Rubric honesty |
+| [`docs/devpost-story.md`](docs/devpost-story.md) | Long-form story paste |
+| [`scripts/demo_shotlist.md`](scripts/demo_shotlist.md) | ~4 min film order |
+| [`llms.txt`](llms.txt) | Endpoint map for AI judges |
+| [`SECURITY.md`](SECURITY.md) | Security contact / secrets policy |
 
 ---
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [`LICENSE`](LICENSE).
+
+**Coast Range TMC** is a fixture identity for this hackathon demo. It is not Caltrans, not an official TMC, and not a substitute for field assessment. `/facility-reopen` is intentionally unreachable.
