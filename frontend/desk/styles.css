@@ -20,6 +20,14 @@ html, body {
   font: 15px/1.45 var(--sans);
   min-height: 100%;
 }
+.noscript {
+  margin: 0;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  font: 12px/1.4 var(--mono);
+  color: var(--refused);
+  background: var(--panel);
+}
 a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 a:hover { color: #fff; }
 button, [role="button"], a.btn { cursor: pointer; }

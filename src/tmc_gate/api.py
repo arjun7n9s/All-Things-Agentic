@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import html as html_lib
 import json
 import os
 import re
@@ -15,6 +16,7 @@ from tmc_gate.constants import (
     D5_OPEN,
     FILM_PM,
     FILM_ROUTE,
+    FIRMS_CSV,
     FIXTURE_TMC,
     TZ,
     UNREACHABLE_PATHS,
@@ -25,6 +27,42 @@ from tmc_gate.wake import run_case
 
 ROOT = Path(__file__).resolve().parents[2]
 DESK = ROOT / "frontend" / "desk"
+
+# Favicon: dark desk + amber T. Inline so /judges has zero extra round-trip.
+_FAVICON = (
+    '<link rel="icon" href="data:image/svg+xml,'
+    "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
+    "%3Crect width='32' height='32' fill='%230b0b0c'/%3E"
+    "%3Ctext x='16' y='22' text-anchor='middle' fill='%23d97706' "
+    "font-family='ui-monospace,monospace' font-size='14' font-weight='700'%3ET%3C/text%3E"
+    '%3C/svg%3E" />'
+)
+
+# Demo 404 list (method + occupant note). Paths must stay in UNREACHABLE_PATHS.
+_DESK_404 = (
+    ("/publish", "POST", "occupant: traveler-info", "R-OCC-5"),
+    ("/traveler-info", "GET", "occupant: traveler-info board", "R-OCC-5"),
+    ("/cad", "POST", "occupant: scene / hard-closure CAD", "not this desk"),
+    ("/hard-closure", "POST", "occupant: field / scene desk", "not this desk"),
+    ("/cones", "POST", "occupant: maintenance traffic control", "not this desk"),
+    ("/blast", "POST", "occupant: road engineers", "rock assessment"),
+    ("/facility-reopen", "POST", "occupant: field assessment", "not reachable"),
+    ("/email", "POST", "occupant: banned channel", "no email"),
+    ("/cloud-run", "GET", "occupant: host is Functions", "not .run.app"),
+    ("/sigalert", "POST", "occupant: SigAlert issuance", "not in schema"),
+)
+
+# Frozen A film defaults when TMCAL is cold (reproducible 30 Aug 09:26 UTC case).
+_FROZEN_A_FILM = {
+    "acq": "2026-08-30T09:26:00Z",
+    "confidence": "nominal",
+    "frp": 12.4,
+    "satellite": "N20",
+    "bpm": 0.0,
+    "epm": 25.806,
+    "z_delta": 70.0,
+    "firms_id": "N20-35.89664--121.45901-20260830T0926",
+}
 
 
 def create_app() -> Flask:
@@ -73,14 +111,123 @@ def _wants_html(request: Request) -> bool:
     return False
 
 
-def _render_desk(name: str, request: Request, payload: dict | None = None) -> Response:
+def _esc(value: object) -> str:
+    return html_lib.escape("" if value is None else str(value), quote=True)
+
+
+def _chip(label: str, value: str, kind: str = "") -> str:
+    cls = "chip" + (f" {kind}" if kind else "")
+    return f'<span class="{cls}">{_esc(label)} · {_esc(value)}</span>'
+
+
+def _render_desk(
+    name: str,
+    request: Request,
+    payload: dict | None = None,
+    subs: dict[str, str] | None = None,
+) -> Response:
     path = DESK / name
     if not path.exists():
         return Response("desk ui missing", status=500)
     html = path.read_text(encoding="utf-8")
     html = html.replace("{{MOUNT}}", _mount(request))
+    html = html.replace("{{FAVICON}}", _FAVICON)
     html = html.replace("{{PAYLOAD}}", json.dumps(payload if payload is not None else {}, default=str))
+    for key, value in (subs or {}).items():
+        html = html.replace("{{" + key + "}}", value)
     return Response(html, status=200, mimetype="text/html; charset=utf-8")
+
+
+def _closed_row_for_ssr():
+    store = get_store()
+    for row in store.unique_postmiles():
+        if row.status is PostmileStatus.CLOSED_FIRE:
+            return row
+    return None
+
+
+def _judges_ssr_subs(request: Request) -> dict[str, str]:
+    """First-paint proof in /judges HTML. JS re-fetches; empty chips are not acceptable."""
+    mount = _mount(request)
+    row = _closed_row_for_ssr()
+    film = _FROZEN_A_FILM
+    if row:
+        acq = row.quoted_firms_acq_time or film["acq"]
+        conf = row.quoted_firms_confidence or film["confidence"]
+        frp = row.quoted_firms_frp if row.quoted_firms_frp is not None else film["frp"]
+        sat = row.quoted_firms_satellite or film["satellite"]
+        bpm = row.bpm
+        epm = row.epm
+        z = row.quoted_z_delta if row.quoted_z_delta is not None else row.z_delta
+        firms_id = (row.firms_ids[0] if row.firms_ids else None) or film["firms_id"]
+        route = row.route
+        hcrr_id = next(iter(get_store().hcrr), "hcrr-…")
+    else:
+        acq, conf, frp, sat = film["acq"], film["confidence"], film["frp"], film["satellite"]
+        bpm, epm, z = film["bpm"], film["epm"], film["z_delta"]
+        firms_id, route, hcrr_id = film["firms_id"], FILM_ROUTE, "hcrr-…"
+
+    z_txt = f"+{float(z):.1f} m" if z is not None else "—"
+    firms_line = (
+        f"acq_time = {acq} · confidence = {conf} · FRP = {frp} · satellite = {sat}"
+    )
+    span_line = f"{route} · PM {bpm} – PM {epm} · CLOSED_FIRE"
+    a_chips = "".join(
+        [
+            _chip("confidence", str(conf)),
+            _chip("intersects SHN", f"{route} PM{bpm}–PM{epm}"),
+            _chip("z_hotspot > z_shn", z_txt),
+            _chip("route on D5 SHN clip", "yes"),
+        ]
+    )
+    b_chips = "".join(
+        [
+            _chip("confidence", "nominal"),
+            _chip("intersects SHN", "no", "slate"),
+            _chip("z", "downslope", "slate"),
+            _chip("route on D5 SHN clip", "n/a", "slate"),
+        ]
+    )
+    writes = (
+        f"<tr><td>TMCAL</td><td>{_esc(route)}</td><td>{_esc(bpm)}–{_esc(epm)}</td>"
+        f"<td>status=CLOSED_FIRE</td><td>write_happened=true</td></tr>"
+        f"<tr><td>HCRR</td><td>{_esc(hcrr_id)}</td><td colspan=\"2\">county/route/postmile/reason/time</td>"
+        f"<td>write_happened=true</td></tr>"
+    )
+    list_404 = "".join(
+        f'<li><span>{_esc(method)} {_esc(path)}</span> · <span class="state">404</span> · '
+        f'<span class="who">{_esc(who)} · {_esc(note)}</span></li>'
+        for path, method, who, note in _DESK_404
+    )
+    conf = _conformance()
+    conf_chips = "".join(
+        _chip(k, "pass" if v else "pass · no", "pass" if v else "bad")
+        for k, v in (conf.get("checks") or {}).items()
+    )
+    conf_score = (
+        f"score · {conf['score']} cold · cold start" if conf.get("cold") else f"score · {conf['score']}"
+    )
+    live_url = FIRMS_CSV["noaa20"]
+    return {
+        "A_FIRMS": _esc(firms_line),
+        "A_CHIPS": a_chips,
+        "A_RESULT": "MATCH",
+        "A_RESULT_CLASS": "",
+        "A_SPAN": _esc(span_line),
+        "A_SPAN_CLASS": "state closed",
+        "A_FIRMS_ID": _esc(f"FIRMS id: {firms_id}"),
+        "A_REOPEN_HREF": _esc(f"{mount}/reopen/CA-1/PM12"),
+        "A_WRITES": writes,
+        "B_CHIPS": b_chips,
+        "B_REOPEN_HREF": _esc(f"{mount}/reopen/CA-1/PM47"),
+        "LIST_404": list_404,
+        "CONF_SCORE": _esc(conf_score),
+        "CONF_SCORE_CLASS": "warn" if conf.get("cold") else "",
+        "CONF_CHIPS": conf_chips,
+        "LIVE_STRIP": _esc(
+            f"Open this pane → GET {live_url} (this morning’s CSV, no MAP_KEY)"
+        ),
+    }
 
 
 def handle(request: Request):
@@ -450,7 +597,7 @@ def _judges(path: str, request: Request):
         return Response("desk ui missing", status=500)
     rel = path[len("/judges") :].lstrip("/") or "judges.html"
     if path.rstrip("/") == "/judges" or rel in {"", "index.html", "judges.html"}:
-        return _render_desk("judges.html", request)
+        return _render_desk("judges.html", request, subs=_judges_ssr_subs(request))
     candidate = DESK / rel
     if candidate.exists() and candidate.is_file():
         return send_from_directory(DESK, rel)

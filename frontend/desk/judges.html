@@ -4,9 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Coast Range TMC · judges</title>
+  {{FAVICON}}
   <link rel="stylesheet" href="{{MOUNT}}/judges/styles.css" />
 </head>
 <body>
+  <noscript>
+    <p class="noscript">Enable JavaScript to refresh live FIRMS and conformance. First paint below is server-rendered from TMCAL.</p>
+  </noscript>
   <header class="chrome">
     <div class="chrome-brand">
       <p class="name">Coast Range TMC · tmc-gate</p>
@@ -55,24 +59,24 @@
               <p class="cite">[R22] Timber Fire incident PIO, 29–30 Aug 2026.</p>
             </div>
             <div class="quote-block">
-              <p class="mono-line" id="a-firms">acq_time · confidence · FRP · satellite</p>
+              <p class="mono-line" id="a-firms">{{A_FIRMS}}</p>
               <p class="cite">[R2] NOAA-20 VIIRS 24h CSV.</p>
             </div>
           </div>
         </div>
         <div>
-          <div class="chips" id="a-chips"></div>
+          <div class="chips" id="a-chips">{{A_CHIPS}}</div>
           <div class="panel">
-            <p class="state huge" id="a-result">—</p>
-            <p id="a-span" class="state closed">CA-1 · recorded span pending</p>
-            <p class="mono-line" id="a-firms-id"></p>
-            <a class="product-link" id="a-reopen" href="#" target="_blank" rel="noopener">→ POST /reopen/CA-1/PM12</a>
+            <p class="state huge {{A_RESULT_CLASS}}" id="a-result">{{A_RESULT}}</p>
+            <p id="a-span" class="{{A_SPAN_CLASS}}">{{A_SPAN}}</p>
+            <p class="mono-line" id="a-firms-id">{{A_FIRMS_ID}}</p>
+            <a class="product-link" id="a-reopen" href="{{A_REOPEN_HREF}}" target="_blank" rel="noopener">→ POST /reopen/CA-1/PM12</a>
           </div>
         </div>
       </div>
       <div class="panel">
         <h2>Write log</h2>
-        <table class="table"><tbody id="a-writes"><tr><td>recorded outcome pending</td></tr></tbody></table>
+        <table class="table"><tbody id="a-writes">{{A_WRITES}}</tbody></table>
       </div>
     </section>
 
@@ -86,11 +90,11 @@
         <p class="note">Footprint does not ST_Intersect any SHN centerline (Ventana interior).</p>
         <p class="note">If a segment does intersect, NASADEM reports z_hotspot ≤ z_shn (downslope / ocean-side / at-grade).</p>
       </div>
-      <div class="chips" id="b-chips"></div>
+      <div class="chips" id="b-chips">{{B_CHIPS}}</div>
       <div class="panel">
         <p class="state non huge" id="b-result">NON-MATCH</p>
         <p class="note" id="b-note">zero closure writes · write_happened: false</p>
-        <a class="product-link ok" id="b-reopen" href="#" target="_blank" rel="noopener">→ POST /reopen/CA-1/PM47 (ALLOWED)</a>
+        <a class="product-link ok" id="b-reopen" href="{{B_REOPEN_HREF}}" target="_blank" rel="noopener">→ POST /reopen/CA-1/PM47 (ALLOWED)</a>
       </div>
     </section>
 
@@ -100,12 +104,12 @@
         <h1>This morning’s FIRMS 24h CSV (no MAP_KEY)</h1>
         <p class="lede">Honest MATCH or honest empty. Do not backdate acq_time.</p>
       </div>
-      <p class="live-strip" id="live-strip">GET — waiting for this pane</p>
+      <p class="live-strip" id="live-strip">{{LIVE_STRIP}}</p>
       <div class="chips" id="live-chips"></div>
       <div class="panel">
         <p class="state huge" id="live-result">—</p>
-        <p class="note" id="live-note">Sky may not cooperate at film time. Honest empty wake allowed. Do not backdate acq_time.</p>
-        <a class="product-link" id="live-reopen" href="#" target="_blank" rel="noopener" hidden>→ POST /reopen/…</a>
+        <p class="note" id="live-note">Open this pane to GET this morning’s FIRMS CSV. Sky may not cooperate. Honest empty wake allowed.</p>
+        <a class="product-link" id="live-reopen" href="{{A_REOPEN_HREF}}" target="_blank" rel="noopener" hidden>→ POST /reopen/CA-1/PM12</a>
       </div>
     </section>
 
@@ -114,7 +118,7 @@
         <h1>These paths are unreachable</h1>
         <p class="lede">The tool schema does not contain them.</p>
       </div>
-      <ul class="list-404" id="list-404"></ul>
+      <ul class="list-404" id="list-404">{{LIST_404}}</ul>
     </section>
 
     <section id="conformance" class="pane">
@@ -122,8 +126,8 @@
         <h1>Conformance</h1>
         <p class="lede">Does the live Firestore record match the claim the system just made?</p>
       </div>
-      <p class="mono-line" id="conf-score">score · —</p>
-      <div class="chips" id="conf-chips"></div>
+      <p class="mono-line {{CONF_SCORE_CLASS}}" id="conf-score">{{CONF_SCORE}}</p>
+      <div class="chips" id="conf-chips">{{CONF_CHIPS}}</div>
     </section>
   </div>
 

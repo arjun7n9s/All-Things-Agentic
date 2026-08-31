@@ -156,6 +156,8 @@ const UNREACHABLE = [
 
 function fill404() {
   const ul = $("#list-404");
+  // Prefer server-rendered first paint; only fill if SSR missed.
+  if (ul.children.length) return;
   ul.innerHTML = UNREACHABLE.map(
     ([path, method, who, note]) =>
       `<li><span>${method} ${path}</span> · <span class="state">404</span> · <span class="who">${who} · ${note}</span></li>`
@@ -253,12 +255,20 @@ function onPane(id) {
 }
 
 fill404();
-fillChips($("#b-chips"), [
-  ["confidence", "nominal", ""],
-  ["intersects SHN", "no", "slate"],
-  ["z", "downslope", "slate"],
-  ["route on D5 SHN clip", "n/a", "slate"],
-]);
-$("#a-reopen").href = reopenHref("/reopen/CA-1/PM12");
-$("#b-reopen").href = reopenHref("/reopen/CA-1/PM47");
+if (!$("#b-chips").children.length) {
+  fillChips($("#b-chips"), [
+    ["confidence", "nominal", ""],
+    ["intersects SHN", "no", "slate"],
+    ["z", "downslope", "slate"],
+    ["route on D5 SHN clip", "n/a", "slate"],
+  ]);
+}
+const aLink = $("#a-reopen");
+const bLink = $("#b-reopen");
+if (!aLink.getAttribute("href") || aLink.getAttribute("href") === "#") {
+  aLink.href = reopenHref("/reopen/CA-1/PM12");
+}
+if (!bLink.getAttribute("href") || bLink.getAttribute("href") === "#") {
+  bLink.href = reopenHref("/reopen/CA-1/PM47");
+}
 loadFrozenA();

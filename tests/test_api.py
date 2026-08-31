@@ -146,6 +146,16 @@ def test_desk_html_surfaces(client):
     assert "ask the assistant" not in html.lower()
     assert "<textarea" not in html.lower()
     assert "chat box" not in html.lower()
+    # First paint is server-rendered (no empty chips / dead # hrefs).
+    assert ">MATCH<" in html
+    assert "acq_time =" in html
+    assert "CLOSED_FIRE" in html
+    assert 'id="a-reopen"' in html and 'href="#"' not in html.split('id="a-reopen"')[1][:120]
+    assert "/reopen/CA-1/PM12" in html
+    assert "/traveler-info" in html
+    assert "score ·" in html
+    assert "rel=\"icon\"" in html or "rel='icon'" in html
+    assert "Enable JavaScript" in html
     css = client.get("/judges/styles.css")
     assert css.status_code == 200
     health = client.get("/health", headers={"Accept": "text/html"})
@@ -160,3 +170,13 @@ def test_desk_html_surfaces(client):
     conf = client.get("/conformance", headers={"Accept": "text/html"})
     assert conf.status_code == 200
     assert "show raw JSON" in conf.get_data(as_text=True)
+
+
+def test_judges_ssr_uses_store_row(client):
+    run_case("frozen_a")
+    html = client.get("/judges").get_data(as_text=True)
+    assert "MATCH" in html
+    assert "PM 0.0" in html or "PM 0" in html
+    assert "25.806" in html
+    assert "chip" in html
+    assert "postmile_status_closed_fire" in html or "quoted_spans_present" in html
