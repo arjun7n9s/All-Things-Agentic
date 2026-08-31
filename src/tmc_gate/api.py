@@ -94,8 +94,12 @@ def handle(request: Request):
         return _judges(path)
 
     if path in {"/", ""}:
-        # Preserve the Cloud Functions URL prefix (.../tmc-gate/judges).
-        dest = request.url.rstrip("/") + "/judges"
+        # cloudfunctions.net serves the function under /tmc-gate; *.run.app is root.
+        host = request.host or ""
+        if "cloudfunctions.net" in host:
+            dest = f"https://{host}/tmc-gate/judges"
+        else:
+            dest = request.url.rstrip("/") + "/judges"
         return Response("", status=302, headers={"Location": dest})
 
     return Response("not found", status=404, mimetype="text/plain")
