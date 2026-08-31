@@ -25,8 +25,24 @@ def load_gemini_api_key() -> str | None:
 
 
 def ensure_gemini_env() -> bool:
+    """Prefer Vertex AI on GCP (contest-legal). Fall back to API key locally."""
+    # Cloud Functions / Vertex path — avoids API_KEY_SERVICE_BLOCKED on the project.
+    if os.environ.get("K_SERVICE") or os.environ.get("FUNCTION_TARGET") or os.environ.get(
+        "TMC_USE_VERTEXAI", ""
+    ) == "1":
+        os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "true")
+        os.environ.setdefault("GOOGLE_CLOUD_PROJECT", project_id())
+        os.environ.setdefault(
+            "GOOGLE_CLOUD_LOCATION",
+            os.environ.get("GOOGLE_CLOUD_LOCATION") or "us-central1",
+        )
+        return True
     key = load_gemini_api_key()
     if not key:
+        # Still allow Vertex if ADC is present.
+        if os.environ.get("GOOGLE_CLOUD_PROJECT"):
+            os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "true")
+            return True
         return False
     os.environ.setdefault("GOOGLE_API_KEY", key)
     return True

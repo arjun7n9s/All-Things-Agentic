@@ -71,6 +71,12 @@ def handle(request: Request):
 
     if path.startswith("/wake") and method in {"POST", "GET"}:
         case = request.args.get("case") or (request.get_json(silent=True) or {}).get("case") or "frozen_a"
+        # Cloud Scheduler / unattended overnight — no /judges button required.
+        unattended = (
+            request.args.get("source") == "scheduler"
+            or request.headers.get("X-CloudScheduler") == "true"
+            or bool(request.headers.get("X-CloudScheduler-JobName"))
+        )
         live_bytes = None
         if case == "live":
             from tmc_gate.firms import fetch_bytes, live_gun_urls
@@ -79,7 +85,7 @@ def handle(request: Request):
                 live_bytes = fetch_bytes(live_gun_urls()["csv"])
             except Exception as exc:
                 return _json({"case": "live", "error": str(exc), "honest_empty": True, "writes": 0})
-        return _json(run_case(case, live_bytes=live_bytes))
+        return _json(run_case(case, live_bytes=live_bytes, unattended=unattended))
 
     if path in {"/reset", "/reset/"} and method in {"POST", "GET"}:
         reset_store()
@@ -103,6 +109,20 @@ def handle(request: Request):
         return Response("", status=302, headers={"Location": dest})
 
     return Response("not found", status=404, mimetype="text/plain")
+
+
+def _last_unattended_wake() -> dict | None:
+    try:
+        if os.environ.get("TMC_FIRESTORE") != "enabled":
+            return None
+        from google.cloud import firestore
+
+        project = os.environ.get("FIRESTORE_PROJECT") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+        db = firestore.Client(project=project)
+        doc = db.collection("tmcal_meta").document("last_unattended_wake").get()
+        return doc.to_dict() if doc.exists else None
+    except Exception:
+        return None
 
 
 def _svc(name: str) -> str:
@@ -139,6 +159,15 @@ def _health() -> dict:
         },
         "live_gun": "firms_csv_kml",
         "ee_firms_not_live_gun": True,
+        "last_unattended_wake": _last_unattended_wake(),
+        "agent_tools": [
+            "fetch_firms_batch",
+            "quote_tom_and_firms",
+            "spatial_join_upslope",
+            "commit_closed_fire_writes",
+            "publish_firms_witness",
+            "probe_reopen_gate",
+        ],
     }
     failed = [k for k, v in services.items() if v == "failed"]
     if "earth_engine" in failed or "model_armor" in failed:

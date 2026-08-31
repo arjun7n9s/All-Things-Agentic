@@ -90,6 +90,9 @@ def parse_model_json(payload: dict, det: FirmsDetection) -> QuoteBundle:
     status = str(payload.get("status") or "QUOTED").upper().replace("'", "")
     if status in {"CANT_READ", "CAN'T READ", "CANTREAD"}:
         status = "CANT_READ"
+    elif status in {"SUCCESS", "OK", "DONE", "COMPLETE"}:
+        # Models often emit SUCCESS instead of QUOTED — treat as quoted if spans exist.
+        status = "QUOTED"
 
     tom = payload.get("tom") or payload
     firms = payload.get("firms") or payload
@@ -111,9 +114,9 @@ def parse_model_json(payload: dict, det: FirmsDetection) -> QuoteBundle:
 
 
 def gemini_configured() -> bool:
-    if os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY") or os.environ.get(
-        "GOOGLE_GENAI_USE_VERTEXAI"
-    ):
+    if os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY"):
+        return True
+    if os.environ.get("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in {"1", "true", "yes"}:
         return True
     try:
         from tmc_gate.secrets import ensure_gemini_env
